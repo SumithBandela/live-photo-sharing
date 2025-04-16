@@ -1,8 +1,7 @@
 import './admin-login.css';
 import { useState } from 'react';
 import { useCookies } from 'react-cookie';
-import { useNavigate } from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';
 export function AdminLogin() {
   const [, setCookie] = useCookies(['adminUser']);
   const [username, setUsername] = useState('');
@@ -46,7 +45,12 @@ export function AdminLogin() {
         />
 
         <button type="submit" className="login-button">Login</button>
+        <div className="text-center m-2">
+            <Link className="d-block mb-2 text-white" to='/forgot-password'>Forgotten your password?</Link>
+            <span>Don't have an account? <Link  className="text-white" to='/signup'>Sign up</Link></span>
+       </div>
       </form>
+      
     </div>
   );
 }

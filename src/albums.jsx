@@ -1,7 +1,8 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './albums.css';
 
 export function Albums() {
+  let navigate = useNavigate();
   // Mock album data — replace this with real data from API or database
   const albums = [
     {
@@ -27,7 +28,6 @@ export function Albums() {
   return (
     <div className="albums-container">
       <h2>📁 All Albums</h2>
-
       <div className="album-grid">
         {albums.map((album) => (
           <div className="album-card" key={album.id}>
@@ -38,6 +38,7 @@ export function Albums() {
           </div>
         ))}
       </div>
+      <button className="add-btn mt-4" onClick={()=>navigate('/add-album')}>➕ Add Album</button>
     </div>
   );
 }

@@ -12,6 +12,9 @@ import { Photos } from './photos';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { useState } from 'react';
 import { useCookies } from 'react-cookie';
+import { AddAlbum } from './add-album';
+import { ForgotPassword } from './forgot-password';
+import { Signup } from './sign-up';
 function App() {
   const [cookies,,removeCookie] = useCookies(['adminUser']);
   const [expanded, setExpanded] = useState(false);
@@ -72,12 +75,15 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="home" element={<Home />} />
         <Route path="/login" element={<AdminLogin />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
         {cookies.adminUser && (
           <>
         <Route path="/admin" element={<Admin />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/upload" element={<UploadPhotos />} />
         <Route path="/albums" element={<Albums />} />
+        <Route path="/add-album" element={<AddAlbum />} />
         <Route path="/photos/:albumId" element={<Photos />} />
         <Route path="/addphotos/:albumId" element={<AddPhotos />} />
         </>)}
