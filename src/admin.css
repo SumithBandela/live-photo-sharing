@@ -1,0 +1,54 @@
+.admin-container {
+    min-height: 90vh;
+    background: linear-gradient(to right, #2575fc, #6a11cb);  /* Gradient to match the overall theme */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+  }
+  
+  .admin-panel {
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    padding: 40px;
+    width: 90%;
+    max-width: 700px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  }
+  
+  .admin-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .admin-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    opacity: 0.85;
+  }
+  
+  .admin-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 20px;
+  }
+  
+  .admin-card {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 15px;
+    padding: 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .admin-card:hover {
+    transform: translateY(-5px);
+    background-color: rgba(255, 255, 255, 0.25);
+  }
+  
