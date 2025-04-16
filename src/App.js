@@ -1,6 +1,6 @@
 import './App.css';
 
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import {HashRouter as BrowserRouter, Link, Routes, Route } from 'react-router-dom';
 import { Home } from './home';
 import { Admin } from './admin';
 import { Gallery } from './gallery';
@@ -9,37 +9,58 @@ import { UploadPhotos } from './upload-photos';
 import { Albums } from './albums';
 import { AddPhotos } from './add-photos';
 import { Photos } from './photos';
-
+import { Navbar, Nav, Container } from 'react-bootstrap';
+import { useState } from 'react';
 function App() {
+  const [expanded, setExpanded] = useState(false);
+  const handleNavClick = () => {
+    setExpanded(false); // Close the menu after clicking a nav link
+  };
   return (
-    <Router>
-      {/* NavBar */}
-      <nav className="custom-navbar">
-        <div className="logo">
-          <Link to="/" className="nav-link">RSPhotography</Link>
-        </div>
-        <ul className="nav-list">
-          <li>
-            <Link to="/" className="nav-link">Home</Link>
-          </li>
-          <li>
-            <Link to="/gallery" className="nav-link">Gallery</Link>
-          </li>
-          <li>
-            <Link to="/albums" className="nav-link">Albums</Link>
-          </li>
-          <li>
-            <Link to="/login" className="nav-link">Admin Login</Link>
-          </li>
-          <li>
-            <Link to="/admin" className="nav-link">Admin Panel</Link>
-          </li>
-        </ul>
-      </nav>
+    <BrowserRouter>
+
+        <Navbar 
+          collapseOnSelect 
+          expand="lg"
+          className="shadow-sm custom-navbar" 
+          expanded={expanded} 
+        >
+          <Container>
+            {/* Logo Section */}
+            <Navbar.Brand as={Link} to="/home" className="nav-link">
+            <span className='logo'>Rashmi Photography</span>
+            </Navbar.Brand>
+
+            {/* Navbar Toggle for Mobile */}
+            <Navbar.Toggle aria-controls="navbar-nav" onClick={() => setExpanded(expanded ? false : true)} />
+
+            {/* Navbar Links Section */}
+            <Navbar.Collapse id="navbar-nav">
+              <Nav className="ms-auto">
+                <Nav.Item>
+                  <Nav.Link as={Link} to="/home" onClick={handleNavClick} className="nav-link">Home</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link as={Link} to="/gallery" onClick={handleNavClick} className="nav-link">Gallery</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link as={Link} to="/albums" onClick={handleNavClick} className="nav-link">Albums</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link as={Link} to="/login" onClick={handleNavClick} className="nav-link">Admin Login</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link as={Link} to="/admin" onClick={handleNavClick} className="nav-link">Admin Panel</Nav.Link>
+                </Nav.Item>
+              </Nav>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
 
       {/* Routes */}
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="home" element={<Home />} />
         <Route path="/login" element={<AdminLogin />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/gallery" element={<Gallery />} />
@@ -49,7 +70,7 @@ function App() {
         <Route path="/photos/:albumId" element={<Photos />} />
         <Route path="/addphotos/:albumId" element={<AddPhotos />} />
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 }
 
