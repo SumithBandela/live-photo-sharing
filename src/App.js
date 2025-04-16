@@ -11,11 +11,14 @@ import { AddPhotos } from './add-photos';
 import { Photos } from './photos';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { useState } from 'react';
+import { useCookies } from 'react-cookie';
 function App() {
+  const [cookies,,removeCookie] = useCookies(['adminUser']);
   const [expanded, setExpanded] = useState(false);
   const handleNavClick = () => {
     setExpanded(false); // Close the menu after clicking a nav link
   };
+
   return (
     <BrowserRouter>
 
@@ -40,18 +43,25 @@ function App() {
                 <Nav.Item>
                   <Nav.Link as={Link} to="/home" onClick={handleNavClick} className="nav-link">Home</Nav.Link>
                 </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link as={Link} to="/gallery" onClick={handleNavClick} className="nav-link">Gallery</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link as={Link} to="/albums" onClick={handleNavClick} className="nav-link">Albums</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
+                {cookies.adminUser && (
+                    <>
+                      <Nav.Item>
+                        <Nav.Link as={Link} to="/gallery" onClick={handleNavClick} className="nav-link">Gallery</Nav.Link>
+                      </Nav.Item>
+                      <Nav.Item>
+                        <Nav.Link as={Link} to="/albums" onClick={handleNavClick} className="nav-link">Albums</Nav.Link>
+                      </Nav.Item>
+                      <Nav.Item>
+                        <Nav.Link as={Link} to="/admin" onClick={handleNavClick} className="nav-link">Admin Panel</Nav.Link>
+                      </Nav.Item>
+                      <Nav.Item>
+                        <Nav.Link as={Link} to="/login" onClick={()=>removeCookie('adminUser') } className="nav-link">Logout</Nav.Link>
+                      </Nav.Item>
+                    </>
+                  )}
+                {cookies.adminUser ? "": (<Nav.Item>
                   <Nav.Link as={Link} to="/login" onClick={handleNavClick} className="nav-link">Admin Login</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link as={Link} to="/admin" onClick={handleNavClick} className="nav-link">Admin Panel</Nav.Link>
-                </Nav.Item>
+                </Nav.Item>)}
               </Nav>
             </Navbar.Collapse>
           </Container>
@@ -62,13 +72,15 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="home" element={<Home />} />
         <Route path="/login" element={<AdminLogin />} />
+        {cookies.adminUser && (
+          <>
         <Route path="/admin" element={<Admin />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/upload" element={<UploadPhotos />} />
         <Route path="/albums" element={<Albums />} />
-        <Route path="/add" element={<AddPhotos />} />
         <Route path="/photos/:albumId" element={<Photos />} />
         <Route path="/addphotos/:albumId" element={<AddPhotos />} />
+        </>)}
       </Routes>
     </BrowserRouter>
   );

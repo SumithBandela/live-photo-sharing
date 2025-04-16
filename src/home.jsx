@@ -13,7 +13,7 @@ export function Home() {
         <div className="home-section">
           <h2 className="section-title">📂 Admin Upload & Control</h2>
           <p>
-            <Link to="/login" className="nav-link">Log in as an Admin</Link> to upload event photos, create private albums,
+            <Link to="/login" className="nav-link text-decoration-underline">Log in as an Admin</Link> to upload event photos, create private albums,
             manage user access, and respond to client enquiries in real time.
           </p>
         </div>

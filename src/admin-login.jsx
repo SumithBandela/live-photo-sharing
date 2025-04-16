@@ -1,8 +1,10 @@
 import './admin-login.css';
 import { useState } from 'react';
+import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 
 export function AdminLogin() {
+  const [, setCookie] = useCookies(['adminUser']);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -10,8 +12,10 @@ export function AdminLogin() {
   const handleLogin = (e) => {
     e.preventDefault();
 
-    // Example login logic (replace with your actual authentication)
+    // Example login logic (replace with real authentication later)
     if (username === 'admin' && password === 'admin123') {
+      // Set a cookie with key "adminUser" and value as username
+      setCookie('adminUser', username, { path: '/', maxAge: 3600 }); // 1 hour expiry
       navigate('/admin');
     } else {
       alert('Invalid username or password!');
