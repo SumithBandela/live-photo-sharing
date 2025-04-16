@@ -14,7 +14,7 @@ export function AddPhotos() {
     // Handle photo upload logic here (e.g., to selected album ID)
     console.log('Uploading to Album ID:', albumId, 'Photos:', photos);
   };
-
+ 
   return (
     <div className="addphotos-container">
       <h2>Add Photos to Album</h2>
