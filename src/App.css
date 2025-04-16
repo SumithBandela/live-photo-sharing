@@ -43,3 +43,21 @@
 .custom-navbar .nav-item {
   margin-left: 10px;
 }
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 26px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  pointer-events: none; /* Disable hover effect for logo */
+}
+.navbar {
+  text-align: center;
+}
+@media(max-width:576px)
+{
+    .logo{
+      font-size: 18px;
+      letter-spacing: 1px;
+    }
+}
