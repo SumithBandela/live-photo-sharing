@@ -22,7 +22,7 @@ function App() {
         <Navbar 
           collapseOnSelect 
           expand="lg"
-          className="shadow-sm custom-navbar" 
+          className="shadow-sm custom-navbar pt-3 pb-3" 
           expanded={expanded} 
         >
           <Container>
