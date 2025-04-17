@@ -24,7 +24,8 @@ function App() {
 
   return (
     <BrowserRouter>
-
+{cookies.adminUser && (
+      <>
         <Navbar 
           collapseOnSelect 
           expand="lg"
@@ -43,8 +44,6 @@ function App() {
             {/* Navbar Links Section */}
             <Navbar.Collapse id="navbar-nav">
               <Nav className="ms-auto">
-                {cookies.adminUser && (
-                    <>
                      <Nav.Item>
                        <Nav.Link as={Link} to="/home" onClick={handleNavClick} className="nav-link">Home</Nav.Link>
                      </Nav.Item>
@@ -60,15 +59,15 @@ function App() {
                       <Nav.Item>
                         <Nav.Link as={Link} to="/login" onClick={()=>removeCookie('adminUser') } className="nav-link">Logout</Nav.Link>
                       </Nav.Item>
-                    </>
-                  )}
-                {cookies.adminUser ? "": (<Nav.Item>
+               {/* {cookies.adminUser ? "": (<Nav.Item>
                   <Nav.Link as={Link} to="/login" onClick={handleNavClick} className="nav-link">Admin Login</Nav.Link>
-                </Nav.Item>)}
+                </Nav.Item>)}*/}
               </Nav>
             </Navbar.Collapse>
           </Container>
         </Navbar>
+        </>
+       )}
 
       {/* Routes */}
       <Routes>
