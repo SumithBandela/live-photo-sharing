@@ -43,11 +43,11 @@ function App() {
             {/* Navbar Links Section */}
             <Navbar.Collapse id="navbar-nav">
               <Nav className="ms-auto">
-                <Nav.Item>
-                  <Nav.Link as={Link} to="/home" onClick={handleNavClick} className="nav-link">Home</Nav.Link>
-                </Nav.Item>
                 {cookies.adminUser && (
                     <>
+                     <Nav.Item>
+                       <Nav.Link as={Link} to="/home" onClick={handleNavClick} className="nav-link">Home</Nav.Link>
+                     </Nav.Item>
                       <Nav.Item>
                         <Nav.Link as={Link} to="/gallery" onClick={handleNavClick} className="nav-link">Gallery</Nav.Link>
                       </Nav.Item>

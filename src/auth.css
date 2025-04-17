@@ -56,3 +56,23 @@
 .auth-button:hover {
   background-color: #ffcc00;
 }
+
+.auth-success {
+  color: #52c41a;
+  font-size: 0.95rem;
+  margin: 10px 0;
+  text-align: center;
+}
+.input-group {
+  text-align: left;
+  margin-bottom: 18px;
+}
+
+.auth-error {
+  color:white;
+  font-size: 0.85rem;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  padding-left: 4px;
+  text-align: left;
+}
