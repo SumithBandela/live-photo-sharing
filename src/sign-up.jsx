@@ -1,56 +1,76 @@
 import { useFormik } from 'formik';
 import './auth.css';
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import * as yup from "yup";
+import { useNavigate } from 'react-router-dom';
 
 export function Signup() {
+  const navigate = useNavigate();
   const [message, setMessage] = useState('');
+  const [existingUsers, setExistingUsers] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("https://rashmiphotography.com/backend/password_recover.php")
+      .then((res) => {
+        if (res.data.success && res.data.data) {
+          setExistingUsers(res.data.data.map(user => user.username.toLowerCase()));
+        }
+      })
+      .catch((err) => console.error("Error fetching users:", err));
+  }, []);
+
+  const validationSchema = yup.object({
+    name: yup.string().required("Name is required"),
+    username: yup
+      .string()
+      .required("Username is required")
+      .test("unique-username", "Username already taken", function (value) {
+        return !existingUsers.includes(value?.toLowerCase());
+      }),
+    password: yup
+      .string()
+      .required("Password is required")
+      .min(8, "Password must be at least 8 characters")
+      .matches(/[A-Z]/, "Password must contain at least one uppercase letter"),
+    confirmPassword: yup
+      .string()
+      .oneOf([yup.ref("password"), null], "Passwords must match")
+      .required("Confirm Password is required"),
+  });
 
   const formik = useFormik({
     initialValues: {
-      name: '',
-      username: '',
-      password: ''
+      name: "",
+      username: "",
+      password: "",
+      confirmPassword: "",
     },
-    onSubmit: async (formData) => {
+    validationSchema,
+    onSubmit: async (formData, { resetForm, setSubmitting }) => {
+      formData.username = formData.username.toLowerCase();
       try {
         const response = await axios.post(
-          'https://rashmiphotography.com/backend/signup.php',
+          "https://rashmiphotography.com/backend/signup.php",
           formData,
-          {
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          }
+          { headers: { "Content-Type": "application/json" } }
         );
-    
-        const data = response.data;
-    
-        if (data.success) {
-          setMessage('User registered successfully!');
-          formik.resetForm();
+
+        if (response.data.success) {
+          setMessage("User registered successfully.");
+          resetForm();
+          setTimeout(() => navigate("/login"), 2000);
         } else {
-          setMessage(data.message || 'Registration failed.');
-          console.warn('Server Response:', data);
+          setMessage(response.data.message || "Failed to register.");
         }
-    
       } catch (error) {
-        if (error.response) {
-          // Server responded with a status other than 2xx
-          console.error('Server Error:', error.response.data);
-          setMessage(error.response.data.message || 'Server Error');
-        } else if (error.request) {
-          // Request made but no response received
-          console.error('No response:', error.request);
-          setMessage('No response from server');
-        } else {
-          console.error('Error', error.message);
-          setMessage('Unexpected error occurred');
-        }
+        console.error("Error submitting form:", error);
+        setMessage("Something went wrong. Please try again.");
+      } finally {
+        setSubmitting(false);
       }
-    }
-    
-    
+    },
   });
 
   return (
@@ -58,39 +78,71 @@ export function Signup() {
       <form className="auth-form" onSubmit={formik.handleSubmit}>
         <h2 className="auth-title">Sign Up</h2>
 
-        <input
-          type="text"
-          placeholder="Full Name"
-          className="auth-input"
-          required
-          name="name"
-          onChange={formik.handleChange}
-          value={formik.values.name}
-        />
+        <div className="input-group">
+          <input
+            type="text"
+            placeholder="Full Name"
+            className={`auth-input ${formik.touched.name && formik.errors.name ? "input-error" : ""}`}
+            name="name"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.name}
+          />
+          {formik.touched.name && formik.errors.name && (
+            <div className="auth-error">{formik.errors.name}</div>
+          )}
+        </div>
 
-        <input
-          type="text"
-          placeholder="Username"
-          className="auth-input"
-          required
-          name="username"
-          onChange={formik.handleChange}
-          value={formik.values.username}
-        />
+        <div className="input-group">
+          <input
+            type="text"
+            placeholder="Username"
+            className={`auth-input ${formik.touched.username && formik.errors.username ? "input-error" : ""}`}
+            name="username"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.username}
+          />
+          {formik.touched.username && formik.errors.username && (
+            <div className="auth-error">{formik.errors.username}</div>
+          )}
+        </div>
 
-        <input
-          type="password"
-          placeholder="Password"
-          className="auth-input"
-          required
-          name="password"
-          onChange={formik.handleChange}
-          value={formik.values.password}
-        />
+        <div className="input-group">
+          <input
+            type="password"
+            placeholder="Password"
+            className={`auth-input ${formik.touched.password && formik.errors.password ? "input-error" : ""}`}
+            name="password"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.password}
+          />
+          {formik.touched.password && formik.errors.password && (
+            <div className="auth-error">{formik.errors.password}</div>
+          )}
+        </div>
 
-        <button type="submit" className="auth-button">Create Account</button>
+        <div className="input-group">
+          <input
+            type="password"
+            placeholder="Confirm Password"
+            className={`auth-input ${formik.touched.confirmPassword && formik.errors.confirmPassword ? "input-error" : ""}`}
+            name="confirmPassword"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.confirmPassword}
+          />
+          {formik.touched.confirmPassword && formik.errors.confirmPassword && (
+            <div className="auth-error">{formik.errors.confirmPassword}</div>
+          )}
+        </div>
 
-        {message && <p className="auth-message">{message}</p>}
+        <button type="submit" className="auth-button" disabled={formik.isSubmitting}>
+          {formik.isSubmitting ? "Creating..." : "Create Account"}
+        </button>
+
+        {message && <p className="auth-success">{message}</p>}
       </form>
     </div>
   );

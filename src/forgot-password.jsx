@@ -37,7 +37,7 @@ export function ForgotPassword() {
 
       try {
         const userResponse = await axios.get(
-          `https://rashmiphotography.com/backend/password_recover`,
+          `https://rashmiphotography.com/backend/password_recover.php`,
           {
             params: { username: values.username },
           }
@@ -45,7 +45,7 @@ export function ForgotPassword() {
 
         if (userResponse.data.success && userResponse.data.exists) {
           const updateResponse = await axios.post(
-            "https://rashmiphotography.com/backend/password_recover",
+            "https://rashmiphotography.com/backend/password_recover.php",
             {
               username: values.username,
               password: values.password,
@@ -81,7 +81,7 @@ export function ForgotPassword() {
 
         <input
           type="text"
-          placeholder="Email"
+          placeholder="Username"
           className={`auth-input ${formik.touched.username && formik.errors.username ? "input-error" : ""}`}
           name="username"
           onChange={formik.handleChange}
