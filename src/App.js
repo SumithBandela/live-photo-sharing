@@ -57,7 +57,7 @@ function App() {
                         <Nav.Link as={Link} to="/admin" onClick={handleNavClick} className="nav-link">Admin Panel</Nav.Link>
                       </Nav.Item>
                       <Nav.Item>
-                        <Nav.Link as={Link} to="/login" onClick={()=>removeCookie('adminUser') } className="nav-link">Logout</Nav.Link>
+                        <Nav.Link as={Link} to="/" onClick={()=>removeCookie('adminUser') } className="nav-link">Logout</Nav.Link>
                       </Nav.Item>
                {/* {cookies.adminUser ? "": (<Nav.Item>
                   <Nav.Link as={Link} to="/login" onClick={handleNavClick} className="nav-link">Admin Login</Nav.Link>

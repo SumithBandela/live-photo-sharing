@@ -23,7 +23,7 @@ export function AdminLogin() {
     onSubmit: async (user) => {
       setError(false);
       try {
-        const response = await axios.post("https://rashmiphotography.com/backend/password_recover.php", user);
+        const response = await axios.post("https://rashmiphotography.com/backend/photosharelogin.php", user);
 
         if (response.data.success) {
           // Set cookie with username
