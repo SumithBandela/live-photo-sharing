@@ -1,10 +1,9 @@
 import { useFormik } from 'formik';
 import './auth.css';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import * as Yup from "yup";
 import { useState } from 'react';
-
 export function ForgotPassword() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -119,6 +118,10 @@ export function ForgotPassword() {
         {success && <div className="auth-success">{success}</div>}
 
         <button type="submit" className="auth-button">Reset Password</button>
+        <div className="text-center mt-3">
+                <Link to="/signup" className='text-white'>Create new account</Link>
+                <Link to="/login" className="d-block my-2 text-white">Back to login</Link>
+        </div>
       </form>
     </div>
   );

@@ -3,8 +3,7 @@ import './auth.css';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import * as yup from "yup";
-import { useNavigate } from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';
 export function Signup() {
   const navigate = useNavigate();
   const [message, setMessage] = useState('');
@@ -143,6 +142,11 @@ export function Signup() {
         </button>
 
         {message && <p className="auth-success">{message}</p>}
+        <div className="text-center">
+        <span className="d-block m-2">
+          Have an account? <Link to="/login" className='text-white'>Log in</Link>
+        </span>
+        </div>
       </form>
     </div>
   );

@@ -24,7 +24,7 @@ function App() {
 
   return (
     <BrowserRouter>
-{cookies.adminUser && (
+{(cookies.adminUser || cookies.adminUser==='undefined') && (
       <>
         <Navbar 
           collapseOnSelect 
@@ -76,7 +76,7 @@ function App() {
         <Route path="/login" element={<AdminLogin />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
-        {cookies.adminUser && (
+        {(cookies.adminUser || cookies.adminUser==="undefined") && (
           <>
         <Route path="/admin" element={<Admin />} />
         <Route path="/gallery" element={<Gallery />} />

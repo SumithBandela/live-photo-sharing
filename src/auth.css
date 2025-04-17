@@ -1,5 +1,5 @@
 .auth-container {
-  min-height: 90vh;
+  min-height: 100vh;
   background: linear-gradient(135deg, #2575fc, #6a11cb);  /* New gradient for a unified look */
   display: flex;
   justify-content: center;
