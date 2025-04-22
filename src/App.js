@@ -83,8 +83,8 @@ function App() {
         <Route path="/upload" element={<UploadPhotos />} />
         <Route path="/albums" element={<Albums />} />
         <Route path="/add-album" element={<AddAlbum />} />
-        <Route path="/photos/:albumId" element={<Photos />} />
-        <Route path="/addphotos/:albumId" element={<AddPhotos />} />
+        <Route path="/photos/:title" element={<Photos />} />
+        <Route path="/addphotos/:title" element={<AddPhotos />} />
         </>)}
       </Routes>
     </BrowserRouter>

@@ -1,34 +1,40 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import './photos.css';
+import axios from 'axios';
+import { useCookies } from 'react-cookie';
 
 export function Photos() {
-  const { albumId } = useParams();
+  const { title } = useParams(); // album title
   const navigate = useNavigate();
-
-  // Mock photo data with visibility flag
   const [photos, setPhotos] = useState([]);
+  const[cookies] = useCookies(['adminUser']);
+  // hardcoded for now, replace with session or state value later
+  const username = cookies.adminUser.toLowerCase(); 
 
   useEffect(() => {
-    const mockData = {
-      1: [
-        { url: 'https://via.placeholder.com/300x200?text=Wedding+1', visible: true },
-        { url: 'https://via.placeholder.com/300x200?text=Wedding+2', visible: true },
-      ],
-      2: [
-        { url: 'https://via.placeholder.com/300x200?text=Birthday+1', visible: true },
-        { url: 'https://via.placeholder.com/300x200?text=Birthday+2', visible: true },
-      ],
-      3: [
-        { url: 'https://via.placeholder.com/300x200?text=Outdoor+1', visible: true },
-        { url: 'https://via.placeholder.com/300x200?text=Outdoor+2', visible: true },
-      ],
-    };
-    setPhotos(mockData[albumId] || []);
-  }, [albumId]);
+    axios
+      .get(`https://rashmiphotography.com/backend/get-photos.php`, {
+        params: { username, album: title }
+      })
+      .then((response) => {
+        if (response.data.status === 'success') {
+          const fetchedPhotos = response.data.images.map((imgSrc) => ({
+            url: imgSrc,
+            visible: true // default visibility; can be updated if you manage visibility from backend
+          }));
+          setPhotos(fetchedPhotos);
+        } else {
+          console.error(response.data.message);
+        }
+      })
+      .catch((error) => {
+        console.error('Error fetching photos:', error);
+      });
+  }, [title,username]);
 
   const handleAddPhotos = () => {
-    navigate(`/addphotos/${albumId}`);
+    navigate(`/addphotos/${title}`);
   };
 
   const handleVisibilityChange = (index, value) => {
@@ -40,7 +46,7 @@ export function Photos() {
   return (
     <div className="photos-container">
       <div className="photos-header">
-        <h2>📷 Photos in Album #{albumId}</h2>
+        <h2>📷 Photos in Album #{title}</h2>
         <button className="add-btn" onClick={handleAddPhotos}>➕ Add Photos</button>
       </div>
 
@@ -51,7 +57,7 @@ export function Photos() {
           {photos.map((photo, index) => (
             <div key={index} className="photo-card">
               <img
-                src={photo.url}
+                src={`https://rashmiphotography.com/backend/${photo.url}`}
                 alt="img"
                 className={`photo-img ${photo.visible ? '' : 'hidden-photo'}`}
               />
