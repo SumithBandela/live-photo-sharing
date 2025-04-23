@@ -15,11 +15,16 @@ import { useCookies } from 'react-cookie';
 import { AddAlbum } from './add-album';
 import { ForgotPassword } from './forgot-password';
 import { Signup } from './sign-up';
+import { AlbumPhotos } from './album-photos';
 function App() {
   const [cookies,,removeCookie] = useCookies(['adminUser']);
   const [expanded, setExpanded] = useState(false);
   const handleNavClick = () => {
     setExpanded(false); // Close the menu after clicking a nav link
+  };
+
+  const handleLogout = () => {
+    removeCookie('adminUser', { path: '/' });
   };
 
   return (
@@ -51,13 +56,10 @@ function App() {
                         <Nav.Link as={Link} to="/gallery" onClick={handleNavClick} className="nav-link">Gallery</Nav.Link>
                       </Nav.Item>
                       <Nav.Item>
-                        <Nav.Link as={Link} to="/albums" onClick={handleNavClick} className="nav-link">Albums</Nav.Link>
-                      </Nav.Item>
-                      <Nav.Item>
                         <Nav.Link as={Link} to="/admin" onClick={handleNavClick} className="nav-link">Admin Panel</Nav.Link>
                       </Nav.Item>
                       <Nav.Item>
-                        <Nav.Link as={Link} to="/" onClick={()=>removeCookie('adminUser') } className="nav-link">Logout</Nav.Link>
+                        <Nav.Link as={Link} to="/" onClick={handleLogout} className="nav-link">Logout</Nav.Link>
                       </Nav.Item>
                {/* {cookies.adminUser ? "": (<Nav.Item>
                   <Nav.Link as={Link} to="/login" onClick={handleNavClick} className="nav-link">Admin Login</Nav.Link>
@@ -80,6 +82,7 @@ function App() {
           <>
         <Route path="/admin" element={<Admin />} />
         <Route path="/gallery" element={<Gallery />} />
+        <Route path="/album/:title" element={<AlbumPhotos />} />
         <Route path="/upload" element={<UploadPhotos />} />
         <Route path="/albums" element={<Albums />} />
         <Route path="/add-album" element={<AddAlbum />} />

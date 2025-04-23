@@ -28,8 +28,9 @@
 .gallery-card {
   background-color: rgba(255, 255, 255, 0.2);  /* Slightly transparent white */
   padding: 10px;
+  padding-bottom: 45px;
   border-radius: 15px;
-  overflow: hidden;
+  overflow: visible;
   transition: transform 0.3s ease;
 }
 
