@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './albums.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -25,6 +25,9 @@ export function Albums() {
       });
   }, [cookies.adminUser]); // Re-run the effect when adminUser changes
 
+  function handleViewClick(title,slug){
+    navigate(`/photos/${title}`,{state:{slug:slug}})
+  }
   return (
     <div className="albums-container">
       <h2>📁 All Albums</h2>
@@ -39,7 +42,7 @@ export function Albums() {
               />
               <h3>{album.title}</h3>
               <p>{album.description}</p>
-              <Link to={`/photos/${album.title}`} className="view-btn">📷 View Photos</Link>
+              <span onClick={()=>handleViewClick(album.title,album.slug)} className="view-btn">📷 View Photos</span>
             </div>
           ))
         ) : (

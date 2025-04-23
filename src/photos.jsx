@@ -1,14 +1,15 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import './photos.css';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
-
 export function Photos() {
   const { title } = useParams(); // album title
   const navigate = useNavigate();
   const [photos, setPhotos] = useState([]);
   const[cookies] = useCookies(['adminUser']);
+  const location = useLocation();
+  const slug = location?.state?.slug
   // hardcoded for now, replace with session or state value later
   const username = cookies.adminUser.toLowerCase(); 
 
@@ -49,7 +50,6 @@ export function Photos() {
         <h2>📷 Photos in Album #{title}</h2>
         <button className="add-btn" onClick={handleAddPhotos}>➕ Add Photos</button>
       </div>
-
       {photos.length === 0 ? (
         <p>No photos found for this album.</p>
       ) : (
@@ -73,6 +73,20 @@ export function Photos() {
           ))}
         </div>
       )}
+       <div class="album-link-box">
+        <p class="album-title">{title} Album Link</p>
+        <span class="album-url">
+          https://sumithbandela.github.io/live-photo-sharing/#/album/{slug}
+        </span>
+        <p class="album-description">
+          👉 This is the URL for the <strong>{title} Album</strong>.  
+          Copy this link and paste it on <a href='https://www.rashmiphotography.com/#/qr' className='text-white' target="_blank" rel="noopener noreferrer" >www.rashmiphotography.com</a> to generate a QR code.
+        </p>
+        <p class="album-note">
+          You can then download and use the QR code to share the album easily with clients.
+        </p>
+      </div>
+
     </div>
   );
 }
