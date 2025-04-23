@@ -78,11 +78,11 @@ function App() {
         <Route path="/login" element={<AdminLogin />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/album/:slug" element={<AlbumPhotos />} />
         {(cookies.adminUser && cookies.adminUser!=="undefined") && (
           <>
         <Route path="/admin" element={<Admin />} />
         <Route path="/gallery" element={<Gallery />} />
-        <Route path="/album/:slug" element={<AlbumPhotos />} />
         <Route path="/upload" element={<UploadPhotos />} />
         <Route path="/albums" element={<Albums />} />
         <Route path="/add-album" element={<AddAlbum />} />

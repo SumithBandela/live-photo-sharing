@@ -45,6 +45,7 @@ export function AlbumPhotos() {
   return (
     <div className="album-photos">
       <h2>Photos in #{albumDetails.title}</h2>
+      <p>{albumDetails.description}</p>
       <div className="photos-grid">
         {photos.map((photo, i) => (
           <img

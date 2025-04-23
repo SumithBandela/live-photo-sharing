@@ -11,6 +11,15 @@
     margin-bottom: 30px;
     opacity: 0.95;
   }
+
+  .album-photos p {
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto 30px;
+    opacity: 0.9;
+    line-height: 1.6;
+  }
+  
   
   .photos-grid {
     display: grid;
