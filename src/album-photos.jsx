@@ -2,40 +2,49 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import './album-photos.css';
-import { useCookies } from 'react-cookie';
 export function AlbumPhotos() {
-    const { title } = useParams(); // album title
+    const { slug } = useParams(); // album title
     const [photos, setPhotos] = useState([]);
-    const[cookies] = useCookies(['adminUser']);
-    // hardcoded for now, replace with session or state value later
-    const username = cookies.adminUser.toLowerCase(); 
-  
-    useEffect(() => {
-      axios
-        .get(`https://rashmiphotography.com/backend/get-photos.php`, {
-          params: { username, album: title }
-        })
-        .then((response) => {
-          if (response.data.status === 'success') {
-            const fetchedPhotos = response.data.images.map((imgSrc) => ({
-              url: imgSrc,
-              visible: true // default visibility; can be updated if you manage visibility from backend
-            }));
-            setPhotos(fetchedPhotos);
-          } else {
-            console.error(response.data.message);
-          }
-        })
-        .catch((error) => {
-          console.error('Error fetching photos:', error);
-        });
-    }, [title,username]);
-  
+  const [albumDetails, setAlbumDetails] = useState({
+    title: '',
+    description: '',
+    download: false
+  });
+
+  useEffect(() => {
+    axios
+      .get(`https://rashmiphotography.com/backend/get_album_photos.php`, {
+        params: { slug: slug }
+      })
+      .then((response) => {
+        if (response.data.status === 'success') {
+          // Set album details
+          setAlbumDetails({
+            title: response.data.album.title,
+            description: response.data.album.description,
+            download: response.data.album.download
+          });
+
+          // Map photos data
+          const fetchedPhotos = response.data.album.images.map((image) => ({
+            url: image.img_src,
+            visible: image.is_visible
+          }));
+
+          setPhotos(fetchedPhotos); // Set photos
+        } else {
+          console.error(response.data.message);
+        }
+      })
+      .catch((error) => {
+        console.error('Error fetching photos:', error);
+      });
+  }, [slug]);
  
 
   return (
     <div className="album-photos">
-      <h2>Photos in #{title}</h2>
+      <h2>Photos in #{albumDetails.title}</h2>
       <div className="photos-grid">
         {photos.map((photo, i) => (
           <img

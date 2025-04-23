@@ -37,7 +37,7 @@ export function Gallery() {
 
       <div className="gallery-grid">
         {albums.map((album, i) => (
-          <div key={i} className="gallery-card" onClick={() => handleCardClick(album.title)}>
+          <div key={i} className="gallery-card" onClick={() => handleCardClick(album.slug)}>
             <img
               src={`https://rashmiphotography.com/backend/${album.thumbnail}`}
               alt={`Gallery ${i + 1}`}

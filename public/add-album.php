@@ -20,7 +20,7 @@ if ($conn->connect_error) {
 
 // Handle GET request
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
-    $query = "SELECT id, title, description, thumbnail, download, is_visible, watermark FROM Albums";
+    $query = "SELECT id, title, description, slug, thumbnail, download, is_visible, watermark FROM Albums";
     $params = [];
     $types = '';
 
@@ -59,14 +59,30 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
 $title = $_POST['title'] ?? null;
 $description = $_POST['description'] ?? null;
 $username = $_POST['username'] ?? null;
+$slug = $_POST['slug'] ?? '';
 $download = isset($_POST['download']) ? (bool)$_POST['download'] : false;
 $isVisible = isset($_POST['isVisible']) ? (bool)$_POST['isVisible'] : false;
 $watermark = $_POST['watermark'] ?? '';
 
-if (!$title || !$description || !$username) {
-    die(json_encode(["status" => "error", "message" => "Title, description, and username are required."]));
+// Sanitize slug
+$slug = preg_replace("/[^a-z0-9-]/", "", strtolower(trim($slug)));
+
+if (!$title || !$description || !$username || !$slug) {
+    die(json_encode(["status" => "error", "message" => "Title, description, username, and slug are required."]));
 }
 
+// Check for duplicate slug
+$checkSlug = $conn->prepare("SELECT id FROM Albums WHERE slug = ?");
+$checkSlug->bind_param("s", $slug);
+$checkSlug->execute();
+$checkSlug->store_result();
+
+if ($checkSlug->num_rows > 0) {
+    die(json_encode(["status" => "error", "message" => "Slug already exists. Please use a different title."]));
+}
+$checkSlug->close();
+
+// Validate thumbnail upload
 if (!isset($_FILES["thumbnail"]) || $_FILES["thumbnail"]["error"] !== UPLOAD_ERR_OK) {
     die(json_encode(["status" => "error", "message" => "Thumbnail upload failed. Error Code: " . $_FILES["thumbnail"]["error"]]));
 }
@@ -86,7 +102,7 @@ if (!file_exists($albumDir)) {
 $targetPath = $albumDir . "thumbnail.webp";
 $relativePath = "images/" . $cleanUsername . "/" . $cleanTitle . "/thumbnail.webp";
 
-// Validate image
+// Validate image type
 $fileType = strtolower(pathinfo($_FILES["thumbnail"]["name"], PATHINFO_EXTENSION));
 $allowedFormats = ["jpg", "jpeg", "png", "gif", "webp"];
 
@@ -94,7 +110,7 @@ if (!in_array($fileType, $allowedFormats)) {
     die(json_encode(["status" => "error", "message" => "Invalid file format. Allowed: JPG, JPEG, PNG, GIF, WEBP."]));
 }
 
-// Convert to WebP
+// Convert or move to WebP
 if ($fileType === "webp") {
     if (!move_uploaded_file($_FILES["thumbnail"]["tmp_name"], $targetPath)) {
         die(json_encode(["status" => "error", "message" => "Failed to upload WebP file."]));
@@ -122,15 +138,16 @@ if ($fileType === "webp") {
     imagedestroy($image);
 }
 
-// Insert into DB
-$stmt = $conn->prepare("INSERT INTO Albums (title, description, thumbnail, download, is_visible, watermark) VALUES (?, ?, ?, ?, ?, ?)");
-$stmt->bind_param("sssiss", $title, $description, $relativePath, $download, $isVisible, $watermark);
+// Insert into DB with slug
+$stmt = $conn->prepare("INSERT INTO Albums (title, description, slug, thumbnail, download, is_visible, watermark, username) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+$stmt->bind_param("ssssisss", $title, $description, $slug, $relativePath, $download, $isVisible, $watermark, $username);
 
 if ($stmt->execute()) {
     echo json_encode([
         "status" => "success",
         "message" => "Album added successfully!",
-        "thumbnail" => $relativePath
+        "thumbnail" => $relativePath,
+        "slug" => $slug
     ]);
 } else {
     echo json_encode(["status" => "error", "message" => "Database insert failed."]);

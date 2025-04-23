@@ -10,6 +10,21 @@ export function AddAlbum() {
   const [thumbnailPreview, setThumbnailPreview] = useState(null);
   const navigate = useNavigate();
   const [cookies] = useCookies(['adminUser']);
+  const slugify = (text, username) => {
+    const baseSlug = text
+      .toString()
+      .toLowerCase()
+      .trim()
+      .replace(/[\s\W-]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+  
+    const timestamp = Date.now();
+    const user = username.toLowerCase().trim().replace(/[^\w]/g, '');
+  
+    return `${user}-${baseSlug}-${timestamp}`;
+  };
+  
+  
   const formik = useFormik({
     initialValues: {
       title: '',
@@ -27,17 +42,20 @@ export function AddAlbum() {
     onSubmit: async (values, { setSubmitting, resetForm }) => {
       try {
         const formData = new FormData();
+        const slug = slugify(values.title, cookies.adminUser);
+    
         formData.append('title', values.title);
         formData.append('description', values.description);
+        formData.append('slug', slug); // 👈 Append slug to formData
         formData.append('download', values.download ? '1' : '0');
         formData.append('isVisible', values.isVisible ? '1' : '0');
         formData.append('watermark', values.watermark);
-        formData.append('username', values.username); // ✅ Send username
-  
+        formData.append('username', values.username);
+    
         if (values.thumbnail) {
           formData.append('thumbnail', values.thumbnail);
         }
-  
+    
         const response = await axios.post(
           'https://rashmiphotography.com/backend/add-album.php',
           formData,
@@ -45,7 +63,7 @@ export function AddAlbum() {
             headers: { 'Content-Type': 'multipart/form-data' },
           }
         );
-  
+    
         if (response.data.status === 'success') {
           alert('Album added successfully.');
           resetForm();
@@ -60,7 +78,7 @@ export function AddAlbum() {
       } finally {
         setSubmitting(false);
       }
-    },
+    },    
   });
   
   const handleThumbnailChange = (event) => {

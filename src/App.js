@@ -82,7 +82,7 @@ function App() {
           <>
         <Route path="/admin" element={<Admin />} />
         <Route path="/gallery" element={<Gallery />} />
-        <Route path="/album/:title" element={<AlbumPhotos />} />
+        <Route path="/album/:slug" element={<AlbumPhotos />} />
         <Route path="/upload" element={<UploadPhotos />} />
         <Route path="/albums" element={<Albums />} />
         <Route path="/add-album" element={<AddAlbum />} />
