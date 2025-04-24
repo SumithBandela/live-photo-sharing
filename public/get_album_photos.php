@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
         $slug = preg_replace("/[^a-zA-Z0-9 _-]/", "", $_GET['slug']);
 
         // Step 1: Fetch album details from Albums table including download and watermark fields
-        $stmt1 = $conn->prepare("SELECT title, description, username, download, watermark FROM Albums WHERE slug = ?");
+        $stmt1 = $conn->prepare("SELECT title, description, username, download, watermark, is_visible FROM Albums WHERE slug = ?");
         $stmt1->bind_param("s", $slug);
         $stmt1->execute();
         $result1 = $stmt1->get_result();
@@ -30,6 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
             $username = $album['username'];
             $download = $album['download'];
             $watermark = $album['watermark'];
+            $is_visible = $album['is_visible'];
             $stmt1->close();
 
             // Step 2: Fetch images from Photos table including visibility (is_visible)
@@ -56,6 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
                     "username" => $username,
                     "download" => $download,
                     "watermark" => $watermark,
+                    "is_visible" => $is_visible,
                     "images" => $images
                 ]
             ]);

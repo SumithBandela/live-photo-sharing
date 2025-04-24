@@ -17,7 +17,8 @@ export function AlbumPhotos() {
     title: '',
     description: '',
     download: false,
-    watermark:''
+    watermark:'',
+    is_visible:false
   });
 
   const [show, setShow] = useState(false);
@@ -40,7 +41,8 @@ export function AlbumPhotos() {
           title: album.title,
           description: album.description,
           download: album.download,
-          watermark:album.watermark
+          watermark:album.watermark,
+          is_visible:album.is_visible
         });
 
         const fetchedPhotos = album.images.map((image) => ({
@@ -142,7 +144,9 @@ export function AlbumPhotos() {
 
   return (
     <div className="album-photos">
-      <h2>{albumDetails.title}</h2>
+      {albumDetails.is_visible===1 ? (
+        <>
+          <h2>{albumDetails.title}</h2>
       <p>{albumDetails.description}</p>
 
       <div className="photos-grid">
@@ -213,6 +217,12 @@ export function AlbumPhotos() {
           )}
         </div>
       </Modal>
+        </>
+      ) : (
+        <div className="text-center p-5">
+          <h2 className="text-white">🚫 This album is not visible to the public.</h2>
+          </div>
+      )}
     </div>
   );
 }
