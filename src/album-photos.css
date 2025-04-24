@@ -128,6 +128,33 @@
   max-width: 100%; /* Allow the image to overflow */
   height: auto;
 }
+.pagination-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.MuiPagination-root {
+  background-color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.MuiPaginationItem-root {
+  font-weight: bold;
+  color: #444;
+  transition: all 0.2s ease;
+}
+
+.Mui-selected {
+  background-color: #1976d2 !important;
+  color: white !important;
+}
+
+.MuiPaginationItem-root:hover {
+  background-color: #e3f2fd;
+}
 
 /* Mobile-specific styles: Full width of the image in modal */
 @media (max-width: 768px) {

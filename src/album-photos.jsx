@@ -8,6 +8,8 @@ import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import './album-photos.css';
 
+import Pagination from '@mui/material/Pagination';
+
 export function AlbumPhotos() {
   const { slug } = useParams();
   const [photos, setPhotos] = useState([]);
@@ -21,6 +23,9 @@ export function AlbumPhotos() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loaded, setLoaded] = useState(false);
   const [visible, setVisible] = useState(false);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const photosPerPage = 8;
 
   useEffect(() => {
     axios.get(`https://rashmiphotography.com/backend/get_album_photos.php`, {
@@ -70,12 +75,24 @@ export function AlbumPhotos() {
 
   const handleContextMenu = (e) => e.preventDefault();
 
-  const formattedImages = photos.map(photo => ({
+  const visiblePhotos = photos.filter(p => p.is_visible === 1);
+  const totalPages = Math.ceil(visiblePhotos.length / photosPerPage);
+
+  const paginatedPhotos = visiblePhotos.slice(
+    (currentPage - 1) * photosPerPage,
+    currentPage * photosPerPage
+  );
+
+  const formattedImages = visiblePhotos.map(photo => ({
     original: photo.img_src
   }));
 
+  const handlePageChange = (event, value) => {
+    setCurrentPage(value);
+  };
+
   const handleWaterMarkDownload = () => {
-    const currentPhoto = photos[currentIndex];
+    const currentPhoto = visiblePhotos[currentIndex];
     const img = new Image();
     img.crossOrigin = "anonymous";
     img.src = currentPhoto.img_src;
@@ -116,11 +133,11 @@ export function AlbumPhotos() {
       <p>{albumDetails.description}</p>
 
       <div className="photos-grid">
-        {photos.filter(p => p.is_visible === 1).map((photo, index) => (
+        {paginatedPhotos.map((photo, index) => (
           <Card
             key={index}
             className="image-card"
-            onClick={() => handleShow(index)}
+            onClick={() => handleShow(index + (currentPage - 1) * photosPerPage)}
             style={{ background: "transparent", boxShadow: "none", border: "none" }}
           >
             <Card.Img
@@ -136,6 +153,27 @@ export function AlbumPhotos() {
           </Card>
         ))}
       </div>
+
+     {/* Pagination */}
+{totalPages > 1 && (
+  <div className="pagination-wrapper">
+    <Pagination
+      count={totalPages}
+      page={currentPage}
+      onChange={handlePageChange}
+      boundaryCount={1}
+      siblingCount={1}
+      shape="rounded"
+      variant="outlined"
+      size="large"
+      showFirstButton
+      showLastButton
+      color="secondary"
+    />
+  </div>
+)}
+
+
 
       {/* Modal Preview */}
       <Modal show={show} onHide={handleClose} animation centered onContextMenu={handleContextMenu} className="fade-modal">
