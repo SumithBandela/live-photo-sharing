@@ -100,7 +100,7 @@ export function Photos() {
           https://sumithbandela.github.io/live-photo-sharing/#/album/{slug}
         </span>
         <p className="album-description">
-          👉 This is the URL for the <strong>{title} Album</strong>.  
+        👆 This is the URL for the <strong>{title} Album</strong>.  
           Copy this link and paste it on <a href='https://www.rashmiphotography.com/#/qr' className='text-white' target="_blank" rel="noopener noreferrer">www.rashmiphotography.com</a> to generate a QR code.
         </p>
         <p className="album-note">

@@ -19,11 +19,12 @@ export function Home() {
         </div>
 
         <div className="home-section">
-          <h2 className="section-title">🔍 Live Gallery Access</h2>
+          <h2 className="section-title">📤 Live Photo Sharing</h2>
           <p>
-            <Link to="/gallery" className="nav-link">Click here to view Gallery</Link> or use your unique QR code to instantly access your personalized collection from any device.
+            Experience your special moments in real time! We offer instant photo sharing during events, so you and your guests can view, download, and relive memories on the spot. No waiting — just click, capture, and cherish.
           </p>
         </div>
+
 
         <div className="home-section">
           <h2 className="section-title">🎉 Why Choose Rashmi Photography?</h2>
