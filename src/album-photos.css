@@ -120,14 +120,13 @@
   border-radius: 15px; /* Adjust the radius value for the curve */
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Optional: Add a subtle shadow for a more elegant look */
   object-fit: cover; /* Ensures the image fits well inside the modal */
-  transition: transform 0.3s ease; /* Smooth transition for scaling */
 }
 
-/* Mobile-specific styles: increase image size in modal */
+/* Mobile-specific styles: increase image size in modal without transform */
 @media (max-width: 768px) {
   .modal-body img {
-    transform: scale(1.2); /* Increase size by 20% on mobile */
-    width: auto; /* Ensure the image adjusts its size naturally */
-    max-width: 100%; /* Ensure it does not exceed modal width */
+    width: 120%; /* Increase width by 20% */
+    height: auto; /* Maintain aspect ratio */
+    max-width: none; /* Allow the image to overflow the container */
   }
 }
