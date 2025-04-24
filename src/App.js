@@ -16,6 +16,7 @@ import { AddAlbum } from './add-album';
 import { ForgotPassword } from './forgot-password';
 import { Signup } from './sign-up';
 import { AlbumPhotos } from './album-photos';
+import { NotFound } from './not-found';
 function App() {
   const [cookies,,removeCookie] = useCookies(['adminUser']);
   const [expanded, setExpanded] = useState(false);
@@ -74,6 +75,7 @@ function App() {
       {/* Routes */}
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="*" element={<NotFound/>}/>
         <Route path="home" element={<Home />} />
         <Route path="/login" element={<AdminLogin />} />
         <Route path="/signup" element={<Signup />} />
