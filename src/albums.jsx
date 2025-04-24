@@ -28,6 +28,10 @@ export function Albums() {
   function handleViewClick(title,slug){
     navigate(`/photos/${title}`,{state:{slug:slug}})
   }
+  function handleEditClick(id) {
+    navigate(`/edit-album/${id}`,);
+  }
+  
   return (
     <div className="albums-container">
       <h2>📁 All Albums</h2>
@@ -43,7 +47,8 @@ export function Albums() {
               <h3>{album.title}</h3>
               <p>{album.description}</p>
               <span onClick={()=>handleViewClick(album.title,album.slug)} className="view-btn">📷 View Photos</span>
-            </div>
+              <span onClick={() => handleEditClick(album.id)} className="edit-btn">✏️ Edit</span>
+              </div>
           ))
         ) : (
           <p>No albums found.</p>

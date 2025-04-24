@@ -1,0 +1,80 @@
+.updatealbum-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    color: white;
+  }
+  
+  .updatealbum-container h2 {
+    text-align: center;
+    margin-bottom: 24px;
+    font-size: 24px;
+    font-weight: 600;
+  }
+  
+  .album-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .album-form input[type="text"],
+  .album-form textarea,
+  .album-form input[type="file"] {
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+  }
+  
+  .album-form textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+  
+  .radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 16px;
+  }
+  
+  .radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .album-form img {
+    width: 100px;
+    margin-top: 10px;
+    border-radius: 8px;
+    border: 2px solid white;
+  }
+  
+  .album-form button {
+    background-color: #ffd700;
+    color: #333;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .album-form button:hover {
+    background-color: #e6c200;
+  }
+  
+  .error {
+    font-size: 14px;
+    color: #ff9999;
+    margin-top: -10px;
+  }
+  

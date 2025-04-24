@@ -17,6 +17,7 @@ import { ForgotPassword } from './forgot-password';
 import { Signup } from './sign-up';
 import { AlbumPhotos } from './album-photos';
 import { NotFound } from './not-found';
+import { UpdateAlbum } from './update-album';
 function App() {
   const [cookies,,removeCookie] = useCookies(['adminUser']);
   const [expanded, setExpanded] = useState(false);
@@ -88,6 +89,7 @@ function App() {
         <Route path="/upload" element={<UploadPhotos />} />
         <Route path="/albums" element={<Albums />} />
         <Route path="/add-album" element={<AddAlbum />} />
+        <Route path="/edit-album/:id" element={<UpdateAlbum/>}/>
         <Route path="/photos/:title" element={<Photos />} />
         <Route path="/addphotos/:title" element={<AddPhotos />} />
         </>)}
