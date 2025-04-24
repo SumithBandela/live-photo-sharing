@@ -1,44 +1,123 @@
 .album-photos {
-    min-height: 100vh;
-    background: linear-gradient(to right, #2575fc, #6a11cb);
-    padding: 40px 20px;
-    text-align: center;
-    color: white;
-  }
-  
-  .album-photos h2 {
-    font-size: 2.5rem;
-    margin-bottom: 30px;
-    opacity: 0.95;
-  }
+  min-height: 100vh;
+  background: linear-gradient(to right, #2575fc, #6a11cb);
+  padding: 40px 20px;
+  text-align: center;
+  color: white;
+}
 
-  .album-photos p {
-    font-size: 1.1rem;
-    max-width: 800px;
-    margin: 0 auto 30px;
-    opacity: 0.9;
-    line-height: 1.6;
-  }
-  
-  
-  .photos-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 20px;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-  
-  .photo-img {
-    width: 100%;
-    height: 100%;
-    border-radius: 12px;
-    object-fit: cover;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
-    transition: transform 0.3s ease;
-  }
-  
-  .photo-img:hover {
-    transform: scale(1.05);
-  }
-  
+.album-photos h2 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  opacity: 0.95;
+}
+
+.album-photos p {
+  font-size: 1.1rem;
+  max-width: 800px;
+  margin: 0 auto 30px;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+.photos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.image-card img {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, opacity 0.5s ease;
+  cursor: pointer;
+}
+
+/* Animation for image load */
+.lazy-img {
+  opacity: 0;
+  transform: scale(0.98);
+}
+
+.lazy-img.loaded {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.lazy-img.visible {
+  transition: opacity 0.5s ease, transform 0.3s ease;
+}
+
+.image-card img:hover {
+  transform: scale(1.05);
+}
+
+/* Remove modal frame completely */
+.modal-body {
+  background: transparent !important;
+  padding: 0;
+  position: relative;
+  border-radius: 0 !important;
+  overflow: visible;
+}
+
+/* Remove modal content frame and any shadows */
+.modal-content {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  width: 100% !important;
+  height: auto !important;
+  padding: 0 !important;
+}
+
+/* Fading backdrop with darkening effect */
+.modal-backdrop {
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Darkened color */
+  transition: opacity 0.5s ease; /* Fade in effect */
+}
+
+.modal-backdrop.show {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+/* Close button styling */
+.close-button {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  z-index: 10;
+  color: white;
+  cursor: pointer;
+}
+
+/* Download button */
+.download-button {
+  margin: 10px 0 20px;
+  font-weight: bold;
+}
+
+/* Optional: Add smooth transition when modal opens */
+.fade-modal {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.fade-modal.show {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* Add curved border to modal image */
+.modal-body img {
+  border-radius: 15px; /* Adjust the radius value for the curve */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Optional: Add a subtle shadow for a more elegant look */
+  object-fit: cover; /* Ensures the image fits well inside the modal */
+}
