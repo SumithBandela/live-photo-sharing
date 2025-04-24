@@ -10,7 +10,7 @@ export function AddAlbum() {
   const [thumbnailPreview, setThumbnailPreview] = useState(null);
   const navigate = useNavigate();
   const [cookies] = useCookies(['adminUser']);
-  const slugify = (text, username) => {
+  const slugify = (text) => {
     const baseSlug = text
       .toString()
       .toLowerCase()
@@ -19,11 +19,10 @@ export function AddAlbum() {
       .replace(/^-+|-+$/g, '');
   
     const timestamp = Date.now();
-    const user = username.toLowerCase().trim().replace(/[^\w]/g, '');
+    const randomStr = Math.random().toString(36).substring(2, 7); // generates a short random string
   
-    return `${user}-${baseSlug}-${timestamp}`;
+    return `${baseSlug}-${randomStr}-${timestamp}`;
   };
-  
   
   const formik = useFormik({
     initialValues: {
