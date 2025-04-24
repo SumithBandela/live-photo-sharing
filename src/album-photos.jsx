@@ -134,46 +134,46 @@ export function AlbumPhotos() {
 
       <div className="photos-grid">
         {paginatedPhotos.map((photo, index) => (
-          <Card
-            key={index}
-            className="image-card"
-            onClick={() => handleShow(index + (currentPage - 1) * photosPerPage)}
-            style={{ background: "transparent", boxShadow: "none", border: "none" }}
-          >
-            <Card.Img
-              variant="top"
-              src={photo.img_src}
-              alt={photo.alt}
-              className={`lazy-img ${loaded ? "loaded" : ""} ${visible ? "visible" : ""}`}
-              onLoad={() => setLoaded(true)}
-              onContextMenu={handleContextMenu}
-              loading="lazy"
-              style={{ height: "100%", objectFit: "cover" }}
-            />
-          </Card>
+          photo.is_visible === 1 && (
+            <Card
+              key={index}
+              className="image-card"
+              onClick={() => handleShow(index + (currentPage - 1) * photosPerPage)}
+              style={{ background: "transparent", boxShadow: "none", border: "none" }}
+            >
+              <Card.Img
+                variant="top"
+                src={photo.img_src}
+                alt={photo.alt}
+                className={`lazy-img ${loaded ? "loaded" : ""} ${visible ? "visible" : ""}`}
+                onLoad={() => setLoaded(true)}
+                onContextMenu={handleContextMenu}
+                loading="lazy"
+                style={{ height: "100%", objectFit: "cover" }}
+              />
+            </Card>
+          )
         ))}
       </div>
 
      {/* Pagination */}
-{totalPages > 1 && (
-  <div className="pagination-wrapper">
-    <Pagination
-      count={totalPages}
-      page={currentPage}
-      onChange={handlePageChange}
-      boundaryCount={1}
-      siblingCount={1}
-      shape="rounded"
-      variant="outlined"
-      size="large"
-      showFirstButton
-      showLastButton
-      color="secondary"
-    />
-  </div>
-)}
-
-
+        {totalPages > 1 && (
+          <div className="pagination-wrapper">
+            <Pagination
+              count={totalPages}
+              page={currentPage}
+              onChange={handlePageChange}
+              boundaryCount={1}
+              siblingCount={1}
+              shape="rounded"
+              variant="outlined"
+              size="large"
+              showFirstButton
+              showLastButton
+              color="secondary"
+            />
+          </div>
+        )}
 
       {/* Modal Preview */}
       <Modal show={show} onHide={handleClose} animation centered onContextMenu={handleContextMenu} className="fade-modal">

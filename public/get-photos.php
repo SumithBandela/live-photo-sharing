@@ -20,19 +20,22 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
         $username = preg_replace("/[^a-zA-Z0-9 _-]/", "", $_GET['username']);
         
         // Prepare SQL query to fetch photos based on username and album title
-        $stmt = $conn->prepare("SELECT img_src FROM Photos WHERE username = ? AND album_title = ?");
+        $stmt = $conn->prepare("SELECT is_visible, img_src FROM Photos WHERE username = ? AND album_title = ?");
         $stmt->bind_param("ss", $username, $album);
         
         $stmt->execute();
         $result = $stmt->get_result();
         $images = [];
 
-        // Fetch and store image sources
+        // Fetch and store both is_visible and img_src in an array
         while ($row = $result->fetch_assoc()) {
-            $images[] = $row['img_src'];
+            $images[] = [
+                'is_visible' => $row['is_visible'],
+                'img_src' => $row['img_src']
+            ];
         }
 
-        // Return the image sources in JSON format
+        // Return the images as a single array in JSON format
         echo json_encode(["status" => "success", "images" => $images]);
         $stmt->close();
     } else {
