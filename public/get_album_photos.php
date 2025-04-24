@@ -17,8 +17,8 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
     if (isset($_GET['slug']) && !empty($_GET['slug'])) {
         $slug = preg_replace("/[^a-zA-Z0-9 _-]/", "", $_GET['slug']);
 
-        // Step 1: Fetch album details from Albums table including download field
-        $stmt1 = $conn->prepare("SELECT title, description, username, download FROM Albums WHERE slug = ?");
+        // Step 1: Fetch album details from Albums table including download and watermark fields
+        $stmt1 = $conn->prepare("SELECT title, description, username, download, watermark FROM Albums WHERE slug = ?");
         $stmt1->bind_param("s", $slug);
         $stmt1->execute();
         $result1 = $stmt1->get_result();
@@ -28,7 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
             $title = $album['title'];
             $description = $album['description'];
             $username = $album['username'];
-            $download = $album['download']; // Fetch download setting
+            $download = $album['download'];
+            $watermark = $album['watermark'];
             $stmt1->close();
 
             // Step 2: Fetch images from Photos table including visibility (is_visible)
@@ -41,19 +42,20 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
             while ($row = $result2->fetch_assoc()) {
                 $images[] = [
                     "img_src" => $row['img_src'],
-                    "is_visible" => $row['is_visible'] // Fetch visibility for each photo
+                    "is_visible" => $row['is_visible']
                 ];
             }
             $stmt2->close();
 
-            // Response with album info + image list including visibility and download info
+            // Response with album info + image list including watermark and download info
             echo json_encode([
                 "status" => "success",
                 "album" => [
                     "title" => $title,
                     "description" => $description,
                     "username" => $username,
-                    "download" => $download, // Include download setting from album
+                    "download" => $download,
+                    "watermark" => $watermark,
                     "images" => $images
                 ]
             ]);
