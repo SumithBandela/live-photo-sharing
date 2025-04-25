@@ -42,7 +42,7 @@ function App() {
           <Container>
             {/* Logo Section */}
             <Navbar.Brand as={Link} to="/home" className="nav-link">
-            <span className='logo'>{cookies.adminUser}</span>
+            <span className='logo'>{cookies.adminUser} Photography</span>
             </Navbar.Brand>
 
             {/* Navbar Toggle for Mobile */}
