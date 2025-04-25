@@ -23,12 +23,14 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
     $query = "SELECT id, title, description, slug, thumbnail, download, is_visible, watermark FROM Albums";
     $params = [];
     $types = '';
+    $isById = false;
 
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
         $query .= " WHERE id = ?";
         $params[] = $id;
         $types .= "i";
+        $isById = true;
     } elseif (isset($_GET['username'])) {
         $username = $_GET['username'];
         $query .= " WHERE thumbnail LIKE ?";
@@ -50,12 +52,21 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
         $result = $conn->query($query);
     }
 
-    $albums = [];
-    while ($row = $result->fetch_assoc()) {
-        $albums[] = $row;
+    if ($isById) {
+        $album = $result->fetch_assoc();
+        if ($album) {
+            echo json_encode(["status" => "success", "album" => $album]);
+        } else {
+            echo json_encode(["status" => "error", "message" => "Album not found."]);
+        }
+    } else {
+        $albums = [];
+        while ($row = $result->fetch_assoc()) {
+            $albums[] = $row;
+        }
+        echo json_encode(["status" => "success", "albums" => $albums]);
     }
 
-    echo json_encode(["status" => "success", "albums" => $albums]);
     $conn->close();
     exit();
 }

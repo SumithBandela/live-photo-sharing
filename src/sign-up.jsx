@@ -23,11 +23,13 @@ export function Signup() {
   const validationSchema = yup.object({
     name: yup.string().required("Name is required"),
     username: yup
-      .string()
-      .required("Username is required")
-      .test("unique-username", "Username already taken", function (value) {
-        return !existingUsers.includes(value?.toLowerCase());
-      }),
+    .string()
+    .required("Username is required")
+    .matches(/^[^.]*$/, "Username cannot contain a dot (.)")
+    .test("unique-username", "Username already taken", function (value) {
+      return !existingUsers.includes(value?.toLowerCase());
+    }),
+  
     password: yup
       .string()
       .required("Password is required")

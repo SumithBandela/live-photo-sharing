@@ -1,58 +1,101 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './update-album.css';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import { useFormik } from 'formik';
 
-export function UpdateAlbum(){
-  const [albumData, setAlbumData] = useState({
-    title: '',
-    description: '',
-    thumbnail: null,
-    download: 'no',
-    status: 'private',
+export function UpdateAlbum() {
+  const { id } = useParams();
+  const [albumData, setAlbumData] = useState(null);
+  const [preview, setPreview] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get(`https://rashmiphotography.com/backend/add-album.php?id=${id}`)
+      .then((response) => {
+        if (response.data && response.data.album) {
+          const album = response.data.album;
+          setAlbumData(album);
+          setPreview(album.thumbnail); // safely access now
+        } else {
+          console.warn('No album data found:', response.data);
+        }
+      })
+      .catch((error) => {
+        console.error('Error fetching album:', error);
+      });
+  }, [id]);
+  
+
+  const formik = useFormik({
+    enableReinitialize: true,
+    initialValues: {
+      title: albumData?.title || '',
+      description: albumData?.description || '',
+      thumbnail: null,
+      download: albumData?.download || 'no',
+      status: albumData?.is_visible || 'private',
+    },
+    onSubmit: (values) => {
+      const formData = new FormData();
+      formData.append('id', id);
+      formData.append('title', values.title);
+      formData.append('description', values.description);
+      formData.append('download', values.download);
+      formData.append('status', values.status);
+      if (values.thumbnail) {
+        formData.append('thumbnail', values.thumbnail);
+      }
+
+      axios
+        .post('https://rashmiphotography.com/backend/update-album.php', formData)
+        .then((res) => {
+          alert('Album updated successfully!');
+        })
+        .catch((err) => {
+          console.error(err);
+          alert('Failed to update album.');
+        });
+    },
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setAlbumData({ ...albumData, [name]: value });
-  };
-
-  const handleFileChange = (e) => {
-    setAlbumData({ ...albumData, thumbnail: e.target.files[0] });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(albumData); // Handle form submission here
+  const handleThumbnailChange = (e) => {
+    const file = e.currentTarget.files[0];
+    if (file) {
+      formik.setFieldValue('thumbnail', file);
+      setPreview(URL.createObjectURL(file));
+    }
   };
 
   return (
     <div className="updatealbum-container">
       <h2>Update Album</h2>
-      <form className="album-form" onSubmit={handleSubmit}>
+      <form className="album-form" onSubmit={formik.handleSubmit}>
         <input
           type="text"
           name="title"
           placeholder="Album Title"
-          value={albumData.title}
-          onChange={handleChange}
-          required
+          value={formik.values.title}
+          onChange={formik.handleChange}
         />
 
         <textarea
           name="description"
           placeholder="Album Description"
-          value={albumData.description}
-          onChange={handleChange}
+          value={formik.values.description}
+          onChange={formik.handleChange}
         />
 
         <input
           type="file"
+          name="thumbnail"
           accept="image/*"
-          onChange={handleFileChange}
+          onChange={handleThumbnailChange}
         />
 
-        {albumData.thumbnail && (
+        {preview && (
           <img
-            src={URL.createObjectURL(albumData.thumbnail)}
+          src={`https://rashmiphotography.com/backend/${preview}`}
             alt="Thumbnail Preview"
             className="thumbnail-preview"
           />
@@ -65,8 +108,8 @@ export function UpdateAlbum(){
               type="radio"
               name="download"
               value="yes"
-              checked={albumData.download === 'yes'}
-              onChange={handleChange}
+              checked={formik.values.download === 1}
+              onChange={formik.handleChange}
             />
             Yes
           </label>
@@ -75,8 +118,8 @@ export function UpdateAlbum(){
               type="radio"
               name="download"
               value="no"
-              checked={albumData.download === 'no'}
-              onChange={handleChange}
+              checked={formik.values.download === 0}
+              onChange={formik.handleChange}
             />
             No
           </label>
@@ -89,8 +132,8 @@ export function UpdateAlbum(){
               type="radio"
               name="status"
               value="public"
-              checked={albumData.status === 'public'}
-              onChange={handleChange}
+              checked={formik.values.status === 1}
+              onChange={formik.handleChange}
             />
             Public
           </label>
@@ -99,8 +142,8 @@ export function UpdateAlbum(){
               type="radio"
               name="status"
               value="private"
-              checked={albumData.status === 'private'}
-              onChange={handleChange}
+              checked={formik.values.status === 0}
+              onChange={formik.handleChange}
             />
             Private
           </label>
@@ -110,5 +153,4 @@ export function UpdateAlbum(){
       </form>
     </div>
   );
-};
-
+}
