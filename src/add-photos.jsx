@@ -85,8 +85,9 @@ export function AddPhotos() {
             </div>
           </div>
         )}
-
-        <button type="submit">Upload Photos</button>
+        <button type="submit" disabled={formik.isSubmitting}>
+          {formik.isSubmitting ? "Uploading Photos..." : "Upload Photos"}
+        </button>
       </form>
 
       {message && <p className="message">{message}</p>}
