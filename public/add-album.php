@@ -24,7 +24,12 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
     $params = [];
     $types = '';
 
-    if (isset($_GET['username'])) {
+    if (isset($_GET['id'])) {
+        $id = $_GET['id'];
+        $query .= " WHERE id = ?";
+        $params[] = $id;
+        $types .= "i";
+    } elseif (isset($_GET['username'])) {
         $username = $_GET['username'];
         $query .= " WHERE thumbnail LIKE ?";
         $params[] = "%images/" . $username . "/%";
