@@ -10,7 +10,7 @@ import { Albums } from './albums';
 import { AddPhotos } from './add-photos';
 import { Photos } from './photos';
 import { Navbar, Nav, Container } from 'react-bootstrap';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { AddAlbum } from './add-album';
 import { ForgotPassword } from './forgot-password';
@@ -18,9 +18,22 @@ import { Signup } from './sign-up';
 import { AlbumPhotos } from './album-photos';
 import { NotFound } from './not-found';
 import { UpdateAlbum } from './update-album';
+import { ContactAdmin } from './admin-contact';
+import axios from 'axios';
 function App() {
   const [cookies,,removeCookie] = useCookies(['adminUser']);
   const [expanded, setExpanded] = useState(false);
+  const[status, setStatus] = useState(null);
+
+  useEffect(()=>{
+    axios.get("https://rashmiphotography.com/backend/subscription-status.php", {
+      params: { username: cookies.adminUser }
+    })
+    .then(response=>{
+      setStatus(response.data.subscription_status);
+    })
+  },[cookies.adminUser])
+  
   const handleNavClick = () => {
     setExpanded(false); // Close the menu after clicking a nav link
   };
@@ -51,15 +64,19 @@ function App() {
             {/* Navbar Links Section */}
             <Navbar.Collapse id="navbar-nav">
               <Nav className="ms-auto">
-                     <Nav.Item>
+                     {status==='active' &&(
+                      <>
+                        <Nav.Item>
                        <Nav.Link as={Link} to="/home" onClick={handleNavClick} className="nav-link">Home</Nav.Link>
-                     </Nav.Item>
-                      {/*<Nav.Item>
-                        <Nav.Link as={Link} to="/gallery" onClick={handleNavClick} className="nav-link">Gallery</Nav.Link>
-                      </Nav.Item> */}
-                      <Nav.Item>
-                        <Nav.Link as={Link} to="/admin" onClick={handleNavClick} className="nav-link">Admin Panel</Nav.Link>
                       </Nav.Item>
+                        {/*<Nav.Item>
+                          <Nav.Link as={Link} to="/gallery" onClick={handleNavClick} className="nav-link">Gallery</Nav.Link>
+                        </Nav.Item> */}
+                        <Nav.Item>
+                          <Nav.Link as={Link} to="/admin" onClick={handleNavClick} className="nav-link">Admin Panel</Nav.Link>
+                        </Nav.Item>
+                      </>
+                     )}
                       <Nav.Item>
                         <Nav.Link as={Link} to="/" onClick={handleLogout} className="nav-link">Logout</Nav.Link>
                       </Nav.Item>
@@ -82,7 +99,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/album/:slug" element={<AlbumPhotos />} />
-        {(cookies.adminUser && cookies.adminUser!=="undefined") && (
+        {(cookies.adminUser && cookies.adminUser!=="undefined" && status==='active') && (
           <>
         <Route path="/admin" element={<Admin />} />
         <Route path="/gallery" element={<Gallery />} />
@@ -93,6 +110,8 @@ function App() {
         <Route path="/photos/:title" element={<Photos />} />
         <Route path="/addphotos/:title" element={<AddPhotos />} />
         </>)}
+        { (cookies.adminUser && cookies.adminUser!=='undefined') &&
+        <Route path="/contact-admin" element={<ContactAdmin />} />}
       </Routes>
     </BrowserRouter>
   );

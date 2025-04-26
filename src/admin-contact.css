@@ -1,0 +1,66 @@
+/* ContactAdmin.css */
+
+/* Styling for the container with gradient background */
+.contact-admin-container {
+    padding: 50px;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    max-width: 650px;
+    margin: 60px auto; /* Added margin-top for spacing */
+    text-align: center;
+    color: white; /* White text color */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Add a creative element with a decorative wave shape at the bottom */
+.contact-admin-container::before {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50% 50% 0 0;
+    transform: rotate(180deg);
+    z-index: 1;
+}
+
+/* Styling for the header */
+.contact-admin-header {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3); /* Added text-shadow for depth */
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.contact-admin-header:hover {
+    color: #ffcc00; /* Hover effect on header */
+}
+
+/* Styling for the message */
+.contact-admin-message {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    text-align: left;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2); /* Slight text-shadow for depth */
+}
+
+/* Optional styling for the email link */
+.contact-admin-email {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    border-bottom: 2px solid transparent;
+    transition: color 0.3s, border-color 0.3s;
+}
+
+.contact-admin-email:hover {
+    color: #ffcc00; /* Change text color on hover */
+    border-color: #ffcc00; /* Border effect on hover */
+}

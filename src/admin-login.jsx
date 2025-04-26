@@ -24,11 +24,20 @@ export function AdminLogin() {
       setError(false);
       try {
         const response = await axios.post("https://rashmiphotography.com/backend/photosharelogin.php", user);
-
+    
         if (response.data.success) {
           // Set cookie with username
           setCookie("adminUser", response.data.username, { path: '/' });
-          navigate("/admin");
+          // 🔁 Now check subscription status
+          const subResponse = await axios.get("https://rashmiphotography.com/backend/subscription-status.php", {
+            params: { username: response.data.username }
+          });
+            console.log(subResponse.data.subscription_status)
+          if (subResponse.data.subscription_status === "active") {
+            navigate("/admin");
+          } else {
+            navigate("/contact-admin");
+          }
         } else {
           setError(true);
         }
@@ -37,6 +46,7 @@ export function AdminLogin() {
         setError(true);
       }
     }
+    
   });
 
   return (
