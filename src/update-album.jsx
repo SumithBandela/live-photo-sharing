@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import './update-album.css';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useFormik } from 'formik';
-
+import { useCookies } from 'react-cookie';
 export function UpdateAlbum() {
   const { id } = useParams();
+  const [cookies] = useCookies(['adminUser']);
   const [albumData, setAlbumData] = useState(null);
   const [preview, setPreview] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -16,7 +18,7 @@ export function UpdateAlbum() {
         if (response.data && response.data.album) {
           const album = response.data.album;
           setAlbumData(album);
-          setPreview(album.thumbnail); // safely access now
+          setPreview(`https://rashmiphotography.com/backend/${album.thumbnail}`);
         } else {
           console.warn('No album data found:', response.data);
         }
@@ -25,7 +27,6 @@ export function UpdateAlbum() {
         console.error('Error fetching album:', error);
       });
   }, [id]);
-  
 
   const formik = useFormik({
     enableReinitialize: true,
@@ -33,24 +34,31 @@ export function UpdateAlbum() {
       title: albumData?.title || '',
       description: albumData?.description || '',
       thumbnail: null,
-      download: albumData?.download || 'no',
-      status: albumData?.is_visible || 'private',
+      download: albumData ? Number(albumData.download) : 0,
+      isVisible: albumData ? Number(albumData.is_visible) : 0,
     },
     onSubmit: (values) => {
       const formData = new FormData();
-      formData.append('id', id);
+      formData.append('username', cookies.adminUser.toLowerCase());
       formData.append('title', values.title);
       formData.append('description', values.description);
       formData.append('download', values.download);
-      formData.append('status', values.status);
+      formData.append('isVisible', values.isVisible);
+
       if (values.thumbnail) {
         formData.append('thumbnail', values.thumbnail);
       }
 
       axios
-        .post('https://rashmiphotography.com/backend/update-album.php', formData)
+        .post('https://rashmiphotography.com/backend/edit-album.php', formData)
         .then((res) => {
-          alert('Album updated successfully!');
+          const data = res.data;
+          if (data.status === 'success') {
+            alert('Album updated successfully!');
+            navigate('/albums');
+          } else {
+            alert(data.message || 'Failed to update album.');
+          }
         })
         .catch((err) => {
           console.error(err);
@@ -76,7 +84,7 @@ export function UpdateAlbum() {
           name="title"
           placeholder="Album Title"
           value={formik.values.title}
-          onChange={formik.handleChange}
+          readOnly
         />
 
         <textarea
@@ -95,7 +103,7 @@ export function UpdateAlbum() {
 
         {preview && (
           <img
-          src={`https://rashmiphotography.com/backend/${preview}`}
+            src={preview}
             alt="Thumbnail Preview"
             className="thumbnail-preview"
           />
@@ -107,9 +115,9 @@ export function UpdateAlbum() {
             <input
               type="radio"
               name="download"
-              value="yes"
+              value={1}
               checked={formik.values.download === 1}
-              onChange={formik.handleChange}
+              onChange={() => formik.setFieldValue('download', 1)}
             />
             Yes
           </label>
@@ -117,9 +125,9 @@ export function UpdateAlbum() {
             <input
               type="radio"
               name="download"
-              value="no"
+              value={0}
               checked={formik.values.download === 0}
-              onChange={formik.handleChange}
+              onChange={() => formik.setFieldValue('download', 0)}
             />
             No
           </label>
@@ -130,20 +138,20 @@ export function UpdateAlbum() {
           <label>
             <input
               type="radio"
-              name="status"
-              value="public"
-              checked={formik.values.status === 1}
-              onChange={formik.handleChange}
+              name="isVisible"
+              value={1}
+              checked={formik.values.isVisible === 1}
+              onChange={() => formik.setFieldValue('isVisible', 1)}
             />
             Public
           </label>
           <label>
             <input
               type="radio"
-              name="status"
-              value="private"
-              checked={formik.values.status === 0}
-              onChange={formik.handleChange}
+              name="isVisible"
+              value={0}
+              checked={formik.values.isVisible === 0}
+              onChange={() => formik.setFieldValue('isVisible', 0)}
             />
             Private
           </label>
