@@ -156,8 +156,9 @@ export function UpdateAlbum() {
             Private
           </label>
         </div>
-
-        <button type="submit">Update Album</button>
+        <button type="submit" disabled={formik.isSubmitting}>
+          {formik.isSubmitting ? "Updating Album..." : "Update Album"}
+        </button>
       </form>
     </div>
   );
