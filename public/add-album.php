@@ -106,7 +106,7 @@ if (!isset($_FILES["thumbnail"]) || $_FILES["thumbnail"]["error"] !== UPLOAD_ERR
 // Set paths
 $uploadBaseDir = __DIR__ . "/images/";
 $cleanUsername = preg_replace("/[^a-zA-Z0-9_-]/", "", $username);
-$cleanTitle = preg_replace("/[^a-zA-Z0-9_-]/", "", $title);
+$cleanTitle = $title;
 
 $userDir = $uploadBaseDir . $cleanUsername . "/";
 $albumDir = $userDir . $cleanTitle . "/";
