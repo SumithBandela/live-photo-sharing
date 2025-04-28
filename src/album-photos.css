@@ -162,3 +162,38 @@
     height: auto; /* Maintain aspect ratio */
   }
 }
+
+/* Add this to your external CSS file */
+
+.download-btn {
+  background: linear-gradient(135deg, #6a11cb, #2575fc); /* Gradient background */
+  color: white; /* White text */
+  border: none;
+  border-radius: 12px; /* Rounded corners */
+  padding: 12px 24px; /* Padding for the button */
+  font-size: 16px; /* Text size */
+  font-weight: bold; /* Bold text */
+  cursor: pointer; /* Pointer on hover */
+  display: flex; /* Flexbox to align icon and text */
+  align-items: center; /* Center align items vertically */
+  gap: 10px; /* Space between icon and text */
+  transition: transform 0.3s ease, background-color 0.3s ease; /* Smooth transition */
+}
+
+.download-btn:hover {
+  background: linear-gradient(135deg, #2575fc, #6a11cb); /* Reverse gradient on hover */
+  transform: scale(1.1); /* Slightly enlarge button on hover */
+}
+
+.download-btn:active {
+  transform: scale(0.98); /* Shrink when clicked */
+}
+
+.download-btn:focus {
+  outline: none; /* Remove focus outline */
+}
+
+/* Icon styling */
+.download-btn .fa {
+  font-size: 18px; /* Icon size */
+}

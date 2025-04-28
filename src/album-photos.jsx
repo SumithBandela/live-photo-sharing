@@ -225,12 +225,11 @@ export function AlbumPhotos() {
         </Modal.Body>
         <div className="d-flex justify-content-center">
           {albumDetails.download === 1 && (
-            <button
-              className="btn btn-danger w-50 rounded rounded-5 download-button"
-              onClick={handleWaterMarkDownload}
-            >
-              Download
-            </button>
+          <button className="download-btn" onClick={handleWaterMarkDownload}>
+          <i className="bi bi-download"></i> Download
+        </button>
+               
+          
           )}
         </div>
       </Modal>
