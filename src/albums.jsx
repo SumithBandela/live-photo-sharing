@@ -42,7 +42,7 @@ export function Albums() {
               <img
                 src={`https://rashmiphotography.com/backend/${album.thumbnail}`} // Assuming your thumbnail paths are relative to the site root
                 alt={album.title}
-                className="album-thumbnail"
+                className={`album-thumbnail ${album.is_visible ? '' : 'hidden-album'}`}
               />
               <h3>{album.title}</h3>
               <p>{album.description}</p>
