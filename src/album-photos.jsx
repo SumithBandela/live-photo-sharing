@@ -110,7 +110,7 @@ export function AlbumPhotos() {
 
         ctx.drawImage(img, 0, 0);
 
-        const watermarkText = albumDetails.watermark;
+        const watermarkText = "Rashmiphotography";
         const fontSize = img.width / 25;
         ctx.font = `${fontSize}px Playfair Display`;
         ctx.fillStyle = "rgba(255, 255, 255)";
