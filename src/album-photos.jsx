@@ -37,7 +37,6 @@ export function AlbumPhotos() {
     .then((response) => {
       if (response.data.status === 'success') {
         const album = response.data.album;
-        console.log(response.data.album)
         setAlbumDetails({
           title: album.title,
           description: album.description,
