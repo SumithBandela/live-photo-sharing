@@ -9,8 +9,10 @@ import "react-image-gallery/styles/css/image-gallery.css";
 import './album-photos.css';
 
 import Pagination from '@mui/material/Pagination';
+import { useCookies } from 'react-cookie';
 
 export function AlbumPhotos() {
+  const[cookies] = useCookies(['adminUser']);
   const { slug } = useParams();
   const [photos, setPhotos] = useState([]);
   const [albumDetails, setAlbumDetails] = useState({
@@ -97,49 +99,66 @@ export function AlbumPhotos() {
 
   const handleWaterMarkDownload = async () => {
     if (photos[currentIndex]) {
-      const img = new Image();
-      img.crossOrigin = "anonymous";
-      img.src = photos[currentIndex].img_src;
-
-      img.onload = () => {
-        const canvas = document.createElement("canvas");
-        const ctx = canvas.getContext("2d");
-
-        canvas.width = img.width;
-        canvas.height = img.height;
-
-        ctx.drawImage(img, 0, 0);
-
-        const watermarkText = "Rashmiphotography";
-        const fontSize = img.width / 25;
-        ctx.font = `${fontSize}px Playfair Display`;
-        ctx.fillStyle = "rgba(255, 255, 255)";
-        ctx.textAlign = "right";
-        ctx.textBaseline = "bottom";
-
-        const offset = 50;
-        ctx.fillText(watermarkText, img.width - 20, img.height - offset);
-
-        const dataUrl = canvas.toDataURL("image/jpeg", 0.9);
-
-        const link = document.createElement("a");
-        link.href = dataUrl;
-
-        const fileName = photos[currentIndex].alt
-          ? photos[currentIndex].alt.replace(/\s+/g, "_") + ".jpg"
-          : `image_${currentIndex + 1}.jpg`;
-
-        link.download = fileName;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      };
-
-      img.onerror = () => {
-        console.error("Error loading image.");
-      };
+      try {
+        const imageName = photos[currentIndex].img_src.split('/').pop(); // Get image name only
+        const username = cookies.adminUser.toLowerCase(); // username must come from albumDetails
+        const title = albumDetails.title;       // title from albumDetails
+  
+        const response = await axios.get(`https://rashmiphotography.com/backend/download_image.php`, {
+          params: {
+            username: username,   // <<< ✅ ADD username here
+            title: title,
+            img_src: imageName
+          },
+          responseType: "blob",
+        });
+  
+        const blob = response.data;
+        const img = new Image();
+        img.src = URL.createObjectURL(blob);
+  
+        img.onload = () => {
+          const canvas = document.createElement("canvas");
+          const ctx = canvas.getContext("2d");
+  
+          canvas.width = img.width;
+          canvas.height = img.height;
+          ctx.drawImage(img, 0, 0);
+  
+          const watermarkText = `©${albumDetails.watermark}`;
+          const fontSize = img.width / 25;
+          ctx.font = `${fontSize}px Playfair Display`;
+          ctx.fillStyle = "rgba(255, 255, 255)";
+          ctx.textAlign = "right";
+          ctx.textBaseline = "bottom";
+  
+          const offset = 50;
+          ctx.fillText(watermarkText, img.width - 20, img.height - offset);
+  
+          const dataUrl = canvas.toDataURL("image/jpeg", 0.9);
+  
+          const link = document.createElement("a");
+          link.href = dataUrl;
+  
+          const fileName = photos[currentIndex].alt
+            ? photos[currentIndex].alt.replace(/\s+/g, "_") + ".jpg"
+            : `image_${currentIndex + 1}.jpg`;
+  
+          link.download = fileName;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        };
+  
+        img.onerror = () => {
+          console.error("Error loading image.");
+        };
+      } catch (error) {
+        console.error('Error fetching image:', error);
+      }
     }
   };
+  
 
   return (
     <div className="album-photos">
