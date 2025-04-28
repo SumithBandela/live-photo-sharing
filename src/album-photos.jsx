@@ -9,10 +9,8 @@ import "react-image-gallery/styles/css/image-gallery.css";
 import './album-photos.css';
 
 import Pagination from '@mui/material/Pagination';
-import { useCookies } from 'react-cookie';
 
 export function AlbumPhotos() {
-  const[cookies] = useCookies(['adminUser']);
   const { slug } = useParams();
   const [photos, setPhotos] = useState([]);
   const [albumDetails, setAlbumDetails] = useState({
@@ -20,7 +18,8 @@ export function AlbumPhotos() {
     description: '',
     download: false,
     watermark:'',
-    is_visible:false
+    is_visible:false,
+    username:''
   });
 
   const [show, setShow] = useState(false);
@@ -38,13 +37,14 @@ export function AlbumPhotos() {
     .then((response) => {
       if (response.data.status === 'success') {
         const album = response.data.album;
-
+        console.log(response.data.album)
         setAlbumDetails({
           title: album.title,
           description: album.description,
           download: album.download,
           watermark:album.watermark,
-          is_visible:album.is_visible
+          is_visible:album.is_visible,
+          username:album.username
         });
 
         const fetchedPhotos = album.images.map((image) => ({
@@ -100,13 +100,13 @@ export function AlbumPhotos() {
   const handleWaterMarkDownload = async () => {
     if (photos[currentIndex]) {
       try {
-        const imageName = photos[currentIndex].img_src.split('/').pop(); // Get image name only
-        const username = cookies.adminUser.toLowerCase(); // username must come from albumDetails
-        const title = albumDetails.title;       // title from albumDetails
+        const imageName = photos[currentIndex].img_src.split('/').pop();
+        const username = albumDetails.username;
+        const title = albumDetails.title;      
   
         const response = await axios.get(`https://rashmiphotography.com/backend/download_image.php`, {
           params: {
-            username: username,   // <<< ✅ ADD username here
+            username: username, 
             title: title,
             img_src: imageName
           },
