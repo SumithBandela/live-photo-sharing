@@ -32,7 +32,6 @@ export function AdminLogin() {
           const subResponse = await axios.get("https://rashmiphotography.com/backend/subscription-status.php", {
             params: { username: response.data.username }
           });
-            console.log(subResponse.data.subscription_status)
           if (subResponse.data.subscription_status === "active") {
             navigate("/admin");
           } else {
