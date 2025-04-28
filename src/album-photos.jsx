@@ -163,6 +163,15 @@ export function AlbumPhotos() {
     <div className="album-photos">
       {albumDetails.is_visible===1 ? (
         <>
+        {/* Top Branding */}
+          <div className="top-branding text-center">
+            {albumDetails.logo_url && (
+              <img src={albumDetails.logo_url} alt="Studio Logo" className="top-logo" />
+            )}
+            <h1 className="studio-name-text">{albumDetails.username}</h1>
+            <p className="caption-text">{albumDetails.caption}</p>
+          </div>
+
           <h2>{albumDetails.title}</h2>
       <p>{albumDetails.description}</p>
 
@@ -233,6 +242,36 @@ export function AlbumPhotos() {
           )}
         </div>
       </Modal>
+      {/* Branding / Photographer Promotion */}
+          <div className="branding-footer">
+            <hr className="footer-divider" />
+            <div className="branding-content">
+              {albumDetails.logo_url && (
+                <img src={albumDetails.logo_url} alt="Studio Logo" className="branding-logo" />
+              )}
+              <h4 className="studio-name">{albumDetails.username}</h4>
+              <p className="branding-description">{albumDetails.caption}</p>
+              <div className="contact-links">
+                {albumDetails.phone && (
+                  <a href={`tel:${albumDetails.phone}`} className="contact-link">Call Us</a>
+                )}
+                {albumDetails.whatsapp_link && (
+                  <>
+                    {" | "}
+                    <a href={albumDetails.whatsapp_link} target="_blank" rel="noopener noreferrer" className="contact-link">WhatsApp</a>
+                  </>
+                )}
+                {albumDetails.instagram_link && (
+                  <>
+                    {" | "}
+                    <a href={albumDetails.instagram_link} target="_blank" rel="noopener noreferrer" className="contact-link">Instagram</a>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+
+
         </>
       ) : (
         <div className="text-center p-5">

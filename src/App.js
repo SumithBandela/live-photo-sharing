@@ -20,6 +20,8 @@ import { NotFound } from './not-found';
 import { UpdateAlbum } from './update-album';
 import { ContactAdmin } from './admin-contact';
 import axios from 'axios';
+import { Profile } from './profile';
+import { EditProfile } from './edit-profile';
 function App() {
   const [cookies,,removeCookie] = useCookies(['adminUser']);
   const [expanded, setExpanded] = useState(false);
@@ -75,6 +77,9 @@ function App() {
                         <Nav.Item>
                           <Nav.Link as={Link} to="/admin" onClick={handleNavClick} className="nav-link">Admin Panel</Nav.Link>
                         </Nav.Item>
+                        {/*<Nav.Item>
+                          <Nav.Link as={Link} to="/profile" onClick={handleNavClick} className="nav-link">Profile</Nav.Link>
+                        </Nav.Item>*/}
                       </>
                      )}
                       <Nav.Item>
@@ -103,6 +108,8 @@ function App() {
           <>
         <Route path="/admin" element={<Admin />} />
         <Route path="/gallery" element={<Gallery />} />
+        <Route path="/profile" element={<Profile/>}/>
+        <Route path='/edit-profile' element={<EditProfile/>}/>
         <Route path="/upload" element={<UploadPhotos />} />
         <Route path="/albums" element={<Albums />} />
         <Route path="/add-album" element={<AddAlbum />} />

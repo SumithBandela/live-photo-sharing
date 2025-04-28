@@ -197,3 +197,77 @@
 .download-btn .fa {
   font-size: 18px; /* Icon size */
 }
+
+
+.branding-footer {
+  margin-top: 50px;
+  text-align: center;
+  color: #ccc;
+}
+
+.footer-divider {
+  margin: 30px auto;
+  width: 60%;
+  border: 0;
+  height: 1px;
+  background: #555;
+}
+
+.branding-content {
+  padding: 20px;
+}
+
+.branding-logo {
+  width: 80px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.studio-name {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.branding-description {
+  margin: 10px 0;
+  font-size: 1rem;
+}
+
+.contact-links {
+  margin-top: 15px;
+}
+
+.contact-link {
+  margin: 0 8px;
+  color: #f0ad4e;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.contact-link:hover {
+  text-decoration: underline;
+}
+
+.top-branding {
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.top-logo {
+  width: 100px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.studio-name-text {
+  font-size: 2rem;
+  color: #fff;
+  margin: 10px 0 5px;
+}
+
+.caption-text {
+  font-size: 1rem;
+  color: #bbb;
+  margin-bottom: 20px;
+}
