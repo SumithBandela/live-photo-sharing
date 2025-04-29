@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
     if (isset($_GET['slug']) && !empty($_GET['slug'])) {
         $slug = preg_replace("/[^a-zA-Z0-9 _-]/", "", $_GET['slug']);
 
-        // Step 1: Fetch album details from Albums table including download and watermark fields
+        // Step 1: Fetch album details from Albums table
         $stmt1 = $conn->prepare("SELECT title, description, username, download, watermark, is_visible FROM Albums WHERE slug = ?");
         $stmt1->bind_param("s", $slug);
         $stmt1->execute();
@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
             $is_visible = $album['is_visible'];
             $stmt1->close();
 
-            // Step 2: Fetch images from Photos table including visibility (is_visible)
+            // Step 2: Fetch images from Photos table
             $stmt2 = $conn->prepare("SELECT img_src, is_visible FROM Photos WHERE album_title = ? AND username = ?");
             $stmt2->bind_param("ss", $title, $username);
             $stmt2->execute();
@@ -48,7 +48,19 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
             }
             $stmt2->close();
 
-            // Response with album info + image list including watermark and download info
+            // Step 3: Fetch user profile details from Profile table
+            $stmt3 = $conn->prepare("SELECT * FROM profile WHERE username = ?");
+            $stmt3->bind_param("s", $username);
+            $stmt3->execute();
+            $result3 = $stmt3->get_result();
+
+            $profile = null;
+            if ($result3->num_rows > 0) {
+                $profile = $result3->fetch_assoc();
+            }
+            $stmt3->close();
+
+            // Final Response
             echo json_encode([
                 "status" => "success",
                 "album" => [
@@ -59,7 +71,8 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
                     "watermark" => $watermark,
                     "is_visible" => $is_visible,
                     "images" => $images
-                ]
+                ],
+                "profile" => $profile
             ]);
         } else {
             echo json_encode(["status" => "error", "message" => "Album not found for the provided slug."]);

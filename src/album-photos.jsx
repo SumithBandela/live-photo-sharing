@@ -13,6 +13,7 @@ import Pagination from '@mui/material/Pagination';
 export function AlbumPhotos() {
   const { slug } = useParams();
   const [photos, setPhotos] = useState([]);
+  const [profile ,setProfile]  = useState({});
   const [albumDetails, setAlbumDetails] = useState({
     title: '',
     description: '',
@@ -53,6 +54,8 @@ export function AlbumPhotos() {
         }));
 
         setPhotos(fetchedPhotos);
+        setProfile(response.data.profile)
+    
       } else {
         console.error(response.data.message);
       }
@@ -165,11 +168,11 @@ export function AlbumPhotos() {
         <>
         {/* Top Branding */}
           <div className="top-branding text-center">
-            {albumDetails.logo_url && (
-              <img src={albumDetails.logo_url} alt="Studio Logo" className="top-logo" />
+            {profile.logo_url && (
+              <img src={`https://rashmiphotography.com/${profile.logo_url}`} alt="Studio Logo" className="top-logo" />
             )}
-            <h1 className="studio-name-text">{albumDetails.username}</h1>
-            <p className="caption-text">{albumDetails.caption}</p>
+            <h1 className="studio-name-text">{profile.studio_name}</h1>
+            <p className="caption-text">{profile.caption}</p>
           </div>
 
           <h2>{albumDetails.title}</h2>
@@ -246,25 +249,25 @@ export function AlbumPhotos() {
           <div className="branding-footer">
             <hr className="footer-divider" />
             <div className="branding-content">
-              {albumDetails.logo_url && (
-                <img src={albumDetails.logo_url} alt="Studio Logo" className="branding-logo" />
+              {profile.logo_url && (
+                <img src={`https://rashmiphotography.com/${profile.logo_url}`}  alt="Studio Logo" className="branding-logo" />
               )}
-              <h4 className="studio-name">{albumDetails.username}</h4>
-              <p className="branding-description">{albumDetails.caption}</p>
+              <h4 className="studio-name">{profile.studio_name}</h4>
+              <p className="branding-description">{profile.caption}</p>
               <div className="contact-links">
-                {albumDetails.phone && (
-                  <a href={`tel:${albumDetails.phone}`} className="contact-link">Call Us</a>
+                {profile.phone && (
+                  <a href={`tel:${profile.phone}`} className="contact-link">Call Us</a>
                 )}
-                {albumDetails.whatsapp_link && (
+                {profile.whatsapp_link && (
                   <>
                     {" | "}
-                    <a href={albumDetails.whatsapp_link} target="_blank" rel="noopener noreferrer" className="contact-link">WhatsApp</a>
+                    <a href={profile.whatsapp_link} target="_blank" rel="noopener noreferrer" className="contact-link">WhatsApp</a>
                   </>
                 )}
-                {albumDetails.instagram_link && (
+                {profile.instagram_link && (
                   <>
                     {" | "}
-                    <a href={albumDetails.instagram_link} target="_blank" rel="noopener noreferrer" className="contact-link">Instagram</a>
+                    <a href={profile.instagram_link} target="_blank" rel="noopener noreferrer" className="contact-link">Instagram</a>
                   </>
                 )}
               </div>
