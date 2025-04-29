@@ -231,7 +231,7 @@ export function AlbumPhotos() {
           />
         </Modal.Body>
         <div className="d-flex justify-content-center">
-          {albumDetails.download === 1 && (
+          {albumDetails.download === 1 && profile.studio_name && (
           <button className="download-btn" onClick={handleWaterMarkDownload}>
           <i className="bi bi-download"></i> Download
         </button>
