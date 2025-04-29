@@ -169,7 +169,7 @@ export function AlbumPhotos() {
         {/* Top Branding */}
           <div className="top-branding text-center">
             {profile.logo_url && (
-              <img src={`https://rashmiphotography.com/${profile.logo_url}`} alt="Studio Logo" className="top-logo" />
+              <img src={`https://rashmiphotography.com/backend/${profile.logo_url}`} alt="Studio Logo" className="top-logo" />
             )}
             <h1 className="studio-name-text">{profile.studio_name}</h1>
             <p className="caption-text">{profile.caption}</p>
@@ -250,7 +250,7 @@ export function AlbumPhotos() {
             <hr className="footer-divider" />
             <div className="branding-content">
               {profile.logo_url && (
-                <img src={`https://rashmiphotography.com/${profile.logo_url}`}  alt="Studio Logo" className="branding-logo" />
+                <img src={`https://rashmiphotography.com/backend/${profile.logo_url}`}  alt="Studio Logo" className="branding-logo" />
               )}
               <h4 className="studio-name">{profile.studio_name}</h4>
               <p className="branding-description">{profile.caption}</p>

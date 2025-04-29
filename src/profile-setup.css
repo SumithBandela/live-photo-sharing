@@ -1,0 +1,75 @@
+.profile-setup-wrapper {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background: linear-gradient(to right, #2575fc, #6a11cb);
+    color:white ;
+    border-radius: 12px;
+  }
+  
+  .profile-setup-card h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .profile-setup-message {
+    text-align: center;
+    color: green;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  
+  .profile-setup-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .profile-setup-field {
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .profile-setup-field label {
+    margin-bottom: 6px;
+  }
+  
+  .profile-setup-field input,
+  .profile-setup-field textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+  }
+  
+  .profile-setup-field textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+  
+  .profile-logo-preview {
+    margin-top: 10px;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  .profile-setup-button {
+    background: linear-gradient(to right, #2575fc, #6a11cb);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.3s;
+    box-shadow: 0px 0px 2px white;
+  }
+  
+  .profile-setup-button:hover {
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+  }
+  

@@ -24,12 +24,15 @@ export function Profile() {
 
 
   return (
-    <div className="profile-page">
-      <div className="profile-container">
+      <div>
+        {profile.username ?
+      (
+      <div className="profile-page">
+        <div className="profile-container">
         <div className="profile-header">
           {profile.logo_url && (
             <img
-              src={`https://rashmiphotography.com/${profile.logo_url}`}
+              src={`https://rashmiphotography.com/backend/${profile.logo_url}`}
               alt="Studio Logo"
               className="profile-logo"
             />
@@ -57,11 +60,22 @@ export function Profile() {
         </div>
 
         <div className="profile-actions">
-          <button className="edit-btn" onClick={() => navigate('/edit-profile')}>
+          <button className="edit-profile-btn" onClick={() => navigate('/edit-profile')}>
             Edit Profile
           </button>
         </div>
       </div>
-    </div>
+      </div>
+      ):(
+        <div className="profile-setup-container">
+          <p className="profile-setup-description">
+          Your profile is currently incomplete. Setting up your profile is <strong>mandatory</strong> to access all features . It helps us tailor your dashboard and ensure the best experience. Please complete your profile setup now.
+          </p>
+          <button className="btn-complete-profile" onClick={() => navigate('/profile-setup')}>
+          Set Up My Profile
+          </button>
+        </div>
+      )}
+      </div>
   );
 }
