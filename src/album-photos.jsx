@@ -18,7 +18,6 @@ export function AlbumPhotos() {
     title: '',
     description: '',
     download: false,
-    watermark:'',
     is_visible:false,
     username:''
   });
@@ -42,7 +41,6 @@ export function AlbumPhotos() {
           title: album.title,
           description: album.description,
           download: album.download,
-          watermark:album.watermark,
           is_visible:album.is_visible,
           username:album.username
         });
@@ -127,7 +125,7 @@ export function AlbumPhotos() {
           canvas.height = img.height;
           ctx.drawImage(img, 0, 0);
   
-          const watermarkText = `©${albumDetails.watermark}`;
+          const watermarkText = `©${profile.studio_name}`;
           const fontSize = img.width / 25;
           ctx.font = `${fontSize}px Playfair Display`;
           ctx.fillStyle = "rgba(255, 255, 255)";
@@ -168,9 +166,6 @@ export function AlbumPhotos() {
         <>
         {/* Top Branding */}
           <div className="top-branding text-center">
-            {profile.logo_url && (
-              <img src={`https://rashmiphotography.com/backend/${profile.logo_url}`} alt="Studio Logo" className="top-logo" />
-            )}
             <h1 className="studio-name-text">{profile.studio_name}</h1>
             <p className="caption-text">{profile.caption}</p>
           </div>
@@ -253,23 +248,20 @@ export function AlbumPhotos() {
                 <img src={`https://rashmiphotography.com/backend/${profile.logo_url}`}  alt="Studio Logo" className="branding-logo" />
               )}
               <h4 className="studio-name">{profile.studio_name}</h4>
-              <p className="branding-description">{profile.caption}</p>
-              <div className="contact-links">
-                {profile.phone && (
-                  <a href={`tel:${profile.phone}`} className="contact-link">Call Us</a>
-                )}
-                {profile.whatsapp_link && (
-                  <>
-                    {" | "}
-                    <a href={profile.whatsapp_link} target="_blank" rel="noopener noreferrer" className="contact-link">WhatsApp</a>
-                  </>
-                )}
-                {profile.instagram_link && (
-                  <>
-                    {" | "}
-                    <a href={profile.instagram_link} target="_blank" rel="noopener noreferrer" className="contact-link">Instagram</a>
-                  </>
-                )}
+              <p className="branding-description mb-0">{profile.caption}</p>
+              <div className="social-icons">
+               {profile.facebook_link && (<a href={profile.facebook_link} target="_blank" rel="noopener noreferrer" className="mx-2 fs-3 text-primary">
+                <img src='logo/facebook-icon.png' width='30' alt='icon'/>
+                </a>)}
+                {profile.instagram_link &&<a href={profile.instagram_link} target="_blank" rel="noopener noreferrer" className="mx-2 fs-3 text-white">
+                <img src='logo/instagram-icon.png' width='30' alt='icon' className='bg-white rounded rounded-2' style={{padding:'4px'}}/>
+                </a>}
+              {profile.youtube_link && (<a href={profile.youtube_link} target="_blank" rel="noopener noreferrer" className="mx-2 fs-3 text-danger">
+                <img src='logo/youtube-icon.png' width='30' alt='icon'/>
+                </a>)}
+                {profile.whatsapp_link && (<a href={profile.whatsapp_link} target="_blank" rel="noopener noreferrer" className="mx-2 fs-3 text-danger">
+                <img src='logo/whatsapp-icon.png' width='30' alt='icon'/>
+                </a>)}
               </div>
             </div>
           </div>

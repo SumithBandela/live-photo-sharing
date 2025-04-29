@@ -4,7 +4,7 @@ import axios from 'axios';
 import './profile-setup.css';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
-
+import * as yup from 'yup';
 export function ProfileSetup() {
   const [logoPreview, setLogoPreview] = useState(null);
   const [logoFile, setLogoFile] = useState(null);
@@ -21,7 +21,13 @@ export function ProfileSetup() {
       email: '',
       phone: '',
       address: '',
-    },
+    },validationSchema:yup.object({
+      studioName:yup.string().required('Studio Name is required'),
+      caption:yup.string().required('Caption is required'),
+      email: yup.string().email("Invalid email").required("Email is required"),
+      phone: yup.string().matches(/^\d{10}$/, "Invalid phone number").required("Phone number is required"),
+      address:yup.string().required('Address is required')
+    }),
     onSubmit: async (values) => {
       const form = new FormData();
       form.append('studio_name', values.studioName);
@@ -80,11 +86,17 @@ export function ProfileSetup() {
           <div className="profile-setup-field">
             <label>Studio Name *</label>
             <input type="text" name="studioName" value={formik.values.studioName} onChange={formik.handleChange} />
+            {formik.touched.studioName && formik.errors.studioName && (
+            <div className="profile-error">{formik.errors.studioName}</div>
+          )}
           </div>
 
           <div className="profile-setup-field">
             <label>Caption *</label>
             <input type="text" name="caption" value={formik.values.caption} onChange={formik.handleChange} />
+            {formik.touched.caption && formik.errors.caption && (
+            <div className="profile-error">{formik.errors.caption}</div>
+          )}
           </div>
 
           <div className="profile-setup-field">
@@ -105,16 +117,25 @@ export function ProfileSetup() {
           <div className="profile-setup-field">
             <label>Email *</label>
             <input type="email" name="email" value={formik.values.email} onChange={formik.handleChange} />
+            {formik.touched.email && formik.errors.email && (
+            <div className="profile-error">{formik.errors.email}</div>
+          )}
           </div>
 
           <div className="profile-setup-field">
             <label>Phone *</label>
             <input type="tel" name="phone" value={formik.values.phone} onChange={formik.handleChange} />
+            {formik.touched.phone && formik.errors.phone && (
+            <div className="profile-error">{formik.errors.phone}</div>
+          )}
           </div>
 
           <div className="profile-setup-field">
             <label>Address *</label>
             <textarea name="address" value={formik.values.address} onChange={formik.handleChange}></textarea>
+            {formik.touched.address && formik.errors.address && (
+            <div className="profile-error">{formik.errors.address}</div>
+          )}
           </div>
 
           <button type="submit" className="profile-setup-button">Save Profile</button>

@@ -234,21 +234,6 @@
   font-size: 1rem;
 }
 
-.contact-links {
-  margin-top: 15px;
-}
-
-.contact-link {
-  margin: 0 8px;
-  color: #f0ad4e;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.contact-link:hover {
-  text-decoration: underline;
-}
-
 .top-branding {
   margin-top: 20px;
   margin-bottom: 30px;
@@ -270,4 +255,11 @@
   font-size: 1rem;
   color: #bbb;
   margin-bottom: 20px;
+}
+.social-icons a {
+  transition: transform 0.3s ease;
+}
+
+.social-icons a:hover {
+  transform: scale(1.1);
 }

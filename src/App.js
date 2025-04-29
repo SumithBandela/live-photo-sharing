@@ -27,7 +27,7 @@ function App() {
   const [cookies,,removeCookie] = useCookies(['adminUser']);
   const [expanded, setExpanded] = useState(false);
   const[status, setStatus] = useState(null);
-
+  const[profile,setProfile] = useState({});
   useEffect(()=>{
     axios.get("https://rashmiphotography.com/backend/subscription-status.php", {
       params: { username: cookies.adminUser }
@@ -35,6 +35,16 @@ function App() {
     .then(response=>{
       setStatus(response.data.subscription_status);
     })
+
+    axios.get('https://rashmiphotography.com/backend/profile.php', {
+      params: { username: cookies.adminUser }
+  })
+  .then(response => {
+      setProfile(response.data);
+  })
+  .catch(error => {
+      console.error('Error fetching profile:', error);
+  });
   },[cookies.adminUser])
   
   const handleNavClick = () => {
@@ -58,7 +68,7 @@ function App() {
           <Container>
             {/* Logo Section */}
             <Navbar.Brand as={Link} to="/home" className="nav-link">
-            <span className='logo'>Rashmi Photography</span>
+            <span className='logo'>{profile.studio_name || 'Rashmi photography'}</span>
             </Navbar.Brand>
 
             {/* Navbar Toggle for Mobile */}

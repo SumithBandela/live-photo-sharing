@@ -31,7 +31,6 @@ export function AddAlbum() {
       thumbnail: null,
       download: false,
       isVisible: true,
-      watermark: '',
       username: cookies.adminUser.toLowerCase()
     },
     validationSchema: yup.object({
@@ -48,7 +47,6 @@ export function AddAlbum() {
         formData.append('slug', slug); // 👈 Append slug to formData
         formData.append('download', values.download ? '1' : '0');
         formData.append('isVisible', values.isVisible ? '1' : '0');
-        formData.append('watermark', values.watermark);
         formData.append('username', values.username);
     
         if (values.thumbnail) {
@@ -117,13 +115,6 @@ export function AddAlbum() {
           <div className="error">{formik.errors.description}</div>
         )}
 
-        <input
-          type="text"
-          name="watermark"
-          placeholder="Watermark"
-          value={formik.values.watermark}
-          onChange={formik.handleChange}
-        />
 
         <input
           type="file"

@@ -4,7 +4,7 @@ import './edit-profile.css';
 import { useCookies } from 'react-cookie';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
-
+import * as yup from "yup";
 export function EditProfile() {
     const [cookies] = useCookies(['adminUser']);
     const [profile, setProfile] = useState({});
@@ -38,7 +38,12 @@ export function EditProfile() {
             phone: profile.phone || '',
             email: profile.email || '',
             address: profile.address || ''
-        },
+        },validationSchema:yup.object({
+          caption:yup.string().required('Caption is required'),
+          email: yup.string().email("Invalid email").required("Email is required"),
+          phone: yup.string().matches(/^\d{10}$/, "Invalid phone number").required("Phone number is required"),
+          address:yup.string().required('Address is required')
+         }),
         onSubmit: async (values) => {
             setLoading(true);
             setSuccessMessage('');
@@ -98,8 +103,11 @@ export function EditProfile() {
                     </div>
 
                     <div className="form-group">
-                        <label>Caption</label>
+                        <label>Caption *</label>
                         <input type="text" name="caption" value={formik.values.caption} onChange={formik.handleChange} />
+                        {formik.touched.caption && formik.errors.caption && (
+                        <div className="profile-error">{formik.errors.caption}</div>
+                        )}
                     </div>
 
                     <div className="form-group">
@@ -118,18 +126,27 @@ export function EditProfile() {
                     </div>
 
                     <div className="form-group">
-                        <label>Email</label>
+                        <label>Email *</label>
                         <input type="email" name="email" value={formik.values.email} onChange={formik.handleChange} />
+                        {formik.touched.email && formik.errors.email && (
+                       <div className="profile-error">{formik.errors.email}</div>
+                       )}
                     </div>
 
                     <div className="form-group">
-                        <label>Phone</label>
+                        <label>Phone *</label>
                         <input type="tel" name="phone" value={formik.values.phone} onChange={formik.handleChange} />
+                        {formik.touched.phone && formik.errors.phone && (
+                        <div className="profile-error">{formik.errors.phone}</div>
+                        )}
                     </div>
 
                     <div className="form-group">
-                        <label>Address</label>
+                        <label>Address *</label>
                         <textarea name="address" value={formik.values.address} onChange={formik.handleChange}></textarea>
+                        {formik.touched.address && formik.errors.address && (
+                        <div className="profile-error">{formik.errors.address}</div>
+                        )}
                     </div>
 
                     <div className="form-group">

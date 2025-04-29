@@ -20,7 +20,7 @@ if ($conn->connect_error) {
 
 // Handle GET request
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
-    $query = "SELECT id, title, description, slug, thumbnail, download, is_visible, watermark FROM Albums";
+    $query = "SELECT id, title, description, slug, thumbnail, download, is_visible FROM Albums";
     $params = [];
     $types = '';
     $isById = false;
@@ -78,7 +78,6 @@ $username = $_POST['username'] ?? null;
 $slug = $_POST['slug'] ?? '';
 $download = isset($_POST['download']) ? (bool)$_POST['download'] : false;
 $isVisible = isset($_POST['isVisible']) ? (bool)$_POST['isVisible'] : false;
-$watermark = $_POST['watermark'] ?? '';
 
 // Sanitize slug
 $slug = preg_replace("/[^a-z0-9-]/", "", strtolower(trim($slug)));
@@ -155,8 +154,8 @@ if ($fileType === "webp") {
 }
 
 // Insert into DB with slug
-$stmt = $conn->prepare("INSERT INTO Albums (title, description, slug, thumbnail, download, is_visible, watermark, username) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-$stmt->bind_param("ssssisss", $title, $description, $slug, $relativePath, $download, $isVisible, $watermark, $username);
+$stmt = $conn->prepare("INSERT INTO Albums (title, description, slug, thumbnail, download, is_visible, username) VALUES (?, ?, ?, ?, ?, ?, ?)");
+$stmt->bind_param("ssssiss", $title, $description, $slug, $relativePath, $download, $isVisible, $username);
 
 if ($stmt->execute()) {
     echo json_encode([
