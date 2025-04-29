@@ -88,9 +88,9 @@ function App() {
                         <Nav.Item>
                           <Nav.Link as={Link} to="/admin" onClick={handleNavClick} className="nav-link">Admin Panel</Nav.Link>
                         </Nav.Item>
-                       {/* <Nav.Item>
+                        <Nav.Item>
                           <Nav.Link as={Link} to="/profile" onClick={handleNavClick} className="nav-link">Profile</Nav.Link>
-                        </Nav.Item>*/}
+                        </Nav.Item>
                       </>
                      )}
                       <Nav.Item>
