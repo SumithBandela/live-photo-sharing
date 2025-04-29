@@ -20,23 +20,57 @@ if ($conn->connect_error) {
     die(json_encode(['error' => 'Database connection failed: ' . $conn->connect_error]));
 }
 
-// Handle POST request (Update profile)
+// Handle POST request (Update profile with image)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $data = json_decode(file_get_contents('php://input'), true);
+    $username = isset($_GET['username']) ? $conn->real_escape_string($_GET['username']) : '';
 
-    if (!empty($data['username'])) {
-        $username = $conn->real_escape_string($data['username']);
-        $logo_url = isset($data['logo_url']) ? $conn->real_escape_string($data['logo_url']) : '';
-        $caption = isset($data['caption']) ? $conn->real_escape_string($data['caption']) : '';
-        $phone = isset($data['phone']) ? $conn->real_escape_string($data['phone']) : '';
-        $whatsapp_link = isset($data['whatsapp_link']) ? $conn->real_escape_string($data['whatsapp_link']) : '';
-        $facebook_link = isset($data['facebook_link']) ? $conn->real_escape_string($data['facebook_link']) : '';
-        $instagram_link = isset($data['instagram_link']) ? $conn->real_escape_string($data['instagram_link']) : '';
-        $email = isset($data['email']) ? $conn->real_escape_string($data['email']) : '';
-        $address = isset($data['address']) ? $conn->real_escape_string($data['address']) : '';
+    if (!empty($username)) {
+        $caption = isset($_POST['caption']) ? $conn->real_escape_string($_POST['caption']) : '';
+        $phone = isset($_POST['phone']) ? $conn->real_escape_string($_POST['phone']) : '';
+        $whatsapp_link = isset($_POST['whatsapp_link']) ? $conn->real_escape_string($_POST['whatsapp_link']) : '';
+        $facebook_link = isset($_POST['facebook_link']) ? $conn->real_escape_string($_POST['facebook_link']) : '';
+        $instagram_link = isset($_POST['instagram_link']) ? $conn->real_escape_string($_POST['instagram_link']) : '';
+        $email = isset($_POST['email']) ? $conn->real_escape_string($_POST['email']) : '';
+        $address = isset($_POST['address']) ? $conn->real_escape_string($_POST['address']) : '';
+
+        // Handle logo upload and conversion to .webp
+        $logo_url = '';
+        if (isset($_FILES['logo']['tmp_name']) && is_uploaded_file($_FILES['logo']['tmp_name'])) {
+            $imagePath = $_FILES['logo']['tmp_name'];
+            $imageInfo = getimagesize($imagePath);
+
+            if ($imageInfo) {
+                $mime = $imageInfo['mime'];
+                switch ($mime) {
+                    case 'image/jpeg':
+                        $image = imagecreatefromjpeg($imagePath);
+                        break;
+                    case 'image/png':
+                        $image = imagecreatefrompng($imagePath);
+                        break;
+                    default:
+                        echo json_encode(['error' => 'Unsupported image format. Only JPEG and PNG are allowed.']);
+                        exit;
+                }
+
+                $userDir = "images/$username";
+                if (!file_exists($userDir)) {
+                    mkdir($userDir, 0777, true);
+                }
+
+                $logo_url = "$userDir/logo.webp";
+                imagewebp($image, $logo_url, 80); // Save as .webp with quality 80
+                imagedestroy($image);
+            } else {
+                echo json_encode(['error' => 'Invalid image file']);
+                exit;
+            }
+        }
+
+        $logo_url_escaped = $conn->real_escape_string($logo_url);
 
         $sql = "UPDATE profile SET 
-            logo_url = '$logo_url',
+            logo_url = '$logo_url_escaped',
             caption = '$caption',
             phone = '$phone',
             whatsapp_link = '$whatsapp_link',
@@ -52,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo json_encode(['error' => 'Failed to update profile: ' . $conn->error]);
         }
     } else {
-        echo json_encode(['error' => 'Username is required']);
+        echo json_encode(['error' => 'Username is required in URL']);
     }
 }
 

@@ -3,6 +3,7 @@ import axios from 'axios';
 import './edit-profile.css';
 import { useCookies } from 'react-cookie';
 import { useFormik } from 'formik';
+import { useNavigate } from 'react-router-dom';
 
 export function EditProfile() {
     const [cookies] = useCookies(['adminUser']);
@@ -11,6 +12,7 @@ export function EditProfile() {
     const [loading, setLoading] = useState(false);
     const [successMessage, setSuccessMessage] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
+    const navigate  = useNavigate();
 
     useEffect(() => {
         if (cookies.adminUser) {
@@ -44,7 +46,6 @@ export function EditProfile() {
             
             try {
                 const formData = new FormData();
-                formData.append('username', cookies.adminUser.toLowerCase());
                 formData.append('caption', values.caption);
                 formData.append('whatsapp_link', values.whatsapp_link);
                 formData.append('instagram_link', values.instagram_link);
@@ -56,12 +57,13 @@ export function EditProfile() {
                     formData.append('logo', logoFile);
                 }
 
-                const response = await axios.post('https://rashmiphotography.com/backend/profile.php', formData, {
+                const response = await axios.post(`https://rashmiphotography.com/backend/profile.php?username=${cookies.adminUser.toLowerCase()}`, formData, {
                     headers: { 'Content-Type': 'multipart/form-data' }
                 });
 
                 if (response.data.success) {
-                    setSuccessMessage('Profile updated successfully!');
+                    alert('Profile updated successfully!');
+                    navigate('/profile');
                 } else {
                     setErrorMessage(response.data.error || 'Failed to update profile.');
                 }
