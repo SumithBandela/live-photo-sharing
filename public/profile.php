@@ -3,7 +3,6 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 
-// Show errors (for debugging)
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -15,12 +14,11 @@ $database = "u698690732_photoshare";
 
 $conn = new mysqli($hostname, $db_username, $db_password, $database);
 
-// Check connection
 if ($conn->connect_error) {
     die(json_encode(['error' => 'Database connection failed: ' . $conn->connect_error]));
 }
 
-// Handle POST request (Update profile with image)
+// Handle POST request (Update profile)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = isset($_GET['username']) ? $conn->real_escape_string($_GET['username']) : '';
 
@@ -33,7 +31,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $email = isset($_POST['email']) ? $conn->real_escape_string($_POST['email']) : '';
         $address = isset($_POST['address']) ? $conn->real_escape_string($_POST['address']) : '';
 
-        // Handle logo upload and conversion to .webp
         $logo_url = '';
         if (isset($_FILES['logo']['tmp_name']) && is_uploaded_file($_FILES['logo']['tmp_name'])) {
             $imagePath = $_FILES['logo']['tmp_name'];
@@ -59,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
 
                 $logo_url = "$userDir/logo.webp";
-                imagewebp($image, $logo_url, 80); // Save as .webp with quality 80
+                imagewebp($image, $logo_url, 80);
                 imagedestroy($image);
             } else {
                 echo json_encode(['error' => 'Invalid image file']);
@@ -67,18 +64,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
 
-        $logo_url_escaped = $conn->real_escape_string($logo_url);
+        $updateFields = [
+            "caption = '$caption'",
+            "phone = '$phone'",
+            "whatsapp_link = '$whatsapp_link'",
+            "facebook_link = '$facebook_link'",
+            "instagram_link = '$instagram_link'",
+            "email = '$email'",
+            "address = '$address'"
+        ];
 
-        $sql = "UPDATE profile SET 
-            logo_url = '$logo_url_escaped',
-            caption = '$caption',
-            phone = '$phone',
-            whatsapp_link = '$whatsapp_link',
-            facebook_link = '$facebook_link',
-            instagram_link = '$instagram_link',
-            email = '$email',
-            address = '$address'
-            WHERE username = '$username'";
+        if (!empty($logo_url)) {
+            $logo_url_escaped = $conn->real_escape_string($logo_url);
+            $updateFields[] = "logo_url = '$logo_url_escaped'";
+        }
+
+        $sql = "UPDATE profile SET " . implode(', ', $updateFields) . " WHERE username = '$username'";
 
         if ($conn->query($sql) === TRUE) {
             echo json_encode(['success' => 'Profile updated successfully']);
@@ -90,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Handle GET request (Fetch profile details)
+// Handle GET request (Fetch profile)
 elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if (!empty($_GET['username'])) {
         $username = $conn->real_escape_string($_GET['username']);
@@ -107,7 +108,7 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
     }
 }
 
-// Other methods
+// Invalid request method
 else {
     echo json_encode(['error' => 'Invalid request method']);
 }

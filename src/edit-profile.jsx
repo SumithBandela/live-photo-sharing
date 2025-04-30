@@ -12,6 +12,7 @@ export function EditProfile() {
     const [loading, setLoading] = useState(false);
     const [successMessage, setSuccessMessage] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
+    const [logoPreview, setLogoPreview] = useState(null);
     const navigate  = useNavigate();
 
     useEffect(() => {
@@ -21,12 +22,17 @@ export function EditProfile() {
             })
             .then(response => {
                 setProfile(response.data);
+                if (response.data.logo_url) {
+                    setLogoPreview(`https://rashmiphotography.com/backend/${response.data.logo_url}`);
+                    console.log( "logo_url "+response.data.logo_url)
+                }
             })
             .catch(error => {
                 console.error('Error fetching profile:', error);
             });
         }
     }, [cookies.adminUser]);
+    
 
     const formik = useFormik({
         enableReinitialize: true,
@@ -60,7 +66,7 @@ export function EditProfile() {
                 formData.append('address', values.address);
                 if (logoFile) {
                     formData.append('logo', logoFile);
-                }
+                }                
 
                 const response = await axios.post(`https://rashmiphotography.com/backend/profile.php?username=${cookies.adminUser.toLowerCase()}`, formData, {
                     headers: { 'Content-Type': 'multipart/form-data' }
@@ -85,8 +91,10 @@ export function EditProfile() {
         const file = event.target.files[0];
         if (file) {
             setLogoFile(file);
+            setLogoPreview(URL.createObjectURL(file));
         }
     };
+    
 
     return (
         <div className="edit-profile-page">
@@ -97,10 +105,16 @@ export function EditProfile() {
                 {errorMessage && <div className="error-message">{errorMessage}</div>}
 
                 <form onSubmit={formik.handleSubmit}>
-                    <div className="form-group">
-                        <label>Studio Logo</label>
-                        <input type="file" accept="image/*" onChange={handleFileChange} />
-                    </div>
+                <div className="form-group">
+                    <label>Studio Logo</label>
+                    <input type="file" accept="image/*" onChange={handleFileChange} />
+                    {logoPreview && (
+                        <div className="logo-preview">
+                            <img src={logoPreview} alt="Logo Preview" style={{ maxWidth: '200px', marginTop: '10px' }} />
+                        </div>
+                    )}
+                </div>
+
 
                     <div className="form-group">
                         <label>Caption *</label>
