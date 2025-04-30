@@ -33,7 +33,7 @@ export function AdminLogin() {
             params: { username: response.data.username }
           });
           if (subResponse.data.subscription_status === "active") {
-            navigate("/admin");
+            navigate("/profile");
           } else {
             navigate("/contact-admin");
           }
