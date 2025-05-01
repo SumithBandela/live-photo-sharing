@@ -52,7 +52,7 @@ export function AlbumPhotos() {
         }));
 
         setPhotos(fetchedPhotos);
-        setProfile(response.data.profile)
+        setProfile(response.data.profile || {});
     
       } else {
         console.error(response.data.message);
