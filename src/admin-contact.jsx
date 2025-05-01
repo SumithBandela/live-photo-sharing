@@ -6,7 +6,7 @@ export function ContactAdmin() {
    let navigate = useNavigate();
    function handleLogout()
    {
-    removeCookie('adminUser');
+    removeCookie('adminUser', { path: '/' });
     navigate('/home');
    }
     return (
