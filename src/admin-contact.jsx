@@ -2,7 +2,7 @@ import { useCookies } from 'react-cookie';
 import './admin-contact.css'
 import { useNavigate } from 'react-router-dom';
 export function ContactAdmin() {
-   const[,removeCookie] = useCookies(['adminUser']);
+   const[,,removeCookie] = useCookies(['adminUser']);
    let navigate = useNavigate();
    function handleLogout()
    {
