@@ -200,7 +200,7 @@
 
 
 .branding-footer {
-  margin-top: 50px;
+  margin-top: 30px;
   text-align: center;
   color: #ccc;
 }
@@ -210,7 +210,6 @@
   width: 60%;
   border: 0;
   height: 1px;
-  background: #555;
 }
 
 .branding-content {
