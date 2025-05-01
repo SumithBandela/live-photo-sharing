@@ -245,7 +245,7 @@ export function AlbumPhotos() {
             <hr className="footer-divider" />
             <div className="branding-content">
               {profile.logo_url && (
-                <img src={`https://rashmiphotography.com/backend/${profile.logo_url}`}  alt="Studio Logo" className="branding-logo rounded rounded-5" />
+                <img src={`https://rashmiphotography.com/backend/${profile.logo_url}`}  alt="Studio Logo" className="branding-logo" />
               )}
               <h4 className="studio-name">{profile.studio_name}</h4>
               <p className="branding-description mb-0">{profile.caption}</p>
