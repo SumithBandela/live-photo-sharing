@@ -35,7 +35,7 @@ export function Profile() {
               src={`https://rashmiphotography.com/backend/${profile.logo_url}?ts=${Date.now()}`}
               alt="Studio Logo"
               className="profile-logo"
-/            />
+            />
           )}
           <h1 className="studio-name">{profile.studio_name}</h1>
           <h2 className="profile-caption">{profile.caption}</h2>
