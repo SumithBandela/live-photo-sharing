@@ -14,20 +14,6 @@
     overflow: hidden;
 }
 
-/* Add a creative element with a decorative wave shape at the bottom */
-.contact-admin-container::before {
-    content: '';
-    position: absolute;
-    bottom: -30px;
-    left: 0;
-    width: 100%;
-    height: 50px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 50% 50% 0 0;
-    transform: rotate(180deg);
-    z-index: 1;
-}
-
 /* Styling for the header */
 .contact-admin-header {
     font-size: 28px;
