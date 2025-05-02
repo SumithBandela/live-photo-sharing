@@ -57,7 +57,7 @@ function App() {
 
   return (
     <BrowserRouter>
-{(cookies.adminUser && cookies.adminUser!=="undefined" && status==='active') && (
+{(cookies.adminUser && cookies.adminUser!=="undefined" && status!=='active') && (
       <>
         <Navbar 
           collapseOnSelect 
