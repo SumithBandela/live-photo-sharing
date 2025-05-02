@@ -61,7 +61,7 @@ export function Signup() {
         if (response.data.success) {
           setMessage("User registered successfully.");
           resetForm();
-          setTimeout(() => navigate("/login"), 2000);
+          setTimeout(() => navigate("/login"), 1000);
         } else {
           setMessage(response.data.message || "Failed to register.");
         }
