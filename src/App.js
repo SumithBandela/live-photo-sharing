@@ -57,7 +57,7 @@ function App() {
 
   return (
     <BrowserRouter>
-{(cookies.adminUser && cookies.adminUser!=="undefined" && status==='active') && (
+{(cookies.adminUser && cookies.adminUser!=="undefined" && status!=='active') && (
       <>
         <Navbar 
           collapseOnSelect 
@@ -110,7 +110,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/album/:slug" element={<AlbumPhotos />} />
-        {(cookies.adminUser && cookies.adminUser!=="undefined" && status==='active') && (
+        {(cookies.adminUser && cookies.adminUser!=="undefined" && status!=='active') && (
           <>
         <Route path="/admin" element={<Admin />} />
         <Route path="/gallery" element={<Gallery />} />
