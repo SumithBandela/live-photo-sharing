@@ -110,7 +110,7 @@ export function EditProfile() {
                     <input type="file" accept="image/*" onChange={handleFileChange} />
                     {logoPreview && (
                         <div className="logo-preview">
-                            <img src={logoPreview} alt="Logo Preview" style={{ maxWidth: '200px', marginTop: '10px' }} />
+                            <img src={`${logoPreview}?ts=${Date.now()}`} alt="Logo Preview" style={{ maxWidth: '200px', marginTop: '10px' }} />
                         </div>
                     )}
                 </div>

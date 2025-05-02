@@ -40,7 +40,7 @@ export function Albums() {
           albums.map((album) => (
             <div className="album-card" key={album.id}>
               <img
-                src={`https://rashmiphotography.com/backend/${album.thumbnail}`} // Assuming your thumbnail paths are relative to the site root
+                src={`https://rashmiphotography.com/backend/${album.thumbnail}?ts=${Date.now()}`} // Assuming your thumbnail paths are relative to the site root
                 alt={album.title}
                 className={`album-thumbnail ${album.is_visible ? '' : 'hidden-album'}`}
               />
