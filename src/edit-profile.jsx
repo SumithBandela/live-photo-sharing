@@ -23,8 +23,7 @@ export function EditProfile() {
             .then(response => {
                 setProfile(response.data);
                 if (response.data.logo_url) {
-                    setLogoPreview(`https://rashmiphotography.com/backend/${response.data.logo_url}`);
-                    console.log( "logo_url "+response.data.logo_url)
+                    setLogoPreview(`https://rashmiphotography.com/backend/${response.data.logo_url}?ts=${Date.now()}`);
                 }
             })
             .catch(error => {
@@ -110,7 +109,7 @@ export function EditProfile() {
                     <input type="file" accept="image/*" onChange={handleFileChange} />
                     {logoPreview && (
                         <div className="logo-preview">
-                            <img src={`${logoPreview}?ts=${Date.now()}`} alt="Logo Preview" style={{ maxWidth: '200px', marginTop: '10px' }} />
+                            <img src={`${logoPreview}`} alt="Logo Preview" style={{ maxWidth: '200px', marginTop: '10px' }} />
                         </div>
                     )}
                 </div>
