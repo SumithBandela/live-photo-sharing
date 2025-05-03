@@ -297,7 +297,7 @@ export function AlbumPhotos() {
             <Box
       sx={{
         position: "fixed",
-        right: 20,
+        right: 10,
         bottom: 20,
         zIndex: 1000,
         display: "flex",
