@@ -192,7 +192,7 @@ export function AlbumPhotos() {
   
 
   return (
-    <div className="album-photos">
+    <div className="album-photos" onContextMenu={handleContextMenu}>
       {albumDetails.is_visible===1 ? (
         <>
         {/* Top Branding */}
@@ -219,7 +219,6 @@ export function AlbumPhotos() {
                 alt={photo.alt}
                 className={`lazy-img ${loaded ? "loaded" : ""} ${visible ? "visible" : ""}`}
                 onLoad={() => setLoaded(true)}
-                onContextMenu={handleContextMenu}
                 loading="lazy"
                 style={{ height: "100%", objectFit: "cover" }}
               />
