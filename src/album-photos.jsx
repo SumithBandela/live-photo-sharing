@@ -7,13 +7,21 @@ import { CloseButton } from "react-bootstrap";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import './album-photos.css';
-
 import Pagination from '@mui/material/Pagination';
-
+import { Box } from '@mui/material';
+import Fab from '@mui/material/Fab';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 export function AlbumPhotos() {
   const { slug } = useParams();
   const [photos, setPhotos] = useState([]);
   const [profile ,setProfile]  = useState({});
+  const [showButton, setShowButton] = useState(false);
+  const [hideIcons, setHideIcons] = useState(false);
+  const [showMessage, setShowMessage] = useState(false);
   const [albumDetails, setAlbumDetails] = useState({
     title: '',
     description: '',
@@ -68,7 +76,30 @@ export function AlbumPhotos() {
       const timeout = setTimeout(() => setVisible(true), 500);
       return () => clearTimeout(timeout);
     }
+    const timer = setTimeout(() => {
+      setShowMessage(true);
+    }, 1000); // 1 second = 1000 milliseconds
+
+    return () => clearTimeout(timer); // cleanup
   }, [loaded]);
+  
+   useEffect(() => {
+      const handleScroll = () => {
+        // Show scroll-to-top button after scrolling down 300px
+        setShowButton(window.scrollY > 300);
+  
+        // Hide only social icons (WhatsApp, Instagram, YouTube) at the bottom
+        const isNearBottom =
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 150; // Adjust this value to control when icons hide
+        setHideIcons(isNearBottom);
+  
+      };
+  
+      window.addEventListener("scroll", handleScroll);
+      return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+  
 
   const handleShow = (index) => {
     setCurrentIndex(index);
@@ -264,15 +295,111 @@ export function AlbumPhotos() {
                 </a>)}
               </div>
             </div>
+            <Box
+      sx={{
+        position: "fixed",
+        right: 20,
+        bottom: 20,
+        zIndex: 1000,
+        display: "flex",
+        flexDirection: "column",
+        gap: 2,
+      }}
+    >
+      {showButton && (
+        <Fab
+          aria-label="scroll to top"
+          sx={{
+            borderRadius: 2,
+            width: 40,
+            height: 40,
+            backgroundColor: "#1976d2",
+            color: "#fff",
+            "&:hover": { backgroundColor: "#1565c0" },
+          }}
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        >
+          <KeyboardArrowUpIcon sx={{width:30 ,height:30}}/>
+        </Fab>
+      )}
+
+      {!hideIcons && (
+        <>
+        {profile.whatsapp_link && (
+          <a
+          href={profile.whatsapp_link}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Fab
+            color="success"
+            aria-label="whatsapp"
+            sx={{ borderRadius: 2 ,width:40, height:40}}
+          >
+            <WhatsAppIcon fontSize="small"  sx={{width:30 ,height:30}}/>
+          </Fab>
+        </a>
+        )}
+        {profile.instagram_link && (
+             <a
+             href={profile.instagram_link}
+             target="_blank"
+             rel="noopener noreferrer"
+           >
+             <Fab
+               color="secondary"
+               aria-label="instagram"
+               sx={{ borderRadius: 2, width: 40, height: 40 }}
+             >
+               <InstagramIcon fontSize="small" sx={{width:30 ,height:30}}  />
+             </Fab>
+           </a>
+        )}
+         <a
+           href={profile.facebook_link}
+           target="_blank"
+           rel="noopener noreferrer"
+         >
+          {profile.facebook_link && (
+            <Fab
+            color="primary"
+            aria-label="facebook"
+            sx={{ borderRadius: 2, width: 40, height: 40 }}
+            >
+            <FacebookIcon fontSize="small" sx={{width:30 ,height:30}} />
+            </Fab>
+          )}
+          
+         </a>
+         {profile.youtube_link && (
+           <a
+           href={profile.youtube_link}
+           target="_blank"
+           rel="noopener noreferrer"
+         >
+           <Fab
+             color="error"
+             aria-label="youtube"
+             sx={{ borderRadius: 2, width: 40, height: 40 }}
+           >
+             <YouTubeIcon fontSize="small" sx={{width:30 ,height:30}} />
+           </Fab>
+         </a>
+         )}
+        </>
+      )}
+    </Box>
           </div>
 
 
         </>
-      ) : (
+      ) : <>
+      {showMessage && (
         <div className="text-center p-5">
           <h2 className="text-white">🚫 This album is not visible to the public.</h2>
-          </div>
+        </div>
       )}
+    </>}
     </div>
   );
 }
