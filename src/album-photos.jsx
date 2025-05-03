@@ -85,8 +85,8 @@ export function AlbumPhotos() {
   
    useEffect(() => {
       const handleScroll = () => {
-        // Show scroll-to-top button after scrolling down 300px
-        setShowButton(window.scrollY > 300);
+        // Show scroll-to-top button after scrolling down 200px
+        setShowButton(window.scrollY > 200);
   
         // Hide only social icons (WhatsApp, Instagram, YouTube) at the bottom
         const isNearBottom =
