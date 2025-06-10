@@ -6,9 +6,13 @@ import reportWebVitals from './reportWebVitals';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import '../node_modules/bootstrap-icons/font/bootstrap-icons.css';
 import { CookiesProvider } from 'react-cookie';
-const root = ReactDOM.createRoot(document.getElementById('root'));
+
+
+const rootElement = document.getElementById('root');
+const root = ReactDOM.createRoot(rootElement);
+
 root.render(
-    <CookiesProvider>
+   <CookiesProvider>
       <App/>
     </CookiesProvider>
 );
