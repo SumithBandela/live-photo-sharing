@@ -23,6 +23,9 @@ import axios from 'axios';
 import { Profile } from './profile';
 import { EditProfile } from './edit-profile';
 import { ProfileSetup } from './profile-setup';
+import SendEmail from './send-email';
+import VerifyOtp from './verify-otp';
+
 function App() {
   const [cookies,,removeCookie] = useCookies(['adminUser']);
   const [expanded, setExpanded] = useState(false);
@@ -107,6 +110,8 @@ function App() {
         <Route path="*" element={<NotFound/>}/>
         <Route path="home" element={<Home />} />
         <Route path="/login" element={<AdminLogin />} />
+        <Route path="/send-email" element={<SendEmail />} />
+        <Route path="/verify-otp" element={<VerifyOtp />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/album/:slug" element={<AlbumPhotos />} />

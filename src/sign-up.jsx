@@ -1,35 +1,20 @@
 import { useFormik } from 'formik';
 import './auth.css';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import * as yup from "yup";
 import { Link, useNavigate } from 'react-router-dom';
+
 export function Signup() {
   const navigate = useNavigate();
   const [message, setMessage] = useState('');
-  const [existingUsers, setExistingUsers] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get("https://rashmiphotography.com/backend/password_recover.php")
-      .then((res) => {
-        if (res.data.success && res.data.data) {
-          setExistingUsers(res.data.data.map(user => user.username.toLowerCase()));
-        }
-      })
-      .catch((err) => console.error("Error fetching users:", err));
-  }, []);
 
   const validationSchema = yup.object({
     name: yup.string().required("Name is required"),
-    username: yup
-    .string()
-    .required("Username is required")
-    .matches(/^[^.]*$/, "Username cannot contain a dot (.)")
-    .test("unique-username", "Username already taken", function (value) {
-      return !existingUsers.includes(value?.toLowerCase());
-    }),
-  
+    email: yup
+      .string()
+      .required("Email is required")
+      .email("Enter a valid email"),
     password: yup
       .string()
       .required("Password is required")
@@ -44,21 +29,30 @@ export function Signup() {
   const formik = useFormik({
     initialValues: {
       name: "",
-      username: "",
+      email: "",
       password: "",
       confirmPassword: "",
     },
     validationSchema,
     onSubmit: async (formData, { resetForm, setSubmitting }) => {
-      formData.username = formData.username.toLowerCase();
+      const payload = {
+        name: formData.name,
+        email: formData.email.toLowerCase(),
+        password: formData.password,
+      };
+
       try {
         const response = await axios.post(
-          "https://rashmiphotography.com/backend/signup.php",
-          formData,
-          { headers: { "Content-Type": "application/json" } }
+          "http://localhost:8080/api/signup", // 👈 update with your actual backend API
+          payload,
+          {
+            headers: {
+              "Content-Type": "application/json"
+            }
+          }
         );
 
-        if (response.data.success) {
+        if (response.data && response.data.status === 201) {
           setMessage("User registered successfully.");
           resetForm();
           setTimeout(() => navigate("/login"), 1000);
@@ -66,7 +60,7 @@ export function Signup() {
           setMessage(response.data.message || "Failed to register.");
         }
       } catch (error) {
-        console.error("Error submitting form:", error);
+        console.error("Signup error:", error);
         setMessage("Something went wrong. Please try again.");
       } finally {
         setSubmitting(false);
@@ -96,16 +90,16 @@ export function Signup() {
 
         <div className="input-group">
           <input
-            type="text"
-            placeholder="Username"
-            className={`auth-input ${formik.touched.username && formik.errors.username ? "input-error" : ""}`}
-            name="username"
+            type="email"
+            placeholder="Email"
+            className={`auth-input ${formik.touched.email && formik.errors.email ? "input-error" : ""}`}
+            name="email"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            value={formik.values.username}
+            value={formik.values.email}
           />
-          {formik.touched.username && formik.errors.username && (
-            <div className="auth-error">{formik.errors.username}</div>
+          {formik.touched.email && formik.errors.email && (
+            <div className="auth-error">{formik.errors.email}</div>
           )}
         </div>
 
@@ -144,10 +138,11 @@ export function Signup() {
         </button>
 
         {message && <p className="auth-success">{message}</p>}
+
         <div className="text-center">
-        <span className="d-block m-2">
-          Have an account? <Link to="/login" className='text-white'>Log in</Link>
-        </span>
+          <span className="d-block m-2">
+            Have an account? <Link to="/login" className='text-white'>Log in</Link>
+          </span>
         </div>
       </form>
     </div>

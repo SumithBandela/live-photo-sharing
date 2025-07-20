@@ -1,0 +1,24 @@
+CRITICAL - 2025-07-20 18:52:04 --> InvalidArgumentException: key must be a string when using hmac
+[Method: POST, Route: auth/login]
+in VENDORPATH\firebase\php-jwt\src\JWT.php on line 249.
+ 1 VENDORPATH\firebase\php-jwt\src\JWT.php(219): Firebase\JWT\JWT::sign('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NTMwMzc1MjQsImV4cCI6MTc1MzA0MTEyNCwidWlkIjoiMiIsImVtYWlsIjoiZXNod2FyYmFuZGVsYUBnbWFpbC5jb20ifQ', false, 'HS256')
+ 2 APPPATH\Controllers\Auth.php(85): Firebase\JWT\JWT::encode([...], false, 'HS256')
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->login()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-07-20 18:52:16 --> InvalidArgumentException: key must be a string when using hmac
+[Method: POST, Route: auth/login]
+in VENDORPATH\firebase\php-jwt\src\JWT.php on line 249.
+ 1 VENDORPATH\firebase\php-jwt\src\JWT.php(219): Firebase\JWT\JWT::sign('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NTMwMzc1MzYsImV4cCI6MTc1MzA0MTEzNiwidWlkIjoiMiIsImVtYWlsIjoiZXNod2FyYmFuZGVsYUBnbWFpbC5jb20ifQ', false, 'HS256')
+ 2 APPPATH\Controllers\Auth.php(85): Firebase\JWT\JWT::encode([...], false, 'HS256')
+ 3 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->login()
+ 4 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')

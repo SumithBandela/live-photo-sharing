@@ -90,7 +90,7 @@ export function AdminLogin() {
         <button type="submit" className="login-button">Login</button>
 
         <div className="text-center m-2">
-          <Link className="d-block mb-2 text-white" to='/forgot-password'>Forgotten your password?</Link>
+          <Link className="d-block mb-2 text-white" to='/send-email'>Forgotten your password?</Link>
           <span>Don't have an account? <Link className="text-white" to='/signup'>Sign up</Link></span>
         </div>
       </form>

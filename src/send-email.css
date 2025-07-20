@@ -1,0 +1,52 @@
+.send-email-container {
+  min-height: 90vh;
+  background: linear-gradient(to right, #2575fc, #6a11cb); /* same as login */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.send-email-form {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  color: white;
+}
+
+.send-email-title {
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.send-email-input {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.send-email-button {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  background-color: #ffffff;
+  color: #333;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.send-email-button:hover {
+  background-color: #eee;
+}
