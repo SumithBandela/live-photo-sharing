@@ -2,28 +2,30 @@ import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import './photos.css';
 import axios from 'axios';
-import { useCookies } from 'react-cookie';
+import { getUserInfo } from './utils/auth';
 
 export function Photos() {
   const { title } = useParams(); // album title
   const navigate = useNavigate();
   const [photos, setPhotos] = useState([]);
-  const [cookies] = useCookies(['adminUser']);
   const location = useLocation();
   const slug = location?.state?.slug;
 
-  const username = cookies.adminUser.toLowerCase(); 
+  const userInfo = getUserInfo();
+  const email = userInfo?.email.toLowerCase();
 
   useEffect(() => {
+    if (!email) return;
+
     axios
-      .get(`https://rashmiphotography.com/backend/get-photos.php`, {
-        params: { username, album: title }
+      .get(`https://rashmiphotography.com/api/photos`, {
+        params: { email, title }
       })
       .then((response) => {
         if (response.data.status === 'success') {
-          const fetchedPhotos = response.data.images.map((photo) => ({
-            url: photo.img_src,
-            visible: photo.is_visible === 1 // Set visibility based on DB value (1 for visible, 0 for hidden)
+          const fetchedPhotos = response.data.photos.map((photo) => ({
+            url: photo.url,
+            visible: photo.visible === 1
           }));
           setPhotos(fetchedPhotos);
         } else {
@@ -33,7 +35,7 @@ export function Photos() {
       .catch((error) => {
         console.error('Error fetching photos:', error);
       });
-  }, [title, username]);
+  }, [title, email]);
 
   const handleAddPhotos = () => {
     navigate(`/addphotos/${title}`);
@@ -44,14 +46,15 @@ export function Photos() {
     updated[index].visible = value === 'Visible';
     setPhotos(updated);
 
-    // Send request to backend to update the visibility in the database
     const url = updated[index].url;
     const visible = updated[index].visible ? 1 : 0;
 
     axios
-      .post('https://rashmiphotography.com/backend/update-photo-visibility.php', {
-        url: url,
-        visible: visible
+      .post('https://rashmiphotography.com/backend/photos/visibility', {
+        url,
+        visible,
+        email,
+        title
       })
       .then((response) => {
         if (response.data.status === 'success') {
@@ -78,7 +81,7 @@ export function Photos() {
           {photos.map((photo, index) => (
             <div key={index} className="photo-card">
               <img
-                src={`https://rashmiphotography.com/backend/${photo.url}`}
+                src={`https://rashmiphotography.com/public/${email}/${title}/${photo.url}`}
                 alt="img"
                 className={`photo-img ${photo.visible ? '' : 'hidden-photo'}`}
               />
@@ -100,7 +103,7 @@ export function Photos() {
           https://sumithbandela.github.io/live-photo-sharing/#/album/{slug}
         </span>
         <p className="album-description">
-        👆 This is the URL for the <strong>{title} Album</strong>.  
+          👆 This is the URL for the <strong>{title} Album</strong>.  
           Copy this link and paste it on <a href='https://www.rashmiphotography.com/#/qr' className='text-white' target="_blank" rel="noopener noreferrer">www.rashmiphotography.com</a> to generate a QR code.
         </p>
         <p className="album-note">

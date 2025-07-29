@@ -3,14 +3,14 @@ import './addphotos.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useFormik } from 'formik';
 import axios from 'axios';
-import { useCookies } from 'react-cookie';
+import { getUserInfo } from './utils/auth';
 
 export function AddPhotos() {
   const [selectedPreview, setSelectedPreview] = useState([]);
-  let navigate = useNavigate();
   const [message, setMessage] = useState('');
-  const {title} = useParams();
-  const [cookies] = useCookies(['adminUser'])
+  const { title } = useParams();
+  const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues: {
       images: []
@@ -21,20 +21,34 @@ export function AddPhotos() {
         return;
       }
 
-      const formData = new FormData();
-      formData.append("username", cookies.adminUser.toLowerCase());
-      formData.append("title", title);
+      const user = getUserInfo();
+      if (!user) {
+        setMessage("User not authenticated.");
+        return;
+      }
 
+      const token = localStorage.getItem('token');
+      const formData = new FormData();
+      formData.append("title", title);
       values.images.forEach((img) => {
         formData.append("images[]", img);
       });
 
       try {
-        const res = await axios.post("https://rashmiphotography.com/backend/add-photos.php", formData);
+        const res = await axios.post(
+          "http://localhost:8080/photos/upload",
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'multipart/form-data'
+            }
+          }
+        );
         if (res.data.status === "success") {
           setMessage("Images uploaded successfully!");
-          setSelectedPreview([]); // Clear previews after upload
-          navigate(-1)
+          setSelectedPreview([]);
+          navigate(-1);
         } else {
           setMessage(res.data.message || "Failed to upload images.");
         }

@@ -1,15 +1,26 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './add-album.css';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import axios from 'axios';
-import { useCookies } from 'react-cookie';
+import { getUserInfo } from './utils/auth';
 
 export function AddAlbum() {
   const [thumbnailPreview, setThumbnailPreview] = useState(null);
+  const [username, setUsername] = useState('');
   const navigate = useNavigate();
-  const [cookies] = useCookies(['adminUser']);
+
+  useEffect(() => {
+    const user = getUserInfo()
+    if (user) {
+      setUsername(user);
+    } else {
+      alert('Please login first');
+      navigate('/login');
+    }
+  }, [navigate]);
+
   const slugify = (text) => {
     const baseSlug = text
       .toString()
@@ -17,13 +28,11 @@ export function AddAlbum() {
       .trim()
       .replace(/[\s\W-]+/g, '-')
       .replace(/^-+|-+$/g, '');
-  
     const timestamp = Date.now();
-    const randomStr = Math.random().toString(36).substring(2, 7); // generates a short random string
-  
+    const randomStr = Math.random().toString(36).substring(2, 7);
     return `${baseSlug}-${randomStr}-${timestamp}`;
   };
-  
+
   const formik = useFormik({
     initialValues: {
       title: '',
@@ -31,36 +40,40 @@ export function AddAlbum() {
       thumbnail: null,
       download: false,
       isVisible: true,
-      username: cookies.adminUser.toLowerCase()
     },
+    enableReinitialize: true,
     validationSchema: yup.object({
       title: yup.string().required('Title is required'),
       description: yup.string().required('Description is required'),
     }),
     onSubmit: async (values, { setSubmitting, resetForm }) => {
       try {
+        const token = localStorage.getItem('token');
         const formData = new FormData();
-        const slug = slugify(values.title, cookies.adminUser);
-    
+        const slug = slugify(values.title);
+
         formData.append('title', values.title);
         formData.append('description', values.description);
-        formData.append('slug', slug); // 👈 Append slug to formData
+        formData.append('slug', slug);
         formData.append('download', values.download ? '1' : '0');
         formData.append('isVisible', values.isVisible ? '1' : '0');
-        formData.append('username', values.username);
-    
+        formData.append('username', username); // ✅ from decoded token
+
         if (values.thumbnail) {
           formData.append('thumbnail', values.thumbnail);
         }
-    
+
         const response = await axios.post(
-          'https://rashmiphotography.com/backend/add-album.php',
+          'https://rashmiphotography.com/api/albums',
           formData,
           {
-            headers: { 'Content-Type': 'multipart/form-data' },
+            headers: {
+              'Content-Type': 'multipart/form-data',
+              Authorization: `Bearer ${token}`,
+            },
           }
         );
-    
+
         if (response.data.status === 'success') {
           alert('Album added successfully.');
           resetForm();
@@ -75,9 +88,9 @@ export function AddAlbum() {
       } finally {
         setSubmitting(false);
       }
-    },    
+    },
   });
-  
+
   const handleThumbnailChange = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -114,7 +127,6 @@ export function AddAlbum() {
         {formik.touched.description && formik.errors.description && (
           <div className="error">{formik.errors.description}</div>
         )}
-
 
         <input
           type="file"

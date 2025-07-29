@@ -14,7 +14,7 @@ $routes->options('auth/login', function () {
         ->setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 });
 
-$routes->options('auth/signup', function () {
+$routes->options('auth/register', function () {
     return service('response')
         ->setStatusCode(200)
         ->setHeader('Access-Control-Allow-Origin', '*')
@@ -23,5 +23,11 @@ $routes->options('auth/signup', function () {
 });
 
 
-$routes->post('auth/login', 'Auth::login');
-$routes->post('auth/signup', 'Auth::signup');
+$routes->post('auth/login', 'AuthController::login');
+$routes->post('auth/register', 'AuthController::register');
+$routes->group('api', ['namespace' => 'App\Controllers'], function($routes) {
+    $routes->resource('albums', ['controller' => 'Albums']);
+});
+$routes->get('api/photos', 'PhotoController::getPhotosByAlbum');
+$routes->post('api/photos/upload', 'PhotosController::upload');
+$routes->get('api/photos', 'PhotosController::getPhotos');

@@ -43,7 +43,7 @@ export function Signup() {
 
       try {
         const response = await axios.post(
-          "http://localhost:8080/api/signup", // 👈 update with your actual backend API
+          "http://localhost:8080/auth/register",
           payload,
           {
             headers: {
@@ -52,7 +52,7 @@ export function Signup() {
           }
         );
 
-        if (response.data && response.data.status === 201) {
+        if (response.data && response.data.success) {
           setMessage("User registered successfully.");
           resetForm();
           setTimeout(() => navigate("/login"), 1000);

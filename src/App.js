@@ -9,9 +9,6 @@ import { UploadPhotos } from './upload-photos';
 import { Albums } from './albums';
 import { AddPhotos } from './add-photos';
 import { Photos } from './photos';
-import { Navbar, Nav, Container } from 'react-bootstrap';
-import { useEffect, useState } from 'react';
-import { useCookies } from 'react-cookie';
 import { AddAlbum } from './add-album';
 import { ForgotPassword } from './forgot-password';
 import { Signup } from './sign-up';
@@ -25,112 +22,45 @@ import { EditProfile } from './edit-profile';
 import { ProfileSetup } from './profile-setup';
 import SendEmail from './send-email';
 import VerifyOtp from './verify-otp';
+import {getUserInfo} from './utils/auth';
+import { PrivateRoute } from './utils/PrivateRoute';
+import { NavBar } from './navbar';
 
 function App() {
-  const [cookies,,removeCookie] = useCookies(['adminUser']);
-  const [expanded, setExpanded] = useState(false);
-  const[status, setStatus] = useState(null);
-  const[profile,setProfile] = useState({});
-  useEffect(()=>{
-    axios.get("https://rashmiphotography.com/backend/subscription-status.php", {
-      params: { username: cookies.adminUser }
-    })
-    .then(response=>{
-      setStatus(response.data.subscription_status);
-    })
-
-    axios.get('https://rashmiphotography.com/backend/profile.php', {
-      params: { username: cookies.adminUser }
-  })
-  .then(response => {
-      setProfile(response.data);
-  })
-  .catch(error => {
-      console.error('Error fetching profile:', error);
-  });
-  },[cookies.adminUser])
-  
-  const handleNavClick = () => {
-    setExpanded(false); // Close the menu after clicking a nav link
-  };
-
-  const handleLogout = () => {
-    removeCookie('adminUser', { path: '/' });
-  };
-
+  const user = getUserInfo();
   return (
-    <BrowserRouter>
-{(cookies.adminUser && cookies.adminUser!=="undefined" && status!=='active') && (
-      <>
-        <Navbar 
-          collapseOnSelect 
-          expand="lg"
-          className="shadow-sm custom-navbar pt-3 pb-3" 
-          expanded={expanded} 
-        >
-          <Container>
-            {/* Logo Section */}
-            <Navbar.Brand as={Link} to="/home" className="nav-link">
-            <span className='logo'>{profile.studio_name || 'Rashmi photography'}</span>
-            </Navbar.Brand>
-
-            {/* Navbar Toggle for Mobile */}
-            <Navbar.Toggle aria-controls="navbar-nav" onClick={() => setExpanded(expanded ? false : true)} />
-
-            {/* Navbar Links Section */}
-            <Navbar.Collapse id="navbar-nav">
-              <Nav className="ms-auto">
-                    
-                        {/*<Nav.Item>
-                          <Nav.Link as={Link} to="/gallery" onClick={handleNavClick} className="nav-link">Gallery</Nav.Link>
-                        </Nav.Item> */}
-                        <Nav.Item>
-                          <Nav.Link as={Link} to="/admin" onClick={handleNavClick} className="nav-link">Admin Panel</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                          <Nav.Link as={Link} to="/profile" onClick={handleNavClick} className="nav-link">Profile</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                        <Nav.Link as={Link} to="/" onClick={handleLogout} className="nav-link">Logout</Nav.Link>
-                      </Nav.Item>
-                     
-               {/* {cookies.adminUser ? "": (<Nav.Item>
-                  <Nav.Link as={Link} to="/login" onClick={handleNavClick} className="nav-link">Admin Login</Nav.Link>
-                </Nav.Item>)}*/}
-              </Nav>
-            </Navbar.Collapse>
-          </Container>
-        </Navbar>
-        </>
-       )}
-
-      {/* Routes */}
+   <BrowserRouter>
+      <NavBar />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="*" element={<NotFound/>}/>
-        <Route path="home" element={<Home />} />
+        {/* Public Routes */}
+        <Route path="/" element={<AdminLogin />} />
         <Route path="/login" element={<AdminLogin />} />
-        <Route path="/send-email" element={<SendEmail />} />
-        <Route path="/verify-otp" element={<VerifyOtp />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/album/:slug" element={<AlbumPhotos />} />
-        {(cookies.adminUser && cookies.adminUser!=="undefined" && status!=='active') && (
+        <Route path="/send-email" element={<SendEmail />} />
+          {/*<Route path="/reset-password/:email" element={<ResetPassword />} */}
+
+        {/* Protected Routes (All require JWT) */}
+        {user && (
           <>
-        <Route path="/admin" element={<Admin />} />
-        <Route path="/gallery" element={<Gallery />} />
-        <Route path="/profile" element={<Profile/>}/>
-        <Route path="/profile-setup" element={<ProfileSetup/>}/>
-        <Route path='/edit-profile' element={<EditProfile/>}/>
-        <Route path="/upload" element={<UploadPhotos />} />
-        <Route path="/albums" element={<Albums />} />
-        <Route path="/add-album" element={<AddAlbum />} />
-        <Route path="/edit-album/:id" element={<UpdateAlbum/>}/>
-        <Route path="/photos/:title" element={<Photos />} />
-        <Route path="/addphotos/:title" element={<AddPhotos />} />
-        </>)}
-        { (cookies.adminUser && cookies.adminUser!=='undefined') &&
-        <Route path="/contact-admin" element={<ContactAdmin />} />}
+            <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
+            <Route path="/profile-setup" element={<PrivateRoute><ProfileSetup /></PrivateRoute>} />
+            <Route path="/edit-profile" element={<PrivateRoute><EditProfile /></PrivateRoute>} />
+            <Route path="/contact-admin" element={<PrivateRoute><ContactAdmin /></PrivateRoute>} />
+          </>
+        )}
+
+        {/* Admin-only Routes */}
+        {user && (
+          <>
+            <Route path="/admin" element={<PrivateRoute><Admin /></PrivateRoute>} />
+            <Route path="/upload" element={<PrivateRoute><UploadPhotos /></PrivateRoute>} />
+            <Route path="/albums" element={<PrivateRoute><Albums /></PrivateRoute>} />
+            <Route path="/add-album" element={<PrivateRoute><AddAlbum /></PrivateRoute>} />
+            <Route path="/edit-album/:id" element={<PrivateRoute><UpdateAlbum /></PrivateRoute>} />
+            <Route path="/photos/:title" element={<PrivateRoute><Photos /></PrivateRoute>} />
+            <Route path="/addphotos/:title" element={<PrivateRoute><AddPhotos /></PrivateRoute>} />
+          </>
+        )}
       </Routes>
     </BrowserRouter>
   );
