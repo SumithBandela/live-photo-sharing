@@ -8,30 +8,18 @@ import { getUserInfo } from './utils/auth';
 
 export function AddAlbum() {
   const [thumbnailPreview, setThumbnailPreview] = useState(null);
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
-    const user = getUserInfo()
-    if (user) {
-      setUsername(user);
+    const user = getUserInfo();
+    if (user && user.email) {
+      setEmail(user.email); // ✅ Use email instead of username
     } else {
       alert('Please login first');
       navigate('/login');
     }
   }, [navigate]);
-
-  const slugify = (text) => {
-    const baseSlug = text
-      .toString()
-      .toLowerCase()
-      .trim()
-      .replace(/[\s\W-]+/g, '-')
-      .replace(/^-+|-+$/g, '');
-    const timestamp = Date.now();
-    const randomStr = Math.random().toString(36).substring(2, 7);
-    return `${baseSlug}-${randomStr}-${timestamp}`;
-  };
 
   const formik = useFormik({
     initialValues: {
@@ -50,21 +38,19 @@ export function AddAlbum() {
       try {
         const token = localStorage.getItem('token');
         const formData = new FormData();
-        const slug = slugify(values.title);
 
         formData.append('title', values.title);
         formData.append('description', values.description);
-        formData.append('slug', slug);
         formData.append('download', values.download ? '1' : '0');
         formData.append('isVisible', values.isVisible ? '1' : '0');
-        formData.append('username', username); // ✅ from decoded token
+        formData.append('email', email); // ✅ Send email
 
         if (values.thumbnail) {
           formData.append('thumbnail', values.thumbnail);
         }
 
         const response = await axios.post(
-          'https://rashmiphotography.com/api/albums',
+          'http://localhost:8080/api/albums/add',
           formData,
           {
             headers: {

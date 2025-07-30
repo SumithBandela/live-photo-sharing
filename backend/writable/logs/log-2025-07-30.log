@@ -1,0 +1,154 @@
+ERROR - 2025-07-30 11:40:02 --> mysqli_sql_exception: Unknown column 'thumbnail' in 'field list' in E:\live-photo-sharing\backend\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 E:\live-photo-sharing\backend\system\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `al...', 0)
+#1 E:\live-photo-sharing\backend\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `al...')
+#2 E:\live-photo-sharing\backend\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `al...')
+#3 E:\live-photo-sharing\backend\system\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `al...', Array, false)
+#4 E:\live-photo-sharing\backend\system\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+#5 E:\live-photo-sharing\backend\system\BaseModel.php(843): CodeIgniter\Model->doInsert(Array)
+#6 E:\live-photo-sharing\backend\system\Model.php(800): CodeIgniter\BaseModel->insert(Array, true)
+#7 E:\live-photo-sharing\backend\app\Controllers\AlbumController.php(68): CodeIgniter\Model->insert(Array)
+#8 E:\live-photo-sharing\backend\system\CodeIgniter.php(933): App\Controllers\AlbumController->addAlbum()
+#9 E:\live-photo-sharing\backend\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AlbumController))
+#10 E:\live-photo-sharing\backend\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 E:\live-photo-sharing\backend\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 E:\live-photo-sharing\backend\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 E:\live-photo-sharing\backend\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 E:\live-photo-sharing\backend\system\rewrite.php(44): require_once('E:\\live-photo-s...')
+#15 {main}
+CRITICAL - 2025-07-30 11:40:02 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'thumbnail' in 'field list'
+[Method: POST, Route: api/albums/add]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `albums` (`title`, `description`, `thumbnail`, `email`, `slug`, `download`, `isVisible`) VALUES (:title:, :description:, :thumbnail:, :email:, :slug:, :download:, :isVisible:)', [...], false)
+ 2 SYSTEMPATH\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH\BaseModel.php(843): CodeIgniter\Model->doInsert([...])
+ 4 SYSTEMPATH\Model.php(800): CodeIgniter\BaseModel->insert([...], true)
+ 5 APPPATH\Controllers\AlbumController.php(68): CodeIgniter\Model->insert([...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AlbumController->addAlbum()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AlbumController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-07-30 11:40:02 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'thumbnail' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `albums` (`title`, `description`, `thumbnail`, `email`, `slug`, `download`, `isVisible`) VALUES (\'Wedding\', \'Wedding\', \'1753875602_91609059e23e09ea8896.jpg\', \'sumithbandela@gmail.com\', \'wedding-dc648-1753875602\', \'0\', \'1\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `albums` (`title`, `description`, `thumbnail`, `email`, `slug`, `download`, `isVisible`) VALUES (\'Wedding\', \'Wedding\', \'1753875602_91609059e23e09ea8896.jpg\', \'sumithbandela@gmail.com\', \'wedding-dc648-1753875602\', \'0\', \'1\')')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `albums` (`title`, `description`, `thumbnail`, `email`, `slug`, `download`, `isVisible`) VALUES (:title:, :description:, :thumbnail:, :email:, :slug:, :download:, :isVisible:)', [...], false)
+ 4 SYSTEMPATH\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+ 5 SYSTEMPATH\BaseModel.php(843): CodeIgniter\Model->doInsert([...])
+ 6 SYSTEMPATH\Model.php(800): CodeIgniter\BaseModel->insert([...], true)
+ 7 APPPATH\Controllers\AlbumController.php(68): CodeIgniter\Model->insert([...])
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AlbumController->addAlbum()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AlbumController))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-07-30 11:40:02 --> [Caused by] mysqli_sql_exception: Unknown column 'thumbnail' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `albums` (`title`, `description`, `thumbnail`, `email`, `slug`, `download`, `isVisible`) VALUES (\'Wedding\', \'Wedding\', \'1753875602_91609059e23e09ea8896.jpg\', \'sumithbandela@gmail.com\', \'wedding-dc648-1753875602\', \'0\', \'1\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `albums` (`title`, `description`, `thumbnail`, `email`, `slug`, `download`, `isVisible`) VALUES (\'Wedding\', \'Wedding\', \'1753875602_91609059e23e09ea8896.jpg\', \'sumithbandela@gmail.com\', \'wedding-dc648-1753875602\', \'0\', \'1\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `albums` (`title`, `description`, `thumbnail`, `email`, `slug`, `download`, `isVisible`) VALUES (\'Wedding\', \'Wedding\', \'1753875602_91609059e23e09ea8896.jpg\', \'sumithbandela@gmail.com\', \'wedding-dc648-1753875602\', \'0\', \'1\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `albums` (`title`, `description`, `thumbnail`, `email`, `slug`, `download`, `isVisible`) VALUES (:title:, :description:, :thumbnail:, :email:, :slug:, :download:, :isVisible:)', [...], false)
+ 5 SYSTEMPATH\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(843): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(800): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Controllers\AlbumController.php(68): CodeIgniter\Model->insert([...])
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AlbumController->addAlbum()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AlbumController))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+15 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-07-30 11:53:42 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "sumithbandela@gmail.com"
+[Method: GET, Route: api/albums/all/sumithbandela@gmail.com]
+in SYSTEMPATH\Router\Router.php on line 741.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('api/albums/all/sumithbandela@gmail.com')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('api/albums/all/sumithbandela@gmail.com')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-07-30 11:53:45 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "sumithbandela@gmail.com"
+[Method: GET, Route: api/albums/all/sumithbandela@gmail.com]
+in SYSTEMPATH\Router\Router.php on line 741.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('api/albums/all/sumithbandela@gmail.com')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('api/albums/all/sumithbandela@gmail.com')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-07-30 11:54:01 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "sumithbandela@gmail.com"
+[Method: GET, Route: api/albums/all/sumithbandela@gmail.com]
+in SYSTEMPATH\Router\Router.php on line 741.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('api/albums/all/sumithbandela@gmail.com')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('api/albums/all/sumithbandela@gmail.com')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-07-30 11:57:06 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "sumithbandela@gmail.com"
+[Method: GET, Route: api/albums/all/sumithbandela@gmail.com]
+in SYSTEMPATH\Router\Router.php on line 741.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('api/albums/all/sumithbandela@gmail.com')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('api/albums/all/sumithbandela@gmail.com')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-07-30 11:57:08 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "sumithbandela@gmail.com"
+[Method: GET, Route: api/albums/all/sumithbandela@gmail.com]
+in SYSTEMPATH\Router\Router.php on line 741.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('api/albums/all/sumithbandela@gmail.com')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('api/albums/all/sumithbandela@gmail.com')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-07-30 11:57:15 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "sumithbandela@gmail.com"
+[Method: GET, Route: api/albums/all/sumithbandela@gmail.com]
+in SYSTEMPATH\Router\Router.php on line 741.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('api/albums/all/sumithbandela@gmail.com')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('api/albums/all/sumithbandela@gmail.com')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-07-30 11:57:22 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "sumithbandela@gmail.com"
+[Method: GET, Route: api/albums/all/sumithbandela@gmail.com]
+in SYSTEMPATH\Router\Router.php on line 741.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('api/albums/all/sumithbandela@gmail.com')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('api/albums/all/sumithbandela@gmail.com')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-07-30 11:57:28 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "sumithbandela@gmail.com"
+[Method: GET, Route: api/albums/all/sumithbandela@gmail.com]
+in SYSTEMPATH\Router\Router.php on line 741.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('api/albums/all/sumithbandela@gmail.com')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('api/albums/all/sumithbandela@gmail.com')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')

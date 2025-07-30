@@ -25,9 +25,13 @@ $routes->options('auth/register', function () {
 
 $routes->post('auth/login', 'AuthController::login');
 $routes->post('auth/register', 'AuthController::register');
-$routes->group('api', ['namespace' => 'App\Controllers'], function($routes) {
-    $routes->resource('albums', ['controller' => 'Albums']);
-});
+
 $routes->get('api/photos', 'PhotoController::getPhotosByAlbum');
 $routes->post('api/photos/upload', 'PhotosController::upload');
 $routes->get('api/photos', 'PhotosController::getPhotos');
+
+$routes->group('api/albums', ['namespace' => 'App\Controllers'], function($routes) {
+    $routes->post('add', 'AlbumController::addAlbum');          // POST album/add
+    $routes->get('all/(:any)', 'AlbumController::getAlbums/$1'); // GET album/all/{email}
+});
+

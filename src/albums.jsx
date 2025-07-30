@@ -18,7 +18,7 @@ export function Albums() {
     const email = userInfo.email;
 
     axios
-      .get(`http://localhost:8080/api/albums?email=${email}`)
+      .get(`http://localhost:8080/api/albums/all/${email}`)
       .then((response) => {
         if (response.data.success) {
           setAlbums(response.data.albums);
