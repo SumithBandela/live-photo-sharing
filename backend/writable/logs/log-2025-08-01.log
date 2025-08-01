@@ -1,0 +1,533 @@
+ERROR - 2025-08-01 11:17:47 --> Error connecting to the database: mysqli_sql_exception: No connection could be made because the target machine actively refused it in E:\live-photo-sharing\backend\system\Database\MySQLi\Connection.php:202
+Stack trace:
+#0 E:\live-photo-sharing\backend\system\Database\MySQLi\Connection.php(202): mysqli->real_connect('localhost', 'root', '', 'ci4_users', 3306, '', 0)
+#1 E:\live-photo-sharing\backend\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 E:\live-photo-sharing\backend\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#3 E:\live-photo-sharing\backend\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 E:\live-photo-sharing\backend\system\Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+#5 E:\live-photo-sharing\backend\system\BaseModel.php(717): CodeIgniter\Model->doFirst()
+#6 E:\live-photo-sharing\backend\app\Controllers\AuthController.php(51): CodeIgniter\BaseModel->first()
+#7 E:\live-photo-sharing\backend\system\CodeIgniter.php(933): App\Controllers\AuthController->login()
+#8 E:\live-photo-sharing\backend\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AuthController))
+#9 E:\live-photo-sharing\backend\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 E:\live-photo-sharing\backend\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#11 E:\live-photo-sharing\backend\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 E:\live-photo-sharing\backend\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 E:\live-photo-sharing\backend\system\rewrite.php(44): require_once('E:\\live-photo-s...')
+#14 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No connection could be made because the target machine actively refused it in E:\live-photo-sharing\backend\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 E:\live-photo-sharing\backend\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 E:\live-photo-sharing\backend\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#2 E:\live-photo-sharing\backend\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 E:\live-photo-sharing\backend\system\Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+#4 E:\live-photo-sharing\backend\system\BaseModel.php(717): CodeIgniter\Model->doFirst()
+#5 E:\live-photo-sharing\backend\app\Controllers\AuthController.php(51): CodeIgniter\BaseModel->first()
+#6 E:\live-photo-sharing\backend\system\CodeIgniter.php(933): App\Controllers\AuthController->login()
+#7 E:\live-photo-sharing\backend\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AuthController))
+#8 E:\live-photo-sharing\backend\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 E:\live-photo-sharing\backend\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#10 E:\live-photo-sharing\backend\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 E:\live-photo-sharing\backend\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 E:\live-photo-sharing\backend\system\rewrite.php(44): require_once('E:\\live-photo-s...')
+#13 {main}
+CRITICAL - 2025-08-01 11:17:47 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it
+[Method: POST, Route: auth/login]
+in SYSTEMPATH\Database\BaseConnection.php on line 467.
+ 1 SYSTEMPATH\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `Users`
+WHERE `email` = :email:
+ LIMIT 1', [...], false)
+ 3 SYSTEMPATH\Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(717): CodeIgniter\Model->doFirst()
+ 5 APPPATH\Controllers\AuthController.php(51): CodeIgniter\BaseModel->first()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AuthController->login()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AuthController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+ERROR - 2025-08-01 11:18:02 --> Error connecting to the database: mysqli_sql_exception: No connection could be made because the target machine actively refused it in E:\live-photo-sharing\backend\system\Database\MySQLi\Connection.php:202
+Stack trace:
+#0 E:\live-photo-sharing\backend\system\Database\MySQLi\Connection.php(202): mysqli->real_connect('localhost', 'root', '', 'ci4_users', 3306, '', 0)
+#1 E:\live-photo-sharing\backend\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 E:\live-photo-sharing\backend\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#3 E:\live-photo-sharing\backend\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 E:\live-photo-sharing\backend\system\Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+#5 E:\live-photo-sharing\backend\system\BaseModel.php(717): CodeIgniter\Model->doFirst()
+#6 E:\live-photo-sharing\backend\app\Controllers\AuthController.php(51): CodeIgniter\BaseModel->first()
+#7 E:\live-photo-sharing\backend\system\CodeIgniter.php(933): App\Controllers\AuthController->login()
+#8 E:\live-photo-sharing\backend\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AuthController))
+#9 E:\live-photo-sharing\backend\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 E:\live-photo-sharing\backend\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#11 E:\live-photo-sharing\backend\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 E:\live-photo-sharing\backend\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 E:\live-photo-sharing\backend\system\rewrite.php(44): require_once('E:\\live-photo-s...')
+#14 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No connection could be made because the target machine actively refused it in E:\live-photo-sharing\backend\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 E:\live-photo-sharing\backend\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 E:\live-photo-sharing\backend\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#2 E:\live-photo-sharing\backend\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 E:\live-photo-sharing\backend\system\Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+#4 E:\live-photo-sharing\backend\system\BaseModel.php(717): CodeIgniter\Model->doFirst()
+#5 E:\live-photo-sharing\backend\app\Controllers\AuthController.php(51): CodeIgniter\BaseModel->first()
+#6 E:\live-photo-sharing\backend\system\CodeIgniter.php(933): App\Controllers\AuthController->login()
+#7 E:\live-photo-sharing\backend\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AuthController))
+#8 E:\live-photo-sharing\backend\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 E:\live-photo-sharing\backend\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#10 E:\live-photo-sharing\backend\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 E:\live-photo-sharing\backend\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 E:\live-photo-sharing\backend\system\rewrite.php(44): require_once('E:\\live-photo-s...')
+#13 {main}
+CRITICAL - 2025-08-01 11:18:02 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it
+[Method: POST, Route: auth/login]
+in SYSTEMPATH\Database\BaseConnection.php on line 467.
+ 1 SYSTEMPATH\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `Users`
+WHERE `email` = :email:
+ LIMIT 1', [...], false)
+ 3 SYSTEMPATH\Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(717): CodeIgniter\Model->doFirst()
+ 5 APPPATH\Controllers\AuthController.php(51): CodeIgniter\BaseModel->first()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AuthController->login()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AuthController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+ERROR - 2025-08-01 11:18:06 --> Error connecting to the database: mysqli_sql_exception: No connection could be made because the target machine actively refused it in E:\live-photo-sharing\backend\system\Database\MySQLi\Connection.php:202
+Stack trace:
+#0 E:\live-photo-sharing\backend\system\Database\MySQLi\Connection.php(202): mysqli->real_connect('localhost', 'root', '', 'ci4_users', 3306, '', 0)
+#1 E:\live-photo-sharing\backend\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 E:\live-photo-sharing\backend\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#3 E:\live-photo-sharing\backend\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 E:\live-photo-sharing\backend\system\Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+#5 E:\live-photo-sharing\backend\system\BaseModel.php(717): CodeIgniter\Model->doFirst()
+#6 E:\live-photo-sharing\backend\app\Controllers\AuthController.php(51): CodeIgniter\BaseModel->first()
+#7 E:\live-photo-sharing\backend\system\CodeIgniter.php(933): App\Controllers\AuthController->login()
+#8 E:\live-photo-sharing\backend\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AuthController))
+#9 E:\live-photo-sharing\backend\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 E:\live-photo-sharing\backend\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#11 E:\live-photo-sharing\backend\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 E:\live-photo-sharing\backend\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 E:\live-photo-sharing\backend\system\rewrite.php(44): require_once('E:\\live-photo-s...')
+#14 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No connection could be made because the target machine actively refused it in E:\live-photo-sharing\backend\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 E:\live-photo-sharing\backend\system\Database\BaseConnection.php(421): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 E:\live-photo-sharing\backend\system\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+#2 E:\live-photo-sharing\backend\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 E:\live-photo-sharing\backend\system\Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+#4 E:\live-photo-sharing\backend\system\BaseModel.php(717): CodeIgniter\Model->doFirst()
+#5 E:\live-photo-sharing\backend\app\Controllers\AuthController.php(51): CodeIgniter\BaseModel->first()
+#6 E:\live-photo-sharing\backend\system\CodeIgniter.php(933): App\Controllers\AuthController->login()
+#7 E:\live-photo-sharing\backend\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AuthController))
+#8 E:\live-photo-sharing\backend\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 E:\live-photo-sharing\backend\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#10 E:\live-photo-sharing\backend\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 E:\live-photo-sharing\backend\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 E:\live-photo-sharing\backend\system\rewrite.php(44): require_once('E:\\live-photo-s...')
+#13 {main}
+CRITICAL - 2025-08-01 11:18:06 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it
+[Method: POST, Route: auth/login]
+in SYSTEMPATH\Database\BaseConnection.php on line 467.
+ 1 SYSTEMPATH\Database\BaseConnection.php(620): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `Users`
+WHERE `email` = :email:
+ LIMIT 1', [...], false)
+ 3 SYSTEMPATH\Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(717): CodeIgniter\Model->doFirst()
+ 5 APPPATH\Controllers\AuthController.php(51): CodeIgniter\BaseModel->first()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AuthController->login()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AuthController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-01 11:18:14 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "sumithbandela@gmail.com"
+[Method: GET, Route: api/albums/all/sumithbandela@gmail.com]
+in SYSTEMPATH\Router\Router.php on line 741.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('api/albums/all/sumithbandela@gmail.com')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('api/albums/all/sumithbandela@gmail.com')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-01 11:18:18 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "sumithbandela@gmail.com"
+[Method: GET, Route: api/albums/all/sumithbandela@gmail.com]
+in SYSTEMPATH\Router\Router.php on line 741.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('api/albums/all/sumithbandela@gmail.com')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('api/albums/all/sumithbandela@gmail.com')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-01 11:18:20 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "sumithbandela@gmail.com"
+[Method: GET, Route: api/albums/all/sumithbandela@gmail.com]
+in SYSTEMPATH\Router\Router.php on line 741.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('api/albums/all/sumithbandela@gmail.com')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('api/albums/all/sumithbandela@gmail.com')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-01 11:19:43 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "sumithbandela@gmail.com"
+[Method: GET, Route: api/albums/all/sumithbandela@gmail.com]
+in SYSTEMPATH\Router\Router.php on line 741.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('api/albums/all/sumithbandela@gmail.com')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('api/albums/all/sumithbandela@gmail.com')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-01 11:20:06 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "sumithbandela@gmail.com"
+[Method: GET, Route: api/albums/all/sumithbandela@gmail.com]
+in SYSTEMPATH\Router\Router.php on line 741.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('api/albums/all/sumithbandela@gmail.com')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('api/albums/all/sumithbandela@gmail.com')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-01 11:20:28 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "sumithbandela@gmail.com"
+[Method: GET, Route: api/albums/all/sumithbandela@gmail.com]
+in SYSTEMPATH\Router\Router.php on line 741.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('api/albums/all/sumithbandela@gmail.com')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('api/albums/all/sumithbandela@gmail.com')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-01 11:21:51 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "sumithbandela@gmail.com"
+[Method: GET, Route: api/album/all/sumithbandela@gmail.com]
+in SYSTEMPATH\Router\Router.php on line 741.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('api/album/all/sumithbandela@gmail.com')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('api/album/all/sumithbandela@gmail.com')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-01 11:21:55 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "sumithbandela@gmail.com"
+[Method: GET, Route: api/album/all/sumithbandela@gmail.com]
+in SYSTEMPATH\Router\Router.php on line 741.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('api/album/all/sumithbandela@gmail.com')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('api/album/all/sumithbandela@gmail.com')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-01 11:22:13 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "sumithbandela@gmail.com"
+[Method: GET, Route: api/album/all/sumithbandela@gmail.com]
+in SYSTEMPATH\Router\Router.php on line 741.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('api/album/all/sumithbandela@gmail.com')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('api/album/all/sumithbandela@gmail.com')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-01 11:22:15 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "sumithbandela@gmail.com"
+[Method: GET, Route: api/album/all/sumithbandela@gmail.com]
+in SYSTEMPATH\Router\Router.php on line 741.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('api/album/all/sumithbandela@gmail.com')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('api/album/all/sumithbandela@gmail.com')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-01 11:22:24 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "sumithbandela@gmail.com"
+[Method: GET, Route: api/album/all/sumithbandela@gmail.com]
+in SYSTEMPATH\Router\Router.php on line 741.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('api/album/all/sumithbandela@gmail.com')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('api/album/all/sumithbandela@gmail.com')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-01 11:22:33 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "sumithbandela@gmail.com"
+[Method: GET, Route: api/album/all/sumithbandela@gmail.com]
+in SYSTEMPATH\Router\Router.php on line 741.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('api/album/all/sumithbandela@gmail.com')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('api/album/all/sumithbandela@gmail.com')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-01 11:24:13 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "sumithbandela@gmail.com"
+[Method: GET, Route: api/album/all/sumithbandela@gmail.com]
+in SYSTEMPATH\Router\Router.php on line 741.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('api/album/all/sumithbandela@gmail.com')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('api/album/all/sumithbandela@gmail.com')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-01 11:24:14 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "sumithbandela@gmail.com"
+[Method: GET, Route: api/album/all/sumithbandela@gmail.com]
+in SYSTEMPATH\Router\Router.php on line 741.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('api/album/all/sumithbandela@gmail.com')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('api/album/all/sumithbandela@gmail.com')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-01 11:24:17 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "sumithbandela@gmail.com"
+[Method: GET, Route: api/album/all/sumithbandela@gmail.com]
+in SYSTEMPATH\Router\Router.php on line 741.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('api/album/all/sumithbandela@gmail.com')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('api/album/all/sumithbandela@gmail.com')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-01 11:26:36 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "sumithbandela@gmail.com"
+[Method: GET, Route: api/album/all/sumithbandela@gmail.com]
+in SYSTEMPATH\Router\Router.php on line 741.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('api/album/all/sumithbandela@gmail.com')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('api/album/all/sumithbandela@gmail.com')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-01 11:26:40 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "sumithbandela@gmail.com"
+[Method: GET, Route: api/album/all/sumithbandela@gmail.com]
+in SYSTEMPATH\Router\Router.php on line 741.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('api/album/all/sumithbandela@gmail.com')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('api/album/all/sumithbandela@gmail.com')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-01 11:27:13 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "sumithbandela@gmail.com"
+[Method: GET, Route: api/albums/all/sumithbandela@gmail.com]
+in SYSTEMPATH\Router\Router.php on line 741.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('api/albums/all/sumithbandela@gmail.com')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('api/albums/all/sumithbandela@gmail.com')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-01 11:27:16 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "sumithbandela@gmail.com"
+[Method: GET, Route: api/albums/all/sumithbandela@gmail.com]
+in SYSTEMPATH\Router\Router.php on line 741.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('api/albums/all/sumithbandela@gmail.com')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('api/albums/all/sumithbandela@gmail.com')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-01 11:27:43 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "sumithbandela@gmail.com"
+[Method: GET, Route: api/albums/all/sumithbandela@gmail.com]
+in SYSTEMPATH\Router\Router.php on line 741.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('api/albums/all/sumithbandela@gmail.com')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('api/albums/all/sumithbandela@gmail.com')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-01 11:28:49 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "sumithbandela@gmail.com"
+[Method: GET, Route: api/albums/all/sumithbandela@gmail.com]
+in SYSTEMPATH\Router\Router.php on line 741.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('api/albums/all/sumithbandela@gmail.com')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('api/albums/all/sumithbandela@gmail.com')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-01 11:30:44 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "sumithbandela@gmail.com"
+[Method: GET, Route: api/albums/all/sumithbandela@gmail.com]
+in SYSTEMPATH\Router\Router.php on line 741.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('api/albums/all/sumithbandela@gmail.com')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('api/albums/all/sumithbandela@gmail.com')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-01 11:32:30 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "sumithbandela@gmail.com"
+[Method: GET, Route: api/albums/all/sumithbandela@gmail.com]
+in SYSTEMPATH\Router\Router.php on line 741.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('api/albums/all/sumithbandela@gmail.com')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('api/albums/all/sumithbandela@gmail.com')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-01 11:38:50 --> TypeError: Key material must be a string, resource, or OpenSSLAsymmetricKey
+[Method: GET, Route: api/albums/all]
+in VENDORPATH\firebase\php-jwt\src\Key.php on line 26.
+ 1 APPPATH\Controllers\AlbumController.php(88): Firebase\JWT\Key->__construct(false, 'HS256')
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AlbumController->getAlbums()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AlbumController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-01 11:38:52 --> TypeError: Key material must be a string, resource, or OpenSSLAsymmetricKey
+[Method: GET, Route: api/albums/all]
+in VENDORPATH\firebase\php-jwt\src\Key.php on line 26.
+ 1 APPPATH\Controllers\AlbumController.php(88): Firebase\JWT\Key->__construct(false, 'HS256')
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AlbumController->getAlbums()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AlbumController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-01 11:38:56 --> TypeError: Key material must be a string, resource, or OpenSSLAsymmetricKey
+[Method: GET, Route: api/albums/all]
+in VENDORPATH\firebase\php-jwt\src\Key.php on line 26.
+ 1 APPPATH\Controllers\AlbumController.php(88): Firebase\JWT\Key->__construct(false, 'HS256')
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AlbumController->getAlbums()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AlbumController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-01 11:38:58 --> TypeError: Key material must be a string, resource, or OpenSSLAsymmetricKey
+[Method: GET, Route: api/albums/all]
+in VENDORPATH\firebase\php-jwt\src\Key.php on line 26.
+ 1 APPPATH\Controllers\AlbumController.php(88): Firebase\JWT\Key->__construct(false, 'HS256')
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AlbumController->getAlbums()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AlbumController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-01 11:39:58 --> TypeError: Key material must be a string, resource, or OpenSSLAsymmetricKey
+[Method: GET, Route: api/albums/all]
+in VENDORPATH\firebase\php-jwt\src\Key.php on line 26.
+ 1 APPPATH\Controllers\AlbumController.php(88): Firebase\JWT\Key->__construct(false, 'HS256')
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AlbumController->getAlbums()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AlbumController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-01 11:41:09 --> TypeError: Key material must be a string, resource, or OpenSSLAsymmetricKey
+[Method: GET, Route: api/albums/all]
+in VENDORPATH\firebase\php-jwt\src\Key.php on line 26.
+ 1 APPPATH\Controllers\AlbumController.php(89): Firebase\JWT\Key->__construct(false, 'HS256')
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AlbumController->getAlbums()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AlbumController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-01 11:43:44 --> TypeError: Key material must be a string, resource, or OpenSSLAsymmetricKey
+[Method: GET, Route: api/albums/all]
+in VENDORPATH\firebase\php-jwt\src\Key.php on line 26.
+ 1 APPPATH\Controllers\AlbumController.php(101): Firebase\JWT\Key->__construct(false, 'HS256')
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AlbumController->getAlbums()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AlbumController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-01 11:43:54 --> TypeError: Key material must be a string, resource, or OpenSSLAsymmetricKey
+[Method: GET, Route: api/albums/all]
+in VENDORPATH\firebase\php-jwt\src\Key.php on line 26.
+ 1 APPPATH\Controllers\AlbumController.php(101): Firebase\JWT\Key->__construct(false, 'HS256')
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AlbumController->getAlbums()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AlbumController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-01 11:44:26 --> TypeError: Key material must be a string, resource, or OpenSSLAsymmetricKey
+[Method: GET, Route: api/albums/all]
+in VENDORPATH\firebase\php-jwt\src\Key.php on line 26.
+ 1 APPPATH\Controllers\AlbumController.php(101): Firebase\JWT\Key->__construct(false, 'HS256')
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AlbumController->getAlbums()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AlbumController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-01 11:44:29 --> TypeError: Key material must be a string, resource, or OpenSSLAsymmetricKey
+[Method: GET, Route: api/albums/all]
+in VENDORPATH\firebase\php-jwt\src\Key.php on line 26.
+ 1 APPPATH\Controllers\AlbumController.php(101): Firebase\JWT\Key->__construct(false, 'HS256')
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AlbumController->getAlbums()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AlbumController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-01 11:46:00 --> TypeError: Key material must be a string, resource, or OpenSSLAsymmetricKey
+[Method: GET, Route: api/albums/all]
+in VENDORPATH\firebase\php-jwt\src\Key.php on line 26.
+ 1 APPPATH\Controllers\AlbumController.php(101): Firebase\JWT\Key->__construct(false, 'HS256')
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\AlbumController->getAlbums()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AlbumController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')

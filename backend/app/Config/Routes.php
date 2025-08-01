@@ -23,15 +23,19 @@ $routes->options('auth/register', function () {
 });
 
 
+
 $routes->post('auth/login', 'AuthController::login');
 $routes->post('auth/register', 'AuthController::register');
 
-$routes->get('api/photos', 'PhotoController::getPhotosByAlbum');
-$routes->post('api/photos/upload', 'PhotosController::upload');
-$routes->get('api/photos', 'PhotosController::getPhotos');
-
 $routes->group('api/albums', ['namespace' => 'App\Controllers'], function($routes) {
-    $routes->post('add', 'AlbumController::addAlbum');          // POST album/add
-    $routes->get('all/(:any)', 'AlbumController::getAlbums/$1'); // GET album/all/{email}
+    $routes->post('add', 'AlbumController::addAlbum');  // POST /api/albums/add
+    $routes->get('all', 'AlbumController::getAlbums');  // GET  /api/albums/all
 });
+
+
+//$routes->get('api/photos', 'PhotoController::getPhotosByAlbum');
+//$routes->post('api/photos/upload', 'PhotosController::upload');
+//$routes->get('api/photos', 'PhotosController::getPhotos');
+
+
 

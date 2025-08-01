@@ -7,14 +7,6 @@ class AlbumModel extends Model
 {
     protected $table = 'albums';
     protected $primaryKey = 'id';
-   protected $allowedFields = [
-    'title',
-    'description',
-    'thumbnail',
-    'email',
-    'slug',
-    'download',
-    'isVisible'
-    ];
+    protected $allowedFields = ['title', 'description', 'thumbnail', 'email', 'slug', 'download', 'isVisible'];
     protected $useTimestamps = false;
 }

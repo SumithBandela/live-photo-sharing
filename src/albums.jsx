@@ -10,15 +10,18 @@ export function Albums() {
 
   useEffect(() => {
     const userInfo = getUserInfo();
-    if (!userInfo || !userInfo.email) {
+    const token = localStorage.getItem('token'); 
+    if (!userInfo || !token) {
       navigate('/login');
       return;
     }
 
-    const email = userInfo.email;
-
     axios
-      .get(`http://localhost:8080/api/albums/all/${email}`)
+      .get('http://localhost:8080/api/albums/all', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         if (response.data.success) {
           setAlbums(response.data.albums);

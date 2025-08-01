@@ -44,7 +44,7 @@ class PhotosController extends ResourceController
             return $this->fail('No images uploaded', 400);
         }
 
-        $uploadDir = FCPATH . 'uploads/' . $email . '/' . $title . '/';
+        $uploadDir = FCPATH . 'images/' . $email . '/' . $title . '/';
         if (!is_dir($uploadDir)) {
             mkdir($uploadDir, 0777, true);
         }
