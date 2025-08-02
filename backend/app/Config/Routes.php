@@ -33,9 +33,9 @@ $routes->group('api/albums', ['namespace' => 'App\Controllers'], function($route
 });
 
 
-//$routes->get('api/photos', 'PhotoController::getPhotosByAlbum');
-//$routes->post('api/photos/upload', 'PhotosController::upload');
-//$routes->get('api/photos', 'PhotosController::getPhotos');
+$routes->get('api/photos', 'PhotoController::getPhotosByAlbum');
+$routes->post('api/photos/upload', 'PhotosController::upload');
+$routes->get('api/photos', 'PhotosController::getPhotos');
 
 
 

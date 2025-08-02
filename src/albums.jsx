@@ -9,8 +9,9 @@ export function Albums() {
   const [albums, setAlbums] = useState([]);
 
   useEffect(() => {
-    const userInfo = getUserInfo();
+    const userInfo = getUserInfo(); 
     const token = localStorage.getItem('token'); 
+
     if (!userInfo || !token) {
       navigate('/login');
       return;
@@ -25,6 +26,7 @@ export function Albums() {
       .then((response) => {
         if (response.data.success) {
           setAlbums(response.data.albums);
+          console.log('Fetched albums:', response.data.albums);
         } else {
           console.error('Failed to fetch albums:', response.data.message);
         }
@@ -52,7 +54,7 @@ export function Albums() {
               <img
                 src={`http://localhost:8080/${album.thumbnail}?ts=${Date.now()}`}
                 alt={album.title}
-                className={`album-thumbnail ${album.is_visible ? '' : 'hidden-album'}`}
+                className={`album-thumbnail ${album.isVisible ? '' : 'hidden-album'}`}
               />
               <h3>{album.title}</h3>
               <p>{album.description}</p>

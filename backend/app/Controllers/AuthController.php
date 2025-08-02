@@ -8,7 +8,7 @@ use Firebase\JWT\Key;
 
 class AuthController extends ResourceController
 {
-    private $key = "your-secret-key";
+    private $key = "d6f7a94c5e1b8e81f842a87d72b7593f8434c5a4b9e5b0b30f2aebd5c4839c52";
 
     public function register()
     {

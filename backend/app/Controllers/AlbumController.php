@@ -24,68 +24,69 @@ class AlbumController extends ResourceController
         return "{$baseSlug}-{$randomStr}-{$timestamp}";
     }
 
-    public function addAlbum()
-    {
-        // Token decode
-        $authHeader = $this->request->getHeaderLine("Authorization");
+ public function addAlbum()
+{
+    // Token decode
+    $authHeader = $this->request->getHeaderLine("Authorization");
 
-        if (!$authHeader || !str_contains($authHeader, 'Bearer ')) {
-            return $this->failUnauthorized('Missing or invalid Authorization header');
-        }
-
-        $token = str_replace('Bearer ', '', $authHeader);
-
-        try {
-            $decoded = JWT::decode($token, new Key($this->key, 'HS256'));
-            $email = $decoded->email;
-        } catch (\Exception $e) {
-            return $this->failUnauthorized('Invalid token: ' . $e->getMessage());
-        }
-
-        // Form data
-        $data = $this->request->getPost();
-        $file = $this->request->getFile('thumbnail');
-
-        if (!$file || !$file->isValid()) {
-            return $this->failValidationErrors('Invalid or missing thumbnail image');
-        }
-
-        // File upload
-        $newName = $file->getRandomName();
-        $folderPath = FCPATH . 'images/' . $email;
-
-        if (!is_dir($folderPath)) {
-            mkdir($folderPath, 0777, true);
-        }
-
-        if (!$file->move($folderPath, $newName)) {
-            return $this->fail('Failed to upload thumbnail');
-        }
-
-        // Insert into DB
-        $albumModel = new AlbumModel();
-        $slug = $this->generateSlug($data['title']);
-
-        $insertData = [
-            'title'       => $data['title'],
-            'description' => $data['description'],
-            'thumbnail'   => 'images/' . $email . '/' . $newName,
-            'email'       => $email,
-            'slug'        => $slug,
-            'download'    => $data['download'] ?? 0,
-            'is_visible'  => $data['isVisible'] ?? 1  // match DB column name
-        ];
-
-        if (!$albumModel->insert($insertData)) {
-            return $this->failServerError('Failed to create album');
-        }
-
-        return $this->respondCreated([
-            'status'  => 'success',
-            'message' => 'Album created successfully',
-            'slug'    => $slug
-        ]);
+    if (!$authHeader || !str_contains($authHeader, 'Bearer ')) {
+        return $this->failUnauthorized('Missing or invalid Authorization header');
     }
+
+    $token = str_replace('Bearer ', '', $authHeader);
+
+    try {
+        $decoded = JWT::decode($token, new Key($this->key, 'HS256'));
+        $email = $decoded->email;
+    } catch (\Exception $e) {
+        return $this->failUnauthorized('Invalid token: ' . $e->getMessage());
+    }
+
+    // Form data
+    $data = $this->request->getPost();
+    $file = $this->request->getFile('thumbnail');
+
+    if (!$file || !$file->isValid()) {
+        return $this->failValidationErrors('Invalid or missing thumbnail image');
+    }
+
+    // File upload to email/title folder
+    $newName = $file->getRandomName();
+    $folderPath = FCPATH . 'images/' . $email . '/' . $data['title'];
+
+    if (!is_dir($folderPath)) {
+        mkdir($folderPath, 0777, true);
+    }
+
+    if (!$file->move($folderPath, $newName)) {
+        return $this->fail('Failed to upload thumbnail');
+    }
+
+    // Insert into DB
+    $albumModel = new AlbumModel();
+    $slug = $this->generateSlug($data['title']);
+
+    $insertData = [
+        'title'       => $data['title'],
+        'description' => $data['description'],
+        'thumbnail'   => 'images/' . $email . '/' . $data['title'] . '/' . $newName,
+        'email'       => $email,
+        'slug'        => $slug,
+        'download'    => $data['download'] ?? 0,
+        'is_visible'  => $data['isVisible'] ?? 1
+    ];
+
+    if (!$albumModel->insert($insertData)) {
+        return $this->failServerError('Failed to create album');
+    }
+
+    return $this->respondCreated([
+        'status'  => 'success',
+        'message' => 'Album created successfully',
+        'slug'    => $slug
+    ]);
+}
+
 
     public function getAlbums()
     {
@@ -99,9 +100,13 @@ class AlbumController extends ResourceController
 
         try {
             $decoded = JWT::decode($token, new Key($this->key, 'HS256'));
-            $email = $decoded->email;
+            $email = $decoded->email ?? null;
 
-            $albumModel = new AlbumModel();
+            if (!$email) {
+                return $this->respond(['success' => false, 'message' => 'Email not found in token'], 401);
+            }
+
+            $albumModel = new \App\Models\AlbumModel();
             $albums = $albumModel->where('email', $email)->findAll();
 
             return $this->respond(['success' => true, 'albums' => $albums]);
