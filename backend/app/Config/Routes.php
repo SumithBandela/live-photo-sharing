@@ -21,11 +21,21 @@ $routes->options('auth/register', function () {
         ->setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS')
         ->setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 });
+$routes->options('api/auth/send-otp', function () {
+    return service('response')
+        ->setStatusCode(200)
+        ->setHeader('Access-Control-Allow-Origin', '*')
+        ->setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS')
+        ->setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+});
 
 
 
 $routes->post('auth/login', 'AuthController::login');
 $routes->post('auth/register', 'AuthController::register');
+$routes->post('api/auth/send-otp', 'AuthController::sendOtp');
+$routes->post('api/auth/verify-otp', 'AuthController::verifyOtp');
+$routes->post('api/auth/reset-password', 'AuthController::resetPassword');
 
 $routes->group('api/albums', ['namespace' => 'App\Controllers'], function($routes) {
     $routes->post('add', 'AlbumController::addAlbum');  // POST /api/albums/add

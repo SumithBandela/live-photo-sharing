@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './verify-otp.css';
-function VerifyOTP() {
+export function VerifyOTP() {
   const [email, setEmail] = useState('');
   const [otp, setOtp] = useState('');
   const [newPassword, setNewPassword] = useState('');
@@ -56,4 +56,3 @@ function VerifyOTP() {
   );
 }
 
-export default VerifyOTP;

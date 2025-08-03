@@ -5,6 +5,12 @@ use App\Models\UserModel;
 use CodeIgniter\RESTful\ResourceController;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
+use CodeIgniter\I18n\Time; // ✅ Add this line
+use App\Models\OtpModel;
+use CodeIgniter\API\ResponseTrait;
+use Exception;
+use CodeIgniter\Email\Email;
+use Config\Services;
 
 class AuthController extends ResourceController
 {
@@ -69,5 +75,97 @@ class AuthController extends ResourceController
             'email' => $user['email'],
             'name' => $user['name']
         ]);
+    }
+
+ 
+public function sendOtp()
+{
+    $data = $this->request->getJSON(true); // associative array
+    $email = $data['email'] ?? null;
+
+    if (!$email) {
+        return $this->failValidationErrors('Email is required');
+    }
+
+    // Generate OTP
+    $otp = random_int(100000, 999999);
+    $expiresAt = date('Y-m-d H:i:s', strtotime('+5 minutes'));
+
+    // Save to database
+    $model = new \App\Models\OtpModel();
+    $model->insert([
+        'email' => $email,
+        'otp' => $otp,
+        'expires_at' => $expiresAt,
+    ]);
+
+    // Send email
+    $emailService = \Config\Services::email();
+    $emailService->setTo($email);
+    $emailService->setSubject('Your OTP Code');
+    $emailService->setMessage("Your OTP is: $otp. It is valid for 5 minutes.");
+    
+    if (!$emailService->send()) {
+        return $this->fail('Failed to send email');
+    }
+
+    return $this->respond(['message' => 'OTP sent successfully'], 200);
+}
+
+    public function verifyOtp()
+    {
+        $data = $this->request->getJSON();
+        $email = $data->email ?? '';
+        $otp = $data->otp ?? '';
+
+        $otpModel = new OtpModel();
+        $record = $otpModel
+            ->where('email', $email)
+            ->where('otp', $otp)
+            ->where('expires_at >=', Time::now()->toDateTimeString())
+            ->where('verified', 0)
+            ->first();
+
+        if (!$record) {
+            return $this->fail('Invalid or expired OTP');
+        }
+
+        $otpModel->update($record['id'], ['verified' => 1]);
+
+        return $this->respond(['success' => true, 'message' => 'OTP verified']);
+    }
+
+    public function resetPassword()
+    {
+        $data = $this->request->getJSON();
+        $email = $data->email ?? '';
+        $newPassword = $data->password ?? '';
+
+        if (!$email || !$newPassword) {
+            return $this->fail('Email and password are required');
+        }
+
+        $otpModel = new OtpModel();
+        $record = $otpModel
+            ->where('email', $email)
+            ->where('verified', 1)
+            ->orderBy('id', 'desc')
+            ->first();
+
+        if (!$record) {
+            return $this->fail('OTP not verified');
+        }
+
+        $userModel = new UserModel();
+        $user = $userModel->where('email', $email)->first();
+
+        if (!$user) {
+            return $this->failNotFound('User not found');
+        }
+
+        $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+        $userModel->update($user['id'], ['password' => $hashedPassword]);
+
+        return $this->respond(['success' => true, 'message' => 'Password reset successful']);
     }
 }

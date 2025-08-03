@@ -16,16 +16,14 @@ import { AlbumPhotos } from './album-photos';
 import { NotFound } from './not-found';
 import { UpdateAlbum } from './update-album';
 import { ContactAdmin } from './admin-contact';
-import axios from 'axios';
 import { Profile } from './profile';
 import { EditProfile } from './edit-profile';
 import { ProfileSetup } from './profile-setup';
-import SendEmail from './send-email';
-import VerifyOtp from './verify-otp';
+import {SendOtp} from './send-otp';
+//import {VerifyOtp} from './verify-otp';
 import {getUserInfo} from './utils/auth';
 import { PrivateRoute } from './utils/PrivateRoute';
 import { NavBar } from './navbar';
-
 function App() {
   const user = getUserInfo();
   return (
@@ -33,10 +31,11 @@ function App() {
       <NavBar />
       <Routes>
         {/* Public Routes */}
-        <Route path="/" element={<AdminLogin />} />
+        <Route path="/" element={<Home />} />
+        <Route path='*' element={<NotFound />} />
         <Route path="/login" element={<AdminLogin />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/send-email" element={<SendEmail />} />
+        <Route path="/send-email" element={<SendOtp />} />
           {/*<Route path="/reset-password/:email" element={<ResetPassword />} */}
 
         {/* Protected Routes (All require JWT) */}
