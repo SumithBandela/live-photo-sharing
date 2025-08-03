@@ -30,13 +30,15 @@ export function AddPhotos() {
       const token = localStorage.getItem('token');
       const formData = new FormData();
       formData.append("title", title);
+      formData.append("email", user.email); // required by backend
+
       values.images.forEach((img) => {
         formData.append("images[]", img);
       });
 
       try {
         const res = await axios.post(
-          "http://localhost:8080/photos/upload",
+          "http://localhost:8080/api/photos/upload",
           formData,
           {
             headers: {

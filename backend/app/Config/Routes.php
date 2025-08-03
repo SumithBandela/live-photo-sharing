@@ -32,10 +32,14 @@ $routes->group('api/albums', ['namespace' => 'App\Controllers'], function($route
     $routes->get('all', 'AlbumController::getAlbums');  // GET  /api/albums/all
 });
 
+$routes->group('api/photos', ['namespace' => 'App\Controllers'], function($routes) {
+    $routes->post('upload', 'PhotoController::upload');
+    $routes->get('list', 'PhotoController::getPhotos'); // optional if you use gallery
+});
 
-$routes->get('api/photos', 'PhotoController::getPhotosByAlbum');
-$routes->post('api/photos/upload', 'PhotosController::upload');
-$routes->get('api/photos', 'PhotosController::getPhotos');
+
+#$routes->get('api/photos', 'PhotoController::getPhotosByAlbum');
+#$routes->get('api/photos', 'PhotoController::getPhotos');
 
 
 

@@ -1,0 +1,511 @@
+CRITICAL - 2025-08-03 07:08:53 --> TypeError: Key material must be a string, resource, or OpenSSLAsymmetricKey
+[Method: POST, Route: api/photos/upload]
+in VENDORPATH\firebase\php-jwt\src\Key.php on line 26.
+ 1 APPPATH\Controllers\PhotoController.php(31): Firebase\JWT\Key->__construct(false, 'HS256')
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\PhotoController->upload()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PhotoController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-03 07:10:46 --> TypeError: Key material must be a string, resource, or OpenSSLAsymmetricKey
+[Method: POST, Route: api/photos/upload]
+in VENDORPATH\firebase\php-jwt\src\Key.php on line 26.
+ 1 APPPATH\Controllers\PhotoController.php(31): Firebase\JWT\Key->__construct(false, 'HS256')
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\PhotoController->upload()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PhotoController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-03 07:12:43 --> TypeError: Key material must be a string, resource, or OpenSSLAsymmetricKey
+[Method: POST, Route: api/photos/upload]
+in VENDORPATH\firebase\php-jwt\src\Key.php on line 26.
+ 1 APPPATH\Controllers\PhotoController.php(31): Firebase\JWT\Key->__construct(false, 'HS256')
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\PhotoController->upload()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PhotoController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-03 07:15:21 --> TypeError: Key material must be a string, resource, or OpenSSLAsymmetricKey
+[Method: POST, Route: api/photos/upload]
+in VENDORPATH\firebase\php-jwt\src\Key.php on line 26.
+ 1 APPPATH\Controllers\PhotoController.php(31): Firebase\JWT\Key->__construct(false, 'HS256')
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\PhotoController->upload()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PhotoController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-03 07:18:34 --> Error: Call to a member function insert() on null
+[Method: POST, Route: api/photos/upload]
+in APPPATH\Controllers\PhotoController.php on line 46.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\PhotoController->upload()
+ 2 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PhotoController))
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-03 07:23:16 --> Error: Class "App\Models\PhotoModel" not found
+[Method: POST, Route: api/photos/upload]
+in APPPATH\Controllers\PhotoController.php on line 46.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\PhotoController->upload()
+ 2 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PhotoController))
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-03 12:58:47 --> Error: Class "App\Models\PhotoModel" not found
+[Method: POST, Route: api/photos/upload]
+in APPPATH\Controllers\PhotoController.php on line 46.
+ 1 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\PhotoController->upload()
+ 2 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PhotoController))
+ 3 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 7 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+ERROR - 2025-08-03 13:08:59 --> mysqli_sql_exception: Unknown column 'image_path' in 'field list' in E:\live-photo-sharing\backend\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 E:\live-photo-sharing\backend\system\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `ph...', 0)
+#1 E:\live-photo-sharing\backend\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `ph...')
+#2 E:\live-photo-sharing\backend\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `ph...')
+#3 E:\live-photo-sharing\backend\system\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `ph...', Array, false)
+#4 E:\live-photo-sharing\backend\system\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+#5 E:\live-photo-sharing\backend\system\BaseModel.php(843): CodeIgniter\Model->doInsert(Array)
+#6 E:\live-photo-sharing\backend\system\Model.php(800): CodeIgniter\BaseModel->insert(Array, true)
+#7 E:\live-photo-sharing\backend\app\Controllers\PhotoController.php(56): CodeIgniter\Model->insert(Array)
+#8 E:\live-photo-sharing\backend\system\CodeIgniter.php(933): App\Controllers\PhotoController->upload()
+#9 E:\live-photo-sharing\backend\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PhotoController))
+#10 E:\live-photo-sharing\backend\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 E:\live-photo-sharing\backend\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 E:\live-photo-sharing\backend\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 E:\live-photo-sharing\backend\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 E:\live-photo-sharing\backend\system\rewrite.php(44): require_once('E:\\live-photo-s...')
+#15 {main}
+CRITICAL - 2025-08-03 13:08:59 --> Upload error: Unknown column 'image_path' in 'field list'
+ERROR - 2025-08-03 13:10:57 --> mysqli_sql_exception: Unknown column 'uploaded_by' in 'field list' in E:\live-photo-sharing\backend\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 E:\live-photo-sharing\backend\system\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `ph...', 0)
+#1 E:\live-photo-sharing\backend\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `ph...')
+#2 E:\live-photo-sharing\backend\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `ph...')
+#3 E:\live-photo-sharing\backend\system\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `ph...', Array, false)
+#4 E:\live-photo-sharing\backend\system\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+#5 E:\live-photo-sharing\backend\system\BaseModel.php(843): CodeIgniter\Model->doInsert(Array)
+#6 E:\live-photo-sharing\backend\system\Model.php(800): CodeIgniter\BaseModel->insert(Array, true)
+#7 E:\live-photo-sharing\backend\app\Controllers\PhotoController.php(56): CodeIgniter\Model->insert(Array)
+#8 E:\live-photo-sharing\backend\system\CodeIgniter.php(933): App\Controllers\PhotoController->upload()
+#9 E:\live-photo-sharing\backend\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PhotoController))
+#10 E:\live-photo-sharing\backend\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 E:\live-photo-sharing\backend\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 E:\live-photo-sharing\backend\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 E:\live-photo-sharing\backend\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 E:\live-photo-sharing\backend\system\rewrite.php(44): require_once('E:\\live-photo-s...')
+#15 {main}
+CRITICAL - 2025-08-03 13:10:57 --> Upload error: Unknown column 'uploaded_by' in 'field list'
+CRITICAL - 2025-08-03 13:22:50 --> TypeError: Key material must be a string, resource, or OpenSSLAsymmetricKey
+[Method: GET, Route: api/photos/list]
+in VENDORPATH\firebase\php-jwt\src\Key.php on line 26.
+ 1 APPPATH\Controllers\PhotoController.php(82): Firebase\JWT\Key->__construct(false, 'HS256')
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\PhotoController->getPhotos()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PhotoController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-03 13:22:54 --> TypeError: Key material must be a string, resource, or OpenSSLAsymmetricKey
+[Method: GET, Route: api/photos/list]
+in VENDORPATH\firebase\php-jwt\src\Key.php on line 26.
+ 1 APPPATH\Controllers\PhotoController.php(82): Firebase\JWT\Key->__construct(false, 'HS256')
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\PhotoController->getPhotos()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PhotoController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-03 13:22:56 --> TypeError: Key material must be a string, resource, or OpenSSLAsymmetricKey
+[Method: GET, Route: api/photos/list]
+in VENDORPATH\firebase\php-jwt\src\Key.php on line 26.
+ 1 APPPATH\Controllers\PhotoController.php(82): Firebase\JWT\Key->__construct(false, 'HS256')
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\PhotoController->getPhotos()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PhotoController))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+ERROR - 2025-08-03 13:27:53 --> mysqli_sql_exception: Unknown column 'title' in 'where clause' in E:\live-photo-sharing\backend\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 E:\live-photo-sharing\backend\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *\nFROM `...', 0)
+#1 E:\live-photo-sharing\backend\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 E:\live-photo-sharing\backend\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 E:\live-photo-sharing\backend\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 E:\live-photo-sharing\backend\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 E:\live-photo-sharing\backend\system\BaseModel.php(679): CodeIgniter\Model->doFindAll(0, 0)
+#6 E:\live-photo-sharing\backend\app\Controllers\PhotoController.php(93): CodeIgniter\BaseModel->findAll()
+#7 E:\live-photo-sharing\backend\system\CodeIgniter.php(933): App\Controllers\PhotoController->getPhotos()
+#8 E:\live-photo-sharing\backend\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PhotoController))
+#9 E:\live-photo-sharing\backend\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 E:\live-photo-sharing\backend\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#11 E:\live-photo-sharing\backend\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 E:\live-photo-sharing\backend\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 E:\live-photo-sharing\backend\system\rewrite.php(44): require_once('E:\\live-photo-s...')
+#14 {main}
+CRITICAL - 2025-08-03 13:27:53 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'title' in 'where clause'
+[Method: GET, Route: api/photos/list]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `photos`
+WHERE `email` = :email:
+AND `title` = :title:', [...], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(679): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Controllers\PhotoController.php(93): CodeIgniter\BaseModel->findAll()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\PhotoController->getPhotos()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PhotoController))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-03 13:27:53 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'title' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `photos`
+WHERE `email` = \'sumithbandela@gmail.com\'
+AND `title` = \'Wedding\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `photos`
+WHERE `email` = \'sumithbandela@gmail.com\'
+AND `title` = \'Wedding\'')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `photos`
+WHERE `email` = :email:
+AND `title` = :title:', [...], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(679): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Controllers\PhotoController.php(93): CodeIgniter\BaseModel->findAll()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\PhotoController->getPhotos()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PhotoController))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-03 13:27:53 --> [Caused by] mysqli_sql_exception: Unknown column 'title' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *
+FROM `photos`
+WHERE `email` = \'sumithbandela@gmail.com\'
+AND `title` = \'Wedding\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `photos`
+WHERE `email` = \'sumithbandela@gmail.com\'
+AND `title` = \'Wedding\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `photos`
+WHERE `email` = \'sumithbandela@gmail.com\'
+AND `title` = \'Wedding\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `photos`
+WHERE `email` = :email:
+AND `title` = :title:', [...], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(679): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\PhotoController.php(93): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\PhotoController->getPhotos()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PhotoController))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+ERROR - 2025-08-03 13:29:15 --> mysqli_sql_exception: Unknown column 'title' in 'where clause' in E:\live-photo-sharing\backend\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 E:\live-photo-sharing\backend\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *\nFROM `...', 0)
+#1 E:\live-photo-sharing\backend\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 E:\live-photo-sharing\backend\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 E:\live-photo-sharing\backend\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 E:\live-photo-sharing\backend\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 E:\live-photo-sharing\backend\system\BaseModel.php(679): CodeIgniter\Model->doFindAll(0, 0)
+#6 E:\live-photo-sharing\backend\app\Controllers\PhotoController.php(93): CodeIgniter\BaseModel->findAll()
+#7 E:\live-photo-sharing\backend\system\CodeIgniter.php(933): App\Controllers\PhotoController->getPhotos()
+#8 E:\live-photo-sharing\backend\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PhotoController))
+#9 E:\live-photo-sharing\backend\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 E:\live-photo-sharing\backend\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#11 E:\live-photo-sharing\backend\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 E:\live-photo-sharing\backend\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 E:\live-photo-sharing\backend\system\rewrite.php(44): require_once('E:\\live-photo-s...')
+#14 {main}
+CRITICAL - 2025-08-03 13:29:15 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'title' in 'where clause'
+[Method: GET, Route: api/photos/list]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `photos`
+WHERE `email` = :email:
+AND `title` = :title:', [...], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(679): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Controllers\PhotoController.php(93): CodeIgniter\BaseModel->findAll()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\PhotoController->getPhotos()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PhotoController))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-03 13:29:15 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'title' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `photos`
+WHERE `email` = \'sumithbandela@gmail.com\'
+AND `title` = \'Wedding\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `photos`
+WHERE `email` = \'sumithbandela@gmail.com\'
+AND `title` = \'Wedding\'')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `photos`
+WHERE `email` = :email:
+AND `title` = :title:', [...], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(679): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Controllers\PhotoController.php(93): CodeIgniter\BaseModel->findAll()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\PhotoController->getPhotos()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PhotoController))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-03 13:29:15 --> [Caused by] mysqli_sql_exception: Unknown column 'title' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *
+FROM `photos`
+WHERE `email` = \'sumithbandela@gmail.com\'
+AND `title` = \'Wedding\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `photos`
+WHERE `email` = \'sumithbandela@gmail.com\'
+AND `title` = \'Wedding\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `photos`
+WHERE `email` = \'sumithbandela@gmail.com\'
+AND `title` = \'Wedding\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `photos`
+WHERE `email` = :email:
+AND `title` = :title:', [...], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(679): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\PhotoController.php(93): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\PhotoController->getPhotos()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PhotoController))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+ERROR - 2025-08-03 13:29:20 --> mysqli_sql_exception: Unknown column 'title' in 'where clause' in E:\live-photo-sharing\backend\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 E:\live-photo-sharing\backend\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *\nFROM `...', 0)
+#1 E:\live-photo-sharing\backend\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 E:\live-photo-sharing\backend\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 E:\live-photo-sharing\backend\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 E:\live-photo-sharing\backend\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 E:\live-photo-sharing\backend\system\BaseModel.php(679): CodeIgniter\Model->doFindAll(0, 0)
+#6 E:\live-photo-sharing\backend\app\Controllers\PhotoController.php(93): CodeIgniter\BaseModel->findAll()
+#7 E:\live-photo-sharing\backend\system\CodeIgniter.php(933): App\Controllers\PhotoController->getPhotos()
+#8 E:\live-photo-sharing\backend\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PhotoController))
+#9 E:\live-photo-sharing\backend\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 E:\live-photo-sharing\backend\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#11 E:\live-photo-sharing\backend\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 E:\live-photo-sharing\backend\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 E:\live-photo-sharing\backend\system\rewrite.php(44): require_once('E:\\live-photo-s...')
+#14 {main}
+CRITICAL - 2025-08-03 13:29:20 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'title' in 'where clause'
+[Method: GET, Route: api/photos/list]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `photos`
+WHERE `email` = :email:
+AND `title` = :title:', [...], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(679): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Controllers\PhotoController.php(93): CodeIgniter\BaseModel->findAll()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\PhotoController->getPhotos()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PhotoController))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-03 13:29:20 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'title' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `photos`
+WHERE `email` = \'sumithbandela@gmail.com\'
+AND `title` = \'Wedding\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `photos`
+WHERE `email` = \'sumithbandela@gmail.com\'
+AND `title` = \'Wedding\'')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `photos`
+WHERE `email` = :email:
+AND `title` = :title:', [...], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(679): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Controllers\PhotoController.php(93): CodeIgniter\BaseModel->findAll()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\PhotoController->getPhotos()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PhotoController))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-03 13:29:20 --> [Caused by] mysqli_sql_exception: Unknown column 'title' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *
+FROM `photos`
+WHERE `email` = \'sumithbandela@gmail.com\'
+AND `title` = \'Wedding\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `photos`
+WHERE `email` = \'sumithbandela@gmail.com\'
+AND `title` = \'Wedding\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `photos`
+WHERE `email` = \'sumithbandela@gmail.com\'
+AND `title` = \'Wedding\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `photos`
+WHERE `email` = :email:
+AND `title` = :title:', [...], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(679): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\PhotoController.php(93): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\PhotoController->getPhotos()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PhotoController))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+ERROR - 2025-08-03 13:29:24 --> mysqli_sql_exception: Unknown column 'title' in 'where clause' in E:\live-photo-sharing\backend\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 E:\live-photo-sharing\backend\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *\nFROM `...', 0)
+#1 E:\live-photo-sharing\backend\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 E:\live-photo-sharing\backend\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 E:\live-photo-sharing\backend\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 E:\live-photo-sharing\backend\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 E:\live-photo-sharing\backend\system\BaseModel.php(679): CodeIgniter\Model->doFindAll(0, 0)
+#6 E:\live-photo-sharing\backend\app\Controllers\PhotoController.php(93): CodeIgniter\BaseModel->findAll()
+#7 E:\live-photo-sharing\backend\system\CodeIgniter.php(933): App\Controllers\PhotoController->getPhotos()
+#8 E:\live-photo-sharing\backend\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PhotoController))
+#9 E:\live-photo-sharing\backend\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 E:\live-photo-sharing\backend\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#11 E:\live-photo-sharing\backend\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 E:\live-photo-sharing\backend\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 E:\live-photo-sharing\backend\system\rewrite.php(44): require_once('E:\\live-photo-s...')
+#14 {main}
+CRITICAL - 2025-08-03 13:29:24 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'title' in 'where clause'
+[Method: GET, Route: api/photos/list]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `photos`
+WHERE `email` = :email:
+AND `title` = :title:', [...], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(679): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Controllers\PhotoController.php(93): CodeIgniter\BaseModel->findAll()
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\PhotoController->getPhotos()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PhotoController))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-03 13:29:24 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'title' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `photos`
+WHERE `email` = \'sumithbandela@gmail.com\'
+AND `title` = \'Wedding\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `photos`
+WHERE `email` = \'sumithbandela@gmail.com\'
+AND `title` = \'Wedding\'')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `photos`
+WHERE `email` = :email:
+AND `title` = :title:', [...], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(679): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Controllers\PhotoController.php(93): CodeIgniter\BaseModel->findAll()
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\PhotoController->getPhotos()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PhotoController))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-03 13:29:24 --> [Caused by] mysqli_sql_exception: Unknown column 'title' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *
+FROM `photos`
+WHERE `email` = \'sumithbandela@gmail.com\'
+AND `title` = \'Wedding\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `photos`
+WHERE `email` = \'sumithbandela@gmail.com\'
+AND `title` = \'Wedding\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `photos`
+WHERE `email` = \'sumithbandela@gmail.com\'
+AND `title` = \'Wedding\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `photos`
+WHERE `email` = :email:
+AND `title` = :title:', [...], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(679): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\PhotoController.php(93): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\PhotoController->getPhotos()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PhotoController))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-03 13:33:06 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "sumithbandela@gmail.com"
+[Method: GET, Route: images/sumithbandela@gmail.com/Wedding/undefined]
+in SYSTEMPATH\Router\Router.php on line 741.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('images/sumithbandela@gmail.com/Wedding/undefined')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('images/sumithbandela@gmail.com/Wedding/undefined')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')
+CRITICAL - 2025-08-03 13:33:22 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "sumithbandela@gmail.com"
+[Method: GET, Route: images/sumithbandela@gmail.com/Wedding/undefined]
+in SYSTEMPATH\Router\Router.php on line 741.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars('images/sumithbandela@gmail.com/Wedding/undefined')
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle('images/sumithbandela@gmail.com/Wedding/undefined')
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('E:\\live-photo-sharing\\backend\\public\\index.php')

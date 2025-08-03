@@ -2,7 +2,6 @@ import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import './photos.css';
 import axios from 'axios';
-import { getUserInfo } from './utils/auth';
 
 export function Photos() {
   const { title } = useParams(); // album title
@@ -10,22 +9,24 @@ export function Photos() {
   const [photos, setPhotos] = useState([]);
   const location = useLocation();
   const slug = location?.state?.slug;
-
-  const userInfo = getUserInfo();
-  const email = userInfo?.email.toLowerCase();
+  const token = localStorage.getItem('token'); 
 
   useEffect(() => {
-    if (!email) return;
+    if (!token) return;
 
     axios
-      .get(`https://rashmiphotography.com/api/photos`, {
-        params: { email, title }
+      .get(`http://localhost:8080/api/photos/list`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
+        params: { title }
       })
       .then((response) => {
         if (response.data.status === 'success') {
           const fetchedPhotos = response.data.photos.map((photo) => ({
-            url: photo.url,
-            visible: photo.visible === 1
+            url: photo.img_src,
+            visible: photo.is_visible === 1,
+            email: photo.email // exact email from backend
           }));
           setPhotos(fetchedPhotos);
         } else {
@@ -35,7 +36,7 @@ export function Photos() {
       .catch((error) => {
         console.error('Error fetching photos:', error);
       });
-  }, [title, email]);
+  }, [title, token]);
 
   const handleAddPhotos = () => {
     navigate(`/addphotos/${title}`);
@@ -46,15 +47,18 @@ export function Photos() {
     updated[index].visible = value === 'Visible';
     setPhotos(updated);
 
-    const url = updated[index].url;
+    const { url } = updated[index];
     const visible = updated[index].visible ? 1 : 0;
 
     axios
-      .post('https://rashmiphotography.com/backend/photos/visibility', {
+      .post('http://localhost:8080/api/photos/visibility', {
         url,
         visible,
-        email,
         title
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
       })
       .then((response) => {
         if (response.data.status === 'success') {
@@ -81,7 +85,7 @@ export function Photos() {
           {photos.map((photo, index) => (
             <div key={index} className="photo-card">
               <img
-                src={`https://rashmiphotography.com/public/${email}/${title}/${photo.url}`}
+                src={`http://localhost:8080/${photo.url}`}
                 alt="img"
                 className={`photo-img ${photo.visible ? '' : 'hidden-photo'}`}
               />
