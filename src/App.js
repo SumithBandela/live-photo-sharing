@@ -1,6 +1,6 @@
 import './App.css';
 
-import {HashRouter as BrowserRouter, Link, Routes, Route } from 'react-router-dom';
+import {HashRouter as BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Home } from './home';
 import { Admin } from './admin';
 //import { Gallery } from './gallery';
