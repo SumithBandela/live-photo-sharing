@@ -78,47 +78,52 @@ class AuthController extends ResourceController
     }
 
  
-public function sendOtp()
-{
-    $data = $this->request->getJSON(true); // associative array
-    $email = $data['email'] ?? null;
+    public function sendOtp()
+    {
+        $data = $this->request->getJSON(true); // associative array
+        $email = $data['email'] ?? null;
 
-    if (!$email) {
-        return $this->failValidationErrors('Email is required');
+        if (!$email) {
+            return $this->failValidationErrors('Email is required');
+        }
+
+        // Generate OTP
+        $otp = random_int(100000, 999999);
+        $expiresAt = date('Y-m-d H:i:s', strtotime('+5 minutes'));
+
+        // Save to database
+        $model = new \App\Models\OtpModel();
+        $model->insert([
+            'email' => $email,
+            'otp' => $otp,
+            'expires_at' => $expiresAt,
+        ]);
+        $emailService = \Config\Services::email();
+
+        $emailService->setFrom('bandhelasumith@gmail.com', 'RS Photography'); // ✅ Set From here
+        $emailService->setTo($email);
+        $emailService->setSubject('Your OTP Code');
+        $emailService->setMessage("Your OTP is: $otp. It is valid for 5 minutes.");
+
+        if (!$emailService->send()) {
+            log_message('error', $emailService->printDebugger(['headers', 'subject', 'body']));
+            return $this->fail('Failed to send email');
+        }
+
+            return $this->respond(['message' => 'OTP sent successfully'], 200);
     }
 
-    // Generate OTP
-    $otp = random_int(100000, 999999);
-    $expiresAt = date('Y-m-d H:i:s', strtotime('+5 minutes'));
-
-    // Save to database
-    $model = new \App\Models\OtpModel();
-    $model->insert([
-        'email' => $email,
-        'otp' => $otp,
-        'expires_at' => $expiresAt,
-    ]);
-
-    // Send email
-    $emailService = \Config\Services::email();
-    $emailService->setTo($email);
-    $emailService->setSubject('Your OTP Code');
-    $emailService->setMessage("Your OTP is: $otp. It is valid for 5 minutes.");
-    
-    if (!$emailService->send()) {
-        return $this->fail('Failed to send email');
-    }
-
-    return $this->respond(['message' => 'OTP sent successfully'], 200);
-}
-
-    public function verifyOtp()
+  public function verifyOtp()
     {
         $data = $this->request->getJSON();
         $email = $data->email ?? '';
         $otp = $data->otp ?? '';
 
-        $otpModel = new OtpModel();
+        if (!$email || !$otp) {
+            return $this->fail('Email and OTP are required');
+        }
+
+        $otpModel = new \App\Models\OtpModel();
         $record = $otpModel
             ->where('email', $email)
             ->where('otp', $otp)
@@ -134,6 +139,7 @@ public function sendOtp()
 
         return $this->respond(['success' => true, 'message' => 'OTP verified']);
     }
+
 
     public function resetPassword()
     {

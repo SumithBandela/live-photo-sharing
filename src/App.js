@@ -3,16 +3,16 @@ import './App.css';
 import {HashRouter as BrowserRouter, Link, Routes, Route } from 'react-router-dom';
 import { Home } from './home';
 import { Admin } from './admin';
-import { Gallery } from './gallery';
+//import { Gallery } from './gallery';
 import { AdminLogin } from './admin-login';
 import { UploadPhotos } from './upload-photos';
 import { Albums } from './albums';
 import { AddPhotos } from './add-photos';
 import { Photos } from './photos';
 import { AddAlbum } from './add-album';
-import { ForgotPassword } from './forgot-password';
+//import { ForgotPassword } from './forgot-password';
 import { Signup } from './sign-up';
-import { AlbumPhotos } from './album-photos';
+//import { AlbumPhotos } from './album-photos';
 import { NotFound } from './not-found';
 import { UpdateAlbum } from './update-album';
 import { ContactAdmin } from './admin-contact';
@@ -20,10 +20,11 @@ import { Profile } from './profile';
 import { EditProfile } from './edit-profile';
 import { ProfileSetup } from './profile-setup';
 import {SendOtp} from './send-otp';
-//import {VerifyOtp} from './verify-otp';
 import {getUserInfo} from './utils/auth';
 import { PrivateRoute } from './utils/PrivateRoute';
 import { NavBar } from './navbar';
+import { VerifyOTP } from './verify-otp';
+import { ResetPassword } from './reset-password';
 function App() {
   const user = getUserInfo();
   return (
@@ -36,8 +37,8 @@ function App() {
         <Route path="/login" element={<AdminLogin />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/send-email" element={<SendOtp />} />
-          {/*<Route path="/reset-password/:email" element={<ResetPassword />} */}
-
+        <Route path='/verify-otp' element={<VerifyOTP/>}/>
+        <Route path="/reset-password" element={<ResetPassword />} />
         {/* Protected Routes (All require JWT) */}
         {user && (
           <>

@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './send-otp.css';
+import { useNavigate } from 'react-router-dom';
 
 export function SendOtp() {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
-
+  const navigate = useNavigate();
   const handleSendEmail = async (e) => {
     e.preventDefault();
     setMessage('');
@@ -23,6 +24,9 @@ export function SendOtp() {
         }
       );
       setMessage(response.data.message || 'OTP sent successfully');
+      localStorage.setItem("reset_email", email);
+      navigate('/verify-otp');
+      
     } catch (error) {
       const errMsg =
         error.response?.data?.message ||
