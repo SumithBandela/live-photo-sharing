@@ -141,37 +141,44 @@ class AuthController extends ResourceController
     }
 
 
-    public function resetPassword()
-    {
-        $data = $this->request->getJSON();
-        $email = $data->email ?? '';
-        $newPassword = $data->password ?? '';
+   public function resetPassword()
+{
+    $data = $this->request->getJSON();
+    $email = $data->email ?? '';
+    $newPassword = $data->new_password ?? ''; // ✅ match frontend key
 
-        if (!$email || !$newPassword) {
-            return $this->fail('Email and password are required');
-        }
-
-        $otpModel = new OtpModel();
-        $record = $otpModel
-            ->where('email', $email)
-            ->where('verified', 1)
-            ->orderBy('id', 'desc')
-            ->first();
-
-        if (!$record) {
-            return $this->fail('OTP not verified');
-        }
-
-        $userModel = new UserModel();
-        $user = $userModel->where('email', $email)->first();
-
-        if (!$user) {
-            return $this->failNotFound('User not found');
-        }
-
-        $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
-        $userModel->update($user['id'], ['password' => $hashedPassword]);
-
-        return $this->respond(['success' => true, 'message' => 'Password reset successful']);
+    if (!$email || !$newPassword) {
+        return $this->fail('Email and new password are required');
     }
+
+    // Check if OTP was verified
+    $otpModel = new \App\Models\OtpModel();
+    $record = $otpModel
+        ->where('email', $email)
+        ->where('verified', 1)
+        ->orderBy('id', 'desc')
+        ->first();
+
+    if (!$record) {
+        return $this->fail('OTP not verified');
+    }
+
+    // Check if user exists
+    $userModel = new \App\Models\UserModel();
+    $user = $userModel->where('email', $email)->first();
+
+    if (!$user) {
+        return $this->failNotFound('User not found');
+    }
+
+    // Update password
+    $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+    $userModel->update($user['id'], ['password' => $hashedPassword]);
+
+    return $this->respond([
+        'success' => true,
+        'message' => 'Password reset successful'
+    ]);
+}
+
 }
